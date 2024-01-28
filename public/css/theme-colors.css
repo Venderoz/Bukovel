@@ -7,3 +7,10 @@
     --color-bg: #131313;
     --color-text: #ffffff;
 }
+*{
+    background-color: var(--color-bg);
+    color: var(--color-text);
+}
+button[data-theme-toggle]{
+    cursor: pointer;
+}

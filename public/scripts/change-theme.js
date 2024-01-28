@@ -1,83 +1,90 @@
-      /**
-       * Utility function to calculate the current theme setting.
-       * Look for a local storage value.
-       * Fall back to system setting.
-       * Fall back to light mode.
-       */
-      function calculateSettingAsThemeString({
-        localStorageTheme,
-        systemSettingDark,
-      }) {
-        if (localStorageTheme !== null) {
-          return localStorageTheme;
-        }
+function calculateSettingAsThemeString({
+  localStorageTheme,
+  systemSettingDark,
+}) {
+  if (localStorageTheme !== null) {
+    return localStorageTheme;
+  }
 
-        if (systemSettingDark.matches) {
-          return "dark";
-        }
+  if (systemSettingDark.matches) {
+    return "dark";
+  }
 
-        return "light";
-      }
+  return "light";
+}
 
-      /**
-       * Utility function to update the button text and aria-label.
-       */
-      function updateButton({ buttonEl, isDark }) {
-        const newCta = isDark
-          ? "assets/light_mode.svg"
-          : "assets/dark_mode.svg";
-        // use an aria-label if you are omitting text on the button
-        // and using a sun/moon icon, for example
-        buttonEl.innerHTML = `<img src="${newCta}" alt="" id="theme-logo">`;
-      }
+//-------------------------------------------------------------------------
+function updateButton({ themeButtonElements, aElements, isDark }) {
+  const newModeTogglerLogo = isDark
+    ? "./assets/icons/light_mode.svg"
+    : "./assets/icons/dark_mode.svg";
+  const newBasketTogglerLogo = isDark
+    ? "./assets/icons/light_shopping_basket.svg"
+    : "./assets/icons/dark_shopping_basket.svg";
+  const newAccountTogglerLogo = isDark
+    ? "./assets/icons/light_account_circle.svg"
+    : "./assets/icons/dark_account_circle.svg";
+  const newMainLogoToggler = isDark
+    ? "./assets/white_bukovel_logo.svg"
+    : "./assets/black_bukovel_logo.svg";
 
-      /**
-       * Utility function to update the theme setting on the html tag
-       */
-      function updateThemeOnHtmlEl({ theme }) {
-        document.querySelector("html").setAttribute("data-theme", theme);
-      }
+  themeButtonElements.forEach((button) => {
+    button.innerHTML = `<img src="${newModeTogglerLogo}" alt="" id="theme-logo">`;
+  });
 
-      /**
-       * On page load:
-       */
+  aElements.forEach((a) => {
+    switch (a.id) {
+      case "shopping-basket-logo-box":
+        a.innerHTML = `<img src="${newBasketTogglerLogo}" alt="">`;
+        break;
+      case "account-logo-box":
+        a.innerHTML = `<img src="${newAccountTogglerLogo}" alt="">`;
+        break;
+      case "main-logo-box":
+        a.innerHTML = `<img src="${newMainLogoToggler}" alt="">`;
+        break;
+      default:
+        break;
+    }
+  });
+}
 
-      /**
-       * 1. Grab what we need from the DOM and system settings on page load
-       */
-      const button = document.querySelector("[data-theme-toggle]");
-      const imgThemeLogo = document.getElementById("theme-logo");
-      const localStorageTheme = localStorage.getItem("theme");
-      const systemSettingDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      );
+//--------------------------------------------------------------------------
+function updateThemeOnHtmlEl({ theme }) {
+  document.querySelector("html").setAttribute("data-theme", theme);
+}
 
-      /**
-       * 2. Work out the current site settings
-       */
-      let currentThemeSetting = calculateSettingAsThemeString({
-        localStorageTheme,
-        systemSettingDark,
-      });
+const themeButtonArr = document.querySelectorAll("[data-theme-toggle]");
+const aElementsArr = document.querySelectorAll("a");
+const localStorageTheme = localStorage.getItem("theme");
+const systemSettingDark = window.matchMedia("(prefers-color-scheme: dark)");
 
-      /**
-       * 3. Update the theme setting and button text accoridng to current settings
-       */
-      updateButton({
-        buttonEl: button,
-        isDark: currentThemeSetting === "dark",
-      });
-      updateThemeOnHtmlEl({ theme: currentThemeSetting });
+//----------------------------------------------------------------------------
+let currentThemeSetting = calculateSettingAsThemeString({
+  localStorageTheme,
+  systemSettingDark,
+});
 
-      /**
-       * 4. Add an event listener to toggle the theme
-       */
-      button.addEventListener("click", (event) => {
-        const newTheme = currentThemeSetting === "dark" ? "light" : "dark";
+updateButton({
+  themeButtonElements: themeButtonArr,
+  aElements: aElementsArr,
+  isDark: currentThemeSetting === "dark",
+});
+updateThemeOnHtmlEl({ theme: currentThemeSetting });
 
-        localStorage.setItem("theme", newTheme);
-        updateButton({ buttonEl: button, isDark: newTheme === "dark" });
-        updateThemeOnHtmlEl({ theme: newTheme });
+//-----------------------------------------------------------------------------
+themeButtonArr.forEach((button) => {
+  button.addEventListener("click", (event) => {
+    const newTheme = currentThemeSetting === "dark" ? "light" : "dark";
 
-        currentThemeSetting = newTheme;
-      });
+    localStorage.setItem("theme", newTheme);
+    updateButton({
+      themeButtonElements: themeButtonArr,
+      aElements: aElementsArr,
+      isDark: newTheme === "dark",
+    });
+    updateThemeOnHtmlEl({ theme: newTheme });
+
+    currentThemeSetting = newTheme;
+  });
+});
