@@ -1,108 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./assets/icons/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="./css/theme-colors.css">
-    <link rel="stylesheet" href="./css/resetting.css">
-    <link rel="stylesheet" href="./css/nav-bar.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link
+      rel="shortcut icon"
+      href="./assets/icons/favicon.ico"
+      type="image/x-icon" />
+    <link rel="stylesheet" href="./css/theme-colors.css" />
+    <link rel="stylesheet" href="./css/resetting.css" />
+    <link rel="stylesheet" href="./css/nav-bar.css" />
     <title>Bukovel. Welcome to the Heart of Carpathians</title>
 
     <style>
+      header {
+        position: absolute;
+        top: 0;
+        z-index: 4;
+      }
+      main {
+        width: 100%;
+        height: 100%;
+      }
+      .swiper{
+        width: 100%;
+        height: 100%;
+      }
+      .swiper-slide {
+        width: 100%;
+        height: 100%;
+      }
+      .swiper-slide > img {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 16 / 9;
+      }
+      .swiper-pagination {
+        background: none;
+      }
+      /* Media Query for Mobile Devices*/
+      @media (max-width: 480px) {
+      }
 
+      /* Media Query for low resolution  Tablets, Ipads */
+      @media (min-width: 481px) and (max-width: 767px) {
+      }
+
+      /* Media Query for Tablets Ipads portrait mode */
+      @media (min-width: 768px) and (max-width: 1024px) {
+      }
+
+      /* Media Query for Laptops and Desktops */
+      @media (min-width: 1025px) and (max-width: 1280px) {
+      }
+
+      /* Media Query for Large screens */
+      @media (min-width: 1281px) {
+      }
     </style>
-</head>
-<body>
+  </head>
+  <!-- ----------------------------------------------------------------------- -->
+  <body>
     <div class="sidebar-menu-container" id="sidebar-menu-container">
-        <div class="content">
-            <div class="close-button-box">
-                <button type="button" id="close-btn">&xotime;</button>
-            </div>
-            <div class="sidebar-list-box">
-                <ul>
-                    <li>
-                        <a href="#">
-                            <p>Map of trails</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <p>Skipasses and equipment</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <p>Contact and access</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="" id="shopping-basket-logo-box">
-                            <!-- inserted with JS -->
-                        </a>
-                    </li>
-                    <li>
-                        <a href="" id="account-logo-box">
-                            <!-- inserted with JS -->
-                        </a>
-                    </li>
-                    <li>
-                        <button type="button" data-theme-toggle> 
-                            <!-- inserted with JS -->
-                        </button>
-                    </li>
-                </ul>
-            </div>
+      <div class="content">
+        <div class="close-button-box">
+          <button type="button" id="close-btn"><span>&xotime;</span></button>
         </div>
+        <div class="sidebar-list-box">
+          <ul>
+            <li>
+              <a href="#">
+                <p>Map of trails</p>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <p>Skipasses and equipment</p>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <p>Contact and access</p>
+              </a>
+            </li>
+            <li>
+              <a href="" id="shopping-basket-logo-box">
+                <!-- inserted with JS -->
+              </a>
+            </li>
+            <li>
+              <a href="" id="account-logo-box">
+                <!-- inserted with JS -->
+              </a>
+            </li>
+            <li>
+              <button type="button" data-theme-toggle>
+                <!-- inserted with JS -->
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-
+    <!-- ----------------------------------------------------------------------- -->
     <header>
-        <nav>
-            <div class="logo-box">
-                <a href="welcomePage.html" id="main-logo-box">
-                    <!-- Inserted with JS -->
-                </a>
-            </div>
-            <div class="nav-list-box">
-                <button type="button" id="show-sidebar-btn" class="show-sidebar-btn">
-                    &Xi;
-                </button>
-                <ul>
-                    <li>
-                        <a href="#">
-                            <p>Map of trails</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <p>Skipasses and equipment</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <p>Contact and access</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="" id="shopping-basket-logo-box">
-                            <!-- inserted with JS -->
-                        </a>
-                    </li>
-                    <li>
-                        <a href="" id="account-logo-box">
-                            <!-- inserted with JS -->
-                        </a>
-                    </li>
-                    <li>
-                        <button type="button" data-theme-toggle> 
-                            <!-- inserted with JS -->
-                        </button>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+      <nav>
+        <div class="logo-box">
+          <a href="welcomePage.html" id="main-logo-box">
+            <!-- Inserted with JS -->
+          </a>
+        </div>
+        <div class="nav-list-box">
+          <button type="button" id="show-sidebar-btn" class="show-sidebar-btn">
+            <!-- inserted with JS -->
+          </button>
+          <ul>
+            <li>
+              <a href="#">
+                <p>Map of trails</p>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <p>Skipasses and equipment</p>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <p>Contact and access</p>
+              </a>
+            </li>
+            <li>
+              <a href="" id="shopping-basket-logo-box">
+                <!-- inserted with JS -->
+              </a>
+            </li>
+            <li>
+              <a href="" id="account-logo-box">
+                <!-- inserted with JS -->
+              </a>
+            </li>
+            <li>
+              <button type="button" data-theme-toggle>
+                <!-- inserted with JS -->
+              </button>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </header>
+    <!-- ----------------------------------------------------------------------- -->
+    <main>
+      <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          <div class="swiper-slide">
+            <img src="./assets/Bukovel1.png" alt="Bukovel1" />
+          </div>
+          <div class="swiper-slide">
+            <img src="./assets/Bukovel2.png" alt="Bukovel2" />
+          </div>
+          <div class="swiper-slide">
+            <img src="./assets/Bukovel3.png" alt="Bukovel3" />
+          </div>
+        </div>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
+      </div>
+      <div class="Lorem">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae,
+          in! Sapiente atque repudiandae incidunt vero perspiciatis dolorem
+          adipisci omnis, reiciendis debitis voluptatem maxime, excepturi ipsum
+          soluta? Magnam quasi suscipit dolor, voluptatum saepe facilis
+          doloremque expedita sapiente officiis. Iusto optio deserunt illo
+          corrupti vero culpa. Ipsum maxime quas tempora iure, similique
+          incidunt ab neque aliquid? Neque reprehenderit praesentium, odit
+          deserunt alias laborum quis consectetur aliquid cumque, officia sint!
+          Debitis dolores molestiae consectetur nisi, dicta magnam quod eos
+          sequi porro quaerat iusto facilis exercitationem hic quo beatae nulla
+          sed accusantium aliquid praesentium assumenda repellendus, officia
+          laudantium? Dolorum vitae molestias itaque ratione deleniti!
+        </p>
+      </div>
+    </main>
+    <!-- ----------------------------------------------------------------------- -->
+    <footer></footer>
+
+    <!-- ----------------------------------------------------------------------- -->
     <script src="./scripts/change-theme.js"></script>
     <script src="./scripts/sidebar-manipulation.js"></script>
-</body>
+    <script type="module">
+      import Swiper from "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs";
+
+      const swiper = new Swiper(".swiper", {
+        // Optional parameters
+        direction: "horizontal",
+        loop: true,
+        keyboard: {
+          enabled: true,
+          onlyInViewport: true,
+        },
+        autoplay: {
+          delay: 5000,
+        },
+
+        // If we need pagination
+        pagination: {
+          el: ".swiper-pagination",
+        },
+      });
+    </script>
+  </body>
 </html>

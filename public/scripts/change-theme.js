@@ -14,7 +14,7 @@ function calculateSettingAsThemeString({
 }
 
 //-------------------------------------------------------------------------
-function updateButton({ themeButtonElements, aElements, isDark }) {
+function updateButton({ menuElement, themeButtonElements, aElements, isDark }) {
   const newModeTogglerLogo = isDark
     ? "./assets/icons/light_mode.svg"
     : "./assets/icons/dark_mode.svg";
@@ -27,6 +27,11 @@ function updateButton({ themeButtonElements, aElements, isDark }) {
   const newMainLogoToggler = isDark
     ? "./assets/white_bukovel_logo.svg"
     : "./assets/black_bukovel_logo.svg";
+  const newMenuTogglerLogo = isDark
+    ? "./assets/icons/light_menu.svg"
+    : "./assets/icons/dark_menu.svg";
+
+  menuElement.innerHTML = `<img src="${newMenuTogglerLogo}" alt="" id="theme-logo">`;
 
   themeButtonElements.forEach((button) => {
     button.innerHTML = `<img src="${newModeTogglerLogo}" alt="" id="theme-logo">`;
@@ -54,6 +59,7 @@ function updateThemeOnHtmlEl({ theme }) {
   document.querySelector("html").setAttribute("data-theme", theme);
 }
 
+const menuButton = document.getElementById("show-sidebar-btn");
 const themeButtonArr = document.querySelectorAll("[data-theme-toggle]");
 const aElementsArr = document.querySelectorAll("a");
 const localStorageTheme = localStorage.getItem("theme");
@@ -66,6 +72,7 @@ let currentThemeSetting = calculateSettingAsThemeString({
 });
 
 updateButton({
+  menuElement: menuButton,
   themeButtonElements: themeButtonArr,
   aElements: aElementsArr,
   isDark: currentThemeSetting === "dark",
@@ -79,6 +86,7 @@ themeButtonArr.forEach((button) => {
 
     localStorage.setItem("theme", newTheme);
     updateButton({
+      menuElement: menuButton,
       themeButtonElements: themeButtonArr,
       aElements: aElementsArr,
       isDark: newTheme === "dark",

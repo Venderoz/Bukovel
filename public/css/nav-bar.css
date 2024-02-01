@@ -1,18 +1,16 @@
 header {
   display: flex;
   width: 100%;
-  height: fit-content;
 }
 header > nav {
   display: flex;
-  border-bottom: var(--color-text) 1px solid;
-  width: 97%;
-  margin: 0 auto;
+  border-bottom: var(--text) 1px solid;
+  width: 100%;
   border-radius: 0 0 10px 10px;
   padding: 1rem;
 }
 header > nav, header nav *{
-    background-color: var(--color-secondary);
+    background-color: var(--secondary);
 }
 .logo-box {
   display: flex;
@@ -55,6 +53,7 @@ header > nav, header nav *{
   align-items: center;
   width: 50px;
   height: 50px;
+  border: none;
 }
 .sidebar-menu-container {
   display: none;
@@ -64,13 +63,73 @@ header > nav, header nav *{
   height: 100%;
 }
 .sidebar-menu-container *{
-    background-color: var(--color-accent);
+    background-color: var(--accent);
 }
 .sidebar-menu-container > .content {
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
+  position: relative;
+}
+.close-button-box{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: fit-content;
+  height: fit-content;
+}
+.close-button-box > button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  width: 40px;
+  height: 40px;
+  font-size: x-large;
+}
+
+.sidebar-list-box{
+  display: flex;
+  position: absolute;
+  top: 50px;
+}
+.sidebar-list-box > ul{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+.sidebar-list-box > ul > li{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  font-size: x-large;
+}
+.sidebar-list-box > ul > li:not(:last-child){
+  border-bottom: var(--text) 1px solid;
+}
+.sidebar-list-box > ul > li > button{
+  width: fit-content;
+  height: fit-content;
+  border: none;
+}
+.sidebar-list-box > ul > li > button > img{
+  width: 50px;
+  height: 50px;
+}
+.sidebar-list-box > ul > li > a{
+  display: block;
+  text-decoration: none;
+  width: fit-content;
+  height: fit-content;
+}
+.sidebar-list-box > ul > li > a > img{
+  width: 50px;
+  height: 50px;
 }
 .sidebar-enabled {
   display: flex;
@@ -85,7 +144,7 @@ header > nav, header nav *{
   text-decoration: none;
   width: 100%;
   height: 100%;
-  border-right: 1px solid var(--color-text);
+  border-right: 1px solid var(--text);
   text-transform: uppercase;
 }
 .nav-list-box > ul > li > a > p {
