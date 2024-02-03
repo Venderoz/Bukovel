@@ -25,18 +25,56 @@
         width: 100%;
         height: 100%;
       }
-      .swiper{
+      .swiper {
         width: 100%;
-        height: 100%;
+        height: 400px;
+        border: none;
       }
       .swiper-slide {
         width: 100%;
         height: 100%;
       }
-      .swiper-slide > img {
+      .swiper-slide > figure {
+        position: relative;
         width: 100%;
         height: 100%;
-        aspect-ratio: 16 / 9;
+      }
+      .swiper-slide > figure > img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+      }
+      .swiper-slide > figure > a{
+        position: absolute;
+        display: block;
+        text-decoration: none;
+        color: var(--text);
+        z-index: 3;
+        padding: 1rem;
+        border-radius: 10px;
+        box-shadow: 3px 3px 5px gray;
+        font-style: italic;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+      }
+      .swiper-slide > figure > .first-slide-text {
+        width: 210px;
+        font-size: 120%;
+        left: 20px;
+        top: 110px;
+      }
+      .swiper-slide > figure > .second-slide-text {
+        width: 200px;
+        font-size: 80%;
+        right: 20px;
+        top: 110px;
+      }
+      .swiper-slide > figure > .third-slide-text {
+        width: 200px;
+        font-size: 80%;
+        right: 20px;
+        bottom: 40px;
       }
       .swiper-pagination {
         background: none;
@@ -51,14 +89,80 @@
 
       /* Media Query for Tablets Ipads portrait mode */
       @media (min-width: 768px) and (max-width: 1024px) {
+        .swiper {
+          width: 100%;
+          height: 600px;
+        }
+        .swiper-slide > figure > .first-slide-text {
+          left: 40px;
+          top: 150px;
+          width: 300px;
+          font-size: 150%;
+        }
+        .swiper-slide > figure > .second-slide-text {
+          right: 40px;
+          top: 140px;
+          width: 300px;
+          font-size: larger;
+        }
+        .swiper-slide > figure > .third-slide-text {
+          right: 40px;
+          bottom: 40px;
+          width: 300px;
+          font-size: larger;
+        }
       }
 
       /* Media Query for Laptops and Desktops */
       @media (min-width: 1025px) and (max-width: 1280px) {
+        .swiper {
+          width: 100%;
+          height: 700px;
+        }
+        .swiper-slide > figure > .first-slide-text {
+          left: 40px;
+          top: 150px;
+          width: 350px;
+          font-size: 200%;
+        }
+        .swiper-slide > figure > .second-slide-text {
+          right: 40px;
+          top: 140px;
+          width: 350px;
+          font-size: x-large;
+        }
+        .swiper-slide > figure > .third-slide-text {
+          right: 40px;
+          bottom: 40px;
+          width: 350px;
+          font-size: x-large;
+        }
       }
 
       /* Media Query for Large screens */
       @media (min-width: 1281px) {
+        .swiper {
+          width: 100%;
+          height: 750px;
+        }
+        .swiper-slide > figure > .first-slide-text {
+          left: 40px;
+          top: 150px;
+          width: 600px;
+          font-size: 230%;
+        }
+        .swiper-slide > figure > .second-slide-text {
+          right: 40px;
+          top: 140px;
+          width: 350px;
+          font-size: x-large;
+        }
+        .swiper-slide > figure > .third-slide-text {
+          right: 40px;
+          bottom: 40px;
+          width: 350px;
+          font-size: x-large;
+        }
       }
     </style>
   </head>
@@ -159,19 +263,44 @@
         <div class="swiper-wrapper">
           <!-- Slides -->
           <div class="swiper-slide">
-            <img src="./assets/Bukovel1.png" alt="Bukovel1" />
+            <figure>
+              <img src="./assets/Bukovel1.png" alt="Bukovel1.png" />
+              <a href="#Lorem" class="first-slide-text">
+                  Welcome to Bukovel &#8212; <br>
+                  a stunning ski resort nestled in
+                  the heart of the Carpathian Mountains.
+              </a>
+            </figure>
           </div>
           <div class="swiper-slide">
-            <img src="./assets/Bukovel2.png" alt="Bukovel2" />
+            <figure>
+              <img src="./assets/Bukovel2.png" alt="Bukovel2.png" />
+              <a href="#" class="second-slide-text">
+                At Bukovel, visitors can easily arrange their ski adventure by
+                conveniently ordering their ski pass and equipment in advance.
+                Streamline your experience and maximize your time on the slopes
+                by planning ahead and securing everything you need for a
+                seamless skiing or snowboarding experience.
+              </a>
+            </figure>
           </div>
           <div class="swiper-slide">
-            <img src="./assets/Bukovel3.png" alt="Bukovel3" />
+            <figure>
+              <img src="./assets/Bukovel3.png" alt="Bukovel3.png" />
+              <a href="#" class="third-slide-text">
+                As the sun sets behind the snow-capped peaks, embrace the cozy
+                warmth of Bukovel's après-ski scene. Unwind with a cup of mulled
+                wine, savor delicious local cuisine, and relish the camaraderie
+                of fellow adventurers. Let the enchanting atmosphere of Bukovel
+                make your winter getaway truly unforgettable.
+              </a>
+            </figure>
           </div>
         </div>
         <!-- If we need pagination -->
         <div class="swiper-pagination"></div>
       </div>
-      <div class="Lorem">
+      <div id="Lorem">
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae,
           in! Sapiente atque repudiandae incidunt vero perspiciatis dolorem
@@ -194,6 +323,8 @@
     <!-- ----------------------------------------------------------------------- -->
     <script src="./scripts/change-theme.js"></script>
     <script src="./scripts/sidebar-manipulation.js"></script>
+
+    <!-- Swiper.js -->
     <script type="module">
       import Swiper from "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs";
 
