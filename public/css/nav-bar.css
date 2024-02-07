@@ -9,7 +9,7 @@ header > nav {
   padding: 1rem;
 }
 header > nav, header nav *{
-    background-color: var(--primary);
+    background-color: var(--secondary);
 }
 .logo-box {
   display: flex;

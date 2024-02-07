@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="./css/theme-colors.css" />
     <link rel="stylesheet" href="./css/resetting.css" />
     <link rel="stylesheet" href="./css/nav-bar.css" />
+    <link rel="stylesheet" href="./css/footer.css" />
     <title>Bukovel. Welcome to the Heart of Carpathians</title>
 
     <style>
@@ -22,6 +23,8 @@
         z-index: 4;
       }
       main {
+        display: flex;
+        flex-direction: column;
         width: 100%;
         height: 100%;
       }
@@ -45,7 +48,7 @@
         height: 100%;
         z-index: 2;
       }
-      .swiper-slide > figure > a{
+      .swiper-slide > figure > a {
         position: absolute;
         display: block;
         text-decoration: none;
@@ -266,9 +269,9 @@
             <figure>
               <img src="./assets/Bukovel1.png" alt="Bukovel1.png" />
               <a href="#Lorem" class="first-slide-text">
-                  Welcome to Bukovel &#8212; <br>
-                  a stunning ski resort nestled in
-                  the heart of the Carpathian Mountains.
+                Welcome to Bukovel &#8212; <br />
+                a stunning ski resort nestled in the heart of the Carpathian
+                Mountains.
               </a>
             </figure>
           </div>
@@ -318,7 +321,29 @@
       </div>
     </main>
     <!-- ----------------------------------------------------------------------- -->
-    <footer></footer>
+    <footer>
+      <div class="footer-contact-box">
+        <p>
+          24h info line<br />
+          <span>0 800 500 818</span>
+        </p>
+        <p>
+          «Bukovel-24» customer support <br />
+          <span>b24@bukovel.com</span>
+        </p>
+      </div>
+      <div class="footer-copyrights-box">
+        <p>Bukovel 2024 &copy; All rights reserved</p>
+      </div>
+      <div class="footer-creator-box">
+        <p>
+          <a
+            href="https://github.com/Venderoz/Bukovel/blob/main/public/welcomePage.html">
+            This site was made by Venderoz.
+          </a>
+        </p>
+      </div>
+    </footer>
 
     <!-- ----------------------------------------------------------------------- -->
     <script src="./scripts/change-theme.js"></script>
