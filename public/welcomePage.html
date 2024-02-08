@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -26,7 +27,7 @@
         display: flex;
         flex-direction: column;
         width: 100%;
-        height: 100%;
+        height: fit-content;
       }
       .swiper {
         width: 100%;
@@ -79,8 +80,33 @@
         right: 20px;
         bottom: 40px;
       }
-      .swiper-pagination {
-        background: none;
+      .main-text-content {
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        padding: 3rem;
+      }
+      .main-text-content div {
+        display: flex;
+        width: 100%;
+      }
+      .main-text-content div:nth-child(even) {
+        justify-content: flex-end;
+      }
+      .main-text-content div p {
+        padding: 1rem;
+        background-color: var(--primary);
+        width: 100%;
+        border-radius: 1rem;
+        line-height: 25px;
+        box-shadow: 3px 3px 7px var(--text);
+      }
+      .main-text-content div p span {
+        font-size: larger;
+        background-color: var(--primary);
+        font-weight: bold;
       }
       /* Media Query for Mobile Devices*/
       @media (max-width: 480px) {
@@ -140,6 +166,9 @@
           width: 350px;
           font-size: x-large;
         }
+        .main-text-content div p {
+          width: 45%;
+        }
       }
 
       /* Media Query for Large screens */
@@ -165,6 +194,9 @@
           bottom: 40px;
           width: 350px;
           font-size: x-large;
+        }
+        .main-text-content div p {
+          width: 45%;
         }
       }
     </style>
@@ -268,7 +300,7 @@
           <div class="swiper-slide">
             <figure>
               <img src="./assets/Bukovel1.png" alt="Bukovel1.png" />
-              <a href="#Lorem" class="first-slide-text">
+              <a href="#slide-trigger" class="first-slide-text">
                 Welcome to Bukovel &#8212; <br />
                 a stunning ski resort nestled in the heart of the Carpathian
                 Mountains.
@@ -300,24 +332,65 @@
             </figure>
           </div>
         </div>
-        <!-- If we need pagination -->
-        <div class="swiper-pagination"></div>
       </div>
-      <div id="Lorem">
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae,
-          in! Sapiente atque repudiandae incidunt vero perspiciatis dolorem
-          adipisci omnis, reiciendis debitis voluptatem maxime, excepturi ipsum
-          soluta? Magnam quasi suscipit dolor, voluptatum saepe facilis
-          doloremque expedita sapiente officiis. Iusto optio deserunt illo
-          corrupti vero culpa. Ipsum maxime quas tempora iure, similique
-          incidunt ab neque aliquid? Neque reprehenderit praesentium, odit
-          deserunt alias laborum quis consectetur aliquid cumque, officia sint!
-          Debitis dolores molestiae consectetur nisi, dicta magnam quod eos
-          sequi porro quaerat iusto facilis exercitationem hic quo beatae nulla
-          sed accusantium aliquid praesentium assumenda repellendus, officia
-          laudantium? Dolorum vitae molestias itaque ratione deleniti!
-        </p>
+      <div class="main-text-content">
+        <div id="slide-trigger">
+          <p>
+            <span>Welcome to Bukovel</span><br />
+            Bukovel is the largest ski resort in Eastern Europe, nestled in the
+            breathtaking Carpathian Mountains of Ukraine. Its picturesque
+            location and diverse range of activities make it a year-round
+            destination for adventurers and nature enthusiasts.
+          </p>
+        </div>
+        <div>
+          <p>
+            <span>Winter Wonderland </span><br />
+            When winter blankets the Carpathians in snow, Bukovel comes alive
+            with the thrills of skiing and snowboarding. The resort offers over
+            60 kilometers of meticulously groomed slopes catering to skiers of
+            all levels, from beginners to experts. State-of-the-art ski lifts
+            ensure quick and easy access to the slopes, while ski schools and
+            equipment rentals are available for those new to winter sports. In
+            addition to downhill skiing, visitors can partake in snow tubing,
+            snowmobiling, and the exhilarating experience of husky dog sledding.
+          </p>
+        </div>
+        <div>
+          <p>
+            <span>Summer Escapade </span><br />
+            As the snow melts away, Bukovel reveals a vibrant summer playground.
+            Lush green meadows and dense forests provide the backdrop for an
+            array of outdoor activities, including hiking, mountain biking, and
+            horseback riding. Nature enthusiasts can explore the region's
+            diverse flora and fauna along well-marked trails, which range from
+            leisurely strolls to challenging mountain treks. Adrenaline junkies
+            can get their fix with zip-lining, ATV tours, and even paragliding,
+            offering a bird's-eye view of the stunning landscape.
+          </p>
+        </div>
+        <div>
+          <p>
+            <span>A Place to Unwind</span><br />
+            Bukovel ensures a comfortable and enjoyable stay with its variety of
+            accommodation options, ranging from cozy chalets to upscale hotels.
+            After a day of outdoor adventures, visitors can relax and rejuvenate
+            at the resort's wellness centers, which offer spa treatments,
+            saunas, and indoor pools. Additionally, Bukovel's restaurants and
+            bars showcase a blend of local and international cuisines, providing
+            a delightful culinary experience amidst the mountain scenery.
+          </p>
+        </div>
+        <div>
+          <p>
+            <span>Experience Ukrainian Hospitality</span><br />
+            Beyond its natural beauty and thrilling activities, Bukovel welcomes
+            guests with warm Ukrainian hospitality. The resort's friendly
+            atmosphere and genuine charm create a welcoming environment for
+            families, couples, and groups seeking an unforgettable holiday
+            experience in the heart of the Carpathians.
+          </p>
+        </div>
       </div>
     </main>
     <!-- ----------------------------------------------------------------------- -->
@@ -348,6 +421,7 @@
     <!-- ----------------------------------------------------------------------- -->
     <script src="./scripts/change-theme.js"></script>
     <script src="./scripts/sidebar-manipulation.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <!-- Swiper.js -->
     <script type="module">
@@ -364,12 +438,12 @@
         autoplay: {
           delay: 5000,
         },
-
-        // If we need pagination
-        pagination: {
-          el: ".swiper-pagination",
-        },
       });
+    </script>
+
+    <!-- AOS -->
+    <script>
+      AOS.init();
     </script>
   </body>
 </html>
