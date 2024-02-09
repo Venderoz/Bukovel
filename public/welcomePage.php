@@ -433,7 +433,7 @@
       <div class="footer-creator-box">
         <p>
           <a
-            href="https://github.com/Venderoz/Bukovel/blob/main/public/welcomePage.html">
+            href="https://github.com/Venderoz/Bukovel/">
             This site was made by Venderoz.
           </a>
         </p>
