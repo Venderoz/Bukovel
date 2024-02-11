@@ -16,20 +16,20 @@ function calculateSettingAsThemeString({
 //-------------------------------------------------------------------------
 function updateButton({ menuElement, themeButtonElements, aElements, isDark }) {
   const newModeTogglerLogo = isDark
-    ? "./assets/icons/light_mode.svg"
-    : "./assets/icons/dark_mode.svg";
+    ? "./public/assets/icons/light_mode.svg"
+    : "./public/assets/icons/dark_mode.svg";
   const newBasketTogglerLogo = isDark
-    ? "./assets/icons/light_shopping_basket.svg"
-    : "./assets/icons/dark_shopping_basket.svg";
+    ? "./public/assets/icons/light_shopping_basket.svg"
+    : "./public/assets/icons/dark_shopping_basket.svg";
   const newAccountTogglerLogo = isDark
-    ? "./assets/icons/light_account_circle.svg"
-    : "./assets/icons/dark_account_circle.svg";
+    ? "./public/assets/icons/light_account_circle.svg"
+    : "./public/assets/icons/dark_account_circle.svg";
   const newMainLogoToggler = isDark
-    ? "./assets/white_bukovel_logo.svg"
-    : "./assets/black_bukovel_logo.svg";
+    ? "./public/assets/white_bukovel_logo.svg"
+    : "./public/assets/black_bukovel_logo.svg";
   const newMenuTogglerLogo = isDark
-    ? "./assets/icons/light_menu.svg"
-    : "./assets/icons/dark_menu.svg";
+    ? "./public/assets/icons/light_menu.svg"
+    : "./public/assets/icons/dark_menu.svg";
 
   menuElement.innerHTML = `<img src="${newMenuTogglerLogo}" alt="" id="theme-logo">`;
 
