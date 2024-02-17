@@ -14,16 +14,10 @@ function calculateSettingAsThemeString({
 }
 
 //-------------------------------------------------------------------------
-function updateButton({ menuElement, themeButtonElements, aElements, isDark }) {
+function updateButton({ menuElement, themeButtonElements, mainLogo, isDark }) {
   const newModeTogglerLogo = isDark
     ? "./public/assets/icons/light_mode.svg"
     : "./public/assets/icons/dark_mode.svg";
-  const newBasketTogglerLogo = isDark
-    ? "./public/assets/icons/light_shopping_basket.svg"
-    : "./public/assets/icons/dark_shopping_basket.svg";
-  const newAccountTogglerLogo = isDark
-    ? "./public/assets/icons/light_account_circle.svg"
-    : "./public/assets/icons/dark_account_circle.svg";
   const newMainLogoToggler = isDark
     ? "./public/assets/white_bukovel_logo.svg"
     : "./public/assets/black_bukovel_logo.svg";
@@ -36,22 +30,7 @@ function updateButton({ menuElement, themeButtonElements, aElements, isDark }) {
   themeButtonElements.forEach((button) => {
     button.innerHTML = `<img src="${newModeTogglerLogo}" alt="" id="theme-logo">`;
   });
-
-  aElements.forEach((a) => {
-    switch (a.id) {
-      case "shopping-basket-logo-box":
-        a.innerHTML = `<img src="${newBasketTogglerLogo}" alt="">`;
-        break;
-      case "account-logo-box":
-        a.innerHTML = `<img src="${newAccountTogglerLogo}" alt="">`;
-        break;
-      case "main-logo-box":
-        a.innerHTML = `<img src="${newMainLogoToggler}" alt="">`;
-        break;
-      default:
-        break;
-    }
-  });
+  mainLogo.innerHTML = `<img src="${newMainLogoToggler}" alt="" id="theme-logo">`;
 }
 
 //--------------------------------------------------------------------------
@@ -61,7 +40,7 @@ function updateThemeOnHtmlEl({ theme }) {
 
 const menuButton = document.getElementById("show-sidebar-btn");
 const themeButtonArr = document.querySelectorAll("[data-theme-toggle]");
-const aElementsArr = document.querySelectorAll("a");
+const mainPageLogo = document.getElementById("main-logo-box");
 const localStorageTheme = localStorage.getItem("theme");
 const systemSettingDark = window.matchMedia("(prefers-color-scheme: dark)");
 
@@ -74,7 +53,7 @@ let currentThemeSetting = calculateSettingAsThemeString({
 updateButton({
   menuElement: menuButton,
   themeButtonElements: themeButtonArr,
-  aElements: aElementsArr,
+  mainLogo: mainPageLogo,
   isDark: currentThemeSetting === "dark",
 });
 updateThemeOnHtmlEl({ theme: currentThemeSetting });
@@ -88,7 +67,7 @@ themeButtonArr.forEach((button) => {
     updateButton({
       menuElement: menuButton,
       themeButtonElements: themeButtonArr,
-      aElements: aElementsArr,
+      mainLogo: mainPageLogo,
       isDark: newTheme === "dark",
     });
     updateThemeOnHtmlEl({ theme: newTheme });

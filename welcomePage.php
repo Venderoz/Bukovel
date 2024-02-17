@@ -1,13 +1,13 @@
-<?php 
-  session_start();
+<?php
+session_start();
 
-  $host = 'localhost';
+$host = 'localhost';
 $user = 'root';
 $password = '';
 $db_name = 'bukovel_db';
 $conn = mysqli_connect($host, $user, $password, $db_name);
 if (mysqli_connect_errno()) {
-    exit('Failed to connect to MySQL: ' . mysqli_connect_error());
+  exit('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
 // We don't have the password or email info stored in sessions, so instead, we can get the results from the database.
 $stmt = $conn->prepare('SELECT account_image FROM users WHERE id = ?');
@@ -26,6 +26,7 @@ $stmt->close();
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
   <link rel="shortcut icon" href="./public/assets/icons/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="./public/css/theme-colors.css" />
   <link rel="stylesheet" href="./public/css/resetting.css" />
@@ -287,13 +288,20 @@ $stmt->close();
             </a>
           </li>
           <li>
-            <a href="basket.php" id="shopping-basket-logo-box">
-              <!-- inserted with JS -->
+            <a href="basket.php" class="shopping-basket-logo-box">
+              <span class="material-symbols-outlined">
+                shopping_basket
+              </span>
             </a>
           </li>
           <li>
-            <a href="account.php" id="account-logo-box">
-              <!-- inserted with JS -->
+            <a href="account.php" class="account-logo-box">
+              <span class="material-symbols-outlined">
+                account_circle
+              </span>
+              <?php if (isset($accountImage)) : ?>
+                <img class="user-image" src="data:image;base64,<?php echo base64_encode($accountImage); ?>" alt="">
+              <?php endif ?>
             </a>
           </li>
           <li>
@@ -334,16 +342,20 @@ $stmt->close();
             </a>
           </li>
           <li>
-            <a href="basket.php" id="shopping-basket-logo-box">
-              <!-- inserted with JS -->
+            <a href="basket.php" class="shopping-basket-logo-box">
+              <span class="material-symbols-outlined">
+                shopping_basket
+              </span>
             </a>
           </li>
           <li>
-            <a href="account.php" id="account-logo-box">
-              <?php if(isset($accountImage)): ?>
-                <img class="user-image" src="data:image;base64,<?php echo base64_encode($accountImage);?>" alt="">
+            <a href="account.php" class="account-logo-box">
+              <span class="material-symbols-outlined">
+                account_circle
+              </span>
+              <?php if (isset($accountImage)) : ?>
+                <img class="user-image" src="data:image;base64,<?php echo base64_encode($accountImage); ?>" alt="">
               <?php endif ?>
-              <!-- inserted with JS -->
             </a>
           </li>
           <li>

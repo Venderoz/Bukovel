@@ -14,11 +14,13 @@ header > nav, header nav *{
 .logo-box {
   display: flex;
   justify-content: flex-start;
-  flex-basis: 40%;
+  align-items: center;
 }
 .logo-box > a {
   display: block;
   position: relative;
+  width: 230px;
+  height: 45px;
 }
 .logo-box > a > img {
   position: absolute;
@@ -26,7 +28,6 @@ header > nav, header nav *{
   height: 100%;
 }
 .nav-list-box {
-  flex-basis: 60%;
   display: flex;
   justify-content: flex-end;
 }
@@ -38,13 +39,63 @@ header > nav, header nav *{
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 30%;
+  width: fit-content;
+  padding: .5rem;
+  font-size: 80%;
 }
+.nav-list-box > ul > li:not(:last-child){
+  border-right: 1px solid var(--text);
+}
+
+.nav-list-box > ul > li > a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  text-transform: uppercase;
+}
+.nav-list-box > ul > li > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 80%;
+  max-width: 40px;
+  max-height: 40px;
+  border: none;
+}
+.nav-list-box > ul > li > button > img {
+  width: 80%;
+  height: 80%;
+  min-width: 30px;
+  min-height: 30px;
+}
+
 .nav-list-box > ul > li:nth-child(-n + 3) {
-  flex-basis: calc(70% / 3);
+  flex-basis: calc(65% / 3);
 }
 .nav-list-box > ul > li:nth-child(n + 4) {
-  flex-basis: 10%;
+  flex-basis: calc(35% / 3);
+}
+.account-logo-box{
+  position: relative;
+  max-width: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  max-height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.account-logo-box img{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.shopping-basket-logo-box span, .account-logo-box span{
+  font-size: xx-large;
 }
 .show-sidebar-btn {
   display: flex;
@@ -133,43 +184,6 @@ header > nav, header nav *{
 .sidebar-enabled {
   display: flex;
 }
-
-.nav-list-box > ul > li > a {
-  padding: 0.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  text-decoration: none;
-  width: 100%;
-  height: 100%;
-  border-right: 1px solid var(--text);
-  text-transform: uppercase;
-}
-.nav-list-box > ul > li > a > p {
-  font-size: 110%;
-}
-.nav-list-box > ul > li > button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 80%;
-  height: 80%;
-  max-width: 40px;
-  max-height: 40px;
-  border: none;
-}
-.nav-list-box > ul > li > button > img {
-  width: 80%;
-  height: 80%;
-  min-width: 30px;
-  min-height: 30px;
-}
-.nav-list-box > ul > li > a > img {
-  width: 80%;
-  height: 80%;
-}
-
 .sidebar-showing-animation {
   animation: show-sidebar 0.3s linear 1;
 }
@@ -183,10 +197,6 @@ header > nav, header nav *{
   .nav-list-box {
     flex-basis: 50%;
   }
-  .logo-box > a {
-    width: 260px;
-    height: 50px;
-  }
 }
 
 /* Media Query for low resolution  Tablets, Ipads */
@@ -194,10 +204,6 @@ header > nav, header nav *{
   .logo-box,
   .nav-list-box {
     flex-basis: 50%;
-  }
-  .logo-box > a {
-    width: 260px;
-    height: 50px;
   }
 }
 
@@ -208,10 +214,6 @@ header > nav, header nav *{
   }
   .nav-list-box {
     flex-basis: 60%;
-  }
-  .logo-box > a {
-    width: 260px;
-    height: 50px;
   }
   .nav-list-box > ul {
     display: flex;
@@ -235,14 +237,17 @@ header > nav, header nav *{
   .nav-list-box {
     flex-basis: 60%;
   }
-  .logo-box > a {
-    width: 310px;
-    height: 60px;
-  }
   .nav-list-box > ul {
     display: flex;
     height: 100%;
     width: 100%;
+  }
+  .nav-list-box > ul > li{
+    font-size: 90%;
+  }
+  .logo-box > a {
+    width: 260px;
+    height: 50px;
   }
   .show-sidebar-btn {
     display: none;
