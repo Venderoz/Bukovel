@@ -47,7 +47,7 @@ header > nav, header nav *{
   border-right: 1px solid var(--text);
 }
 
-.nav-list-box > ul > li > a {
+.nav-list-box > ul > li  a {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -168,18 +168,33 @@ header > nav, header nav *{
   border: none;
 }
 .sidebar-list-box > ul > li > button > img{
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
 }
-.sidebar-list-box > ul > li > a{
-  display: block;
+.sidebar-list-box > ul > li > .account-logo-box, .sidebar-list-box > ul > li > .shopping-basket-logo-box{
   text-decoration: none;
-  width: fit-content;
-  height: fit-content;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  max-width: 50px;
+  min-width: 50px;
+  min-height: 50px;
+  max-height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
 }
-.sidebar-list-box > ul > li > a > img{
-  width: 50px;
-  height: 50px;
+.sidebar-list-box > ul > li > a > span{
+  max-width: 50px;
+  min-width: 50px;
+  min-height: 50px;
+  max-height: 50px;
+  font-size: 200%;
+}
+.sidebar-list-box > ul > li > .account-logo-box > .user-image{
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
 .sidebar-enabled {
   display: flex;

@@ -1,25 +1,14 @@
 <?php
 session_start();
 // Change this to your connection info.
-$host = 'localhost';
-$user = 'root';
-$password = '';
-$db_name = 'bukovel_db';
+include "connection.php";
 
-$res = "";
-// Try and connect using the info above.
-$conn = mysqli_connect($host, $user, $password, $db_name);
-if (mysqli_connect_errno()) {
-    // If there is an error with the connection, stop the script and display the error.
-    exit('Failed to connect to MySQL: ' . mysqli_connect_error());
-}
+$err = "";
 
 if (!isset($_POST['username'], $_POST['password'])) {
     // Could not get the data that should have been sent.
     exit('Please fill both the username and password fields!');
 }
-
-
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
 if ($stmt = $conn->prepare('SELECT ID, password FROM users WHERE username = ?')) {
@@ -44,13 +33,13 @@ if ($stmt = $conn->prepare('SELECT ID, password FROM users WHERE username = ?'))
             header("Location: account.php");
         } else {
             // Incorrect password
-            $res = 'Incorrect username and/or password!';
-            header("Location: login.php?res=$res");
+            $err = 'Incorrect username and/or password!';
+            header("Location: login.php?res=$err");
         }
     } else {
         // Incorrect username
-        $res = 'Incorrect username and/or password!';
-        header("Location: login.php?res=$res");
+        $err = 'Incorrect username and/or password!';
+        header("Location: login.php?res=$err");
     }
 
     $stmt->close();

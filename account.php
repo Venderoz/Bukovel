@@ -6,14 +6,7 @@ if (!isset($_SESSION['loggedin'])) {
     header('Location: login.php');
     exit;
 }
-$host = 'localhost';
-$user = 'root';
-$password = '';
-$db_name = 'bukovel_db';
-$conn = mysqli_connect($host, $user, $password, $db_name);
-if (mysqli_connect_errno()) {
-    exit('Failed to connect to MySQL: ' . mysqli_connect_error());
-}
+include "connection.php";
 // We don't have the password or email info stored in sessions, so instead, we can get the results from the database.
 $stmt = $conn->prepare('SELECT password, email, birthdate, phone_number, account_image FROM users WHERE id = ?');
 // In this case we can use the account ID to get the account info.
