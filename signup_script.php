@@ -6,10 +6,10 @@ if (isset($_POST["submit"])) {
     include "connection.php";
 
     $username = $_POST["username"];
-    $password = $_POST["password"];
+    $password = $_POST["password-1"];
+    $password2 = $_POST["password-2"];
     $email = $_POST["email"];
     $birthdate = $_POST["birthdate"];
-    $phone = $_POST["phone"];
 
     $err = "";
 
@@ -19,16 +19,17 @@ if (isset($_POST["submit"])) {
 
     $num = mysqli_num_rows($result);
 
-    // This sql query is use to check if 
-    // the username is already present  
-    // or not in our Database 
     if ($num == 0) {
-        // Password Hashing is used here.  
-        $query2 = "INSERT INTO users (username, birthdate, email, password, phone_number) VALUES ('$username','$birthdate','$email','$password','$phone_number');";
+        if ($password == $password2) {
+            $query2 = "INSERT INTO users (username, birthdate, email, password) VALUES ('$username','$birthdate','$email','$password');";
 
-        $result = mysqli_query($conn, $query2);
-        if($result){
-            header("Location: account.php");
+            $result = mysqli_query($conn, $query2);
+            if ($result) {
+                header("Location: account.php");
+            }
+        } else {
+            $err = "Passwords are not the same";
+            header("Location: signup.php?err=$err");
         }
     } else if ($num > 0) {
         $err = "This data is already in use";

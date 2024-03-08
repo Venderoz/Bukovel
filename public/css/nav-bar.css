@@ -158,6 +158,7 @@ header > nav, header nav *{
   height: 100%;
   padding: 2rem;
   font-size: x-large;
+  text-decoration: none;
 }
 .sidebar-list-box > ul > li:not(:last-child){
   border-bottom: var(--text) 1px solid;
