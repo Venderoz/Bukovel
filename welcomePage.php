@@ -71,7 +71,6 @@ $stmt->close();
       position: absolute;
       display: block;
       text-decoration: none;
-      color: var(--text);
       z-index: 3;
       padding: 1rem;
       border-radius: 10px;
@@ -121,7 +120,7 @@ $stmt->close();
       display: flex;
       width: 100%;
       background: none;
-      font-size: 130%;
+      font-size: 100%;
     }
 
     .main-text-content div:nth-child(even) {
@@ -219,6 +218,10 @@ $stmt->close();
       .main-text-content div p {
         width: 45%;
       }
+
+      .main-text-content div {
+        font-size: 130%;
+      }
     }
 
     /* Media Query for Large screens */
@@ -251,6 +254,10 @@ $stmt->close();
 
       .main-text-content div p {
         width: 45%;
+      }
+
+      .main-text-content div {
+        font-size: 130%;
       }
     }
   </style>
@@ -494,7 +501,6 @@ $stmt->close();
   <!-- ----------------------------------------------------------------------- -->
   <script src="./public/scripts/change_theme.js"></script>
   <script src="./public/scripts/sidebar_manipulation.js"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
   <!-- Swiper.js -->
   <script type="module">

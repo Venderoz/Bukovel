@@ -208,7 +208,7 @@ header > nav, header nav *{
 }
 
 /* Media Query for Mobile Devices*/
-@media (max-width: 480px) {
+@media screen and (max-width: 480px) {
   .logo-box,
   .nav-list-box {
     flex-basis: 50%;
@@ -216,7 +216,7 @@ header > nav, header nav *{
 }
 
 /* Media Query for low resolution  Tablets, Ipads */
-@media (min-width: 481px) and (max-width: 767px) {
+@media screen and (min-width: 481px) and (max-width: 767px) {
   .logo-box,
   .nav-list-box {
     flex-basis: 50%;
@@ -224,7 +224,7 @@ header > nav, header nav *{
 }
 
 /* Media Query for Tablets Ipads portrait mode */
-@media (min-width: 768px) and (max-width: 1024px) {
+@media screen and (min-width: 768px) and (max-width: 1024px) {
   .logo-box {
     flex-basis: 40%;
   }
@@ -246,7 +246,7 @@ header > nav, header nav *{
 }
 
 /* Media Query for Laptops, Desktops and more*/
-@media (min-width: 1025px){
+@media screen and (min-width: 1025px){
   .logo-box {
     flex-basis: 40%;
   }

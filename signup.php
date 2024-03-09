@@ -30,8 +30,8 @@
         .container {
             display: flex;
             flex-direction: column;
-            height: 500px;
-            width: 400px;
+            height: 450px;
+            width: 350px;
             border-radius: 20px;
             background-color: rgba(250, 250, 250, 0.8);
             box-shadow: 2px 2px 10px 2px #ccc;
@@ -93,7 +93,8 @@
             pointer-events: none;
             transition: all 0.3s;
         }
-        label[for="birthdate"]{
+
+        label[for="birthdate"] {
             position: absolute;
             top: 0px;
             left: 0px;
@@ -159,7 +160,7 @@
             position: sticky;
         }
 
-        .bi{
+        .bi {
             position: absolute;
             right: 0;
             top: 0;
@@ -215,7 +216,7 @@
                 <div class="submit-box">
                     <input type="submit" value="Create" name="submit">
                 </div>
-                <?php if (isset($_GET['err'])): ?>
+                <?php if (isset($_GET['err'])) : ?>
                     <small class="create-error">
                         <?= $_GET['err'] ?>
                     </small>
@@ -228,11 +229,11 @@
         <!-- image of mountains while user is on the main part -->
     </div>
     <script>
-            const togglePassword = document.querySelector("#togglePassword");
+        const togglePassword = document.querySelector("#togglePassword");
         const password = document.querySelector("#password");
-                togglePassword.addEventListener("click", function () {
+        togglePassword.addEventListener("click", function() {
             const type = password.getAttribute("type") === "password" ? "text" : "password";
-            
+
             password.setAttribute("type", type);
 
             this.classList.toggle("bi-eye");
