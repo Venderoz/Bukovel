@@ -111,7 +111,7 @@ $stmt->close();
       display: flex;
       flex-direction: column;
       gap: 50px;
-      padding: 3rem;
+      padding: 1rem;
       background: none;
       z-index: 3;
     }

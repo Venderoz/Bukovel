@@ -25,7 +25,6 @@ footer div p{
 }
 footer div p span{
     font-size: larger;
-    font-size: x-large;
 }
 .footer-contact-box{
     flex-direction: column;

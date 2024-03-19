@@ -44,11 +44,12 @@ $stmt->close();
             display: flex;
             flex-direction: column;
             width: 100%;
-            height: 800px;
+            height: 600px;
         }
 
         .main-info-box {
             display: flex;
+            flex-direction: column;
             width: 100%;
             flex-basis: 95%;
         }
@@ -60,17 +61,37 @@ $stmt->close();
         }
 
         .user-details-box {
+            order: 2;
             display: flex;
-            flex-basis: 50%;
+            flex-direction: column;
+            flex-basis: 45%;
+        }
+        .username-box{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-basis: 10%;
+        }
+        .username-box h2{
+            font-size: 200%;
         }
         .user-pfp-box {
             display: flex;
-            flex-basis: 50%;
+            justify-content: center;
+            align-items: center;
+            flex-basis: 45%;
+            order: 1;
         }
 
         .image-box{
+            position: relative;
             height: 200px;
             width: 200px;
+        }
+        .image-box img{
+            position: absolute;
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
@@ -182,12 +203,16 @@ $stmt->close();
     <main>
         <div class="main-container">
             <div class="main-info-box">
-                <div class="user-details-box">
+                <div class="username-box">
                     <h2 class="username"><?= $_SESSION['name'] ?></h2>
+                </div>
+                <div class="user-details-box">
+                    <p>Details: </p>
                     <ul>
                         <li><?= $email ?></li>
                         <li><?= $birthdate ?></li>
                     </ul>
+                    <button type="button" id="update-btn" class="update-btn">Change information</button>
                 </div>
                 <div class="user-pfp-box">
                     <div class="image-box">
@@ -200,7 +225,8 @@ $stmt->close();
                 </div>
             </div>
             <div class="logout-box">
-                <a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                <button type="button" id="logout-btn" class="logout-btn">Logout</button>
+                <button type="button" id="delete-btn" class="delete-btn">Delete account</button>
             </div>
         </div>
     </main>
@@ -230,4 +256,16 @@ $stmt->close();
     <!-- ----------------------------------------------------------------------- -->
     <script src="./public/scripts/change_theme.js"></script>
     <script src="./public/scripts/sidebar_manipulation.js"></script>
+    <script>
+        const updateBtn = document.getElementById("update-btn");
+        const deleteBtn = document.getElementById("delete-btn");
+        const logoutBtn = document.getElementById("logout-btn");
+
+        logoutBtn.addEventListener("click", ()=>{
+            window.location.replace("logout.php");
+        })
+        deleteBtn.addEventListener("click", ()=>{
+            window.location.replace("delete.php");
+        })
+    </script>
 </body>

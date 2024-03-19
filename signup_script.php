@@ -20,15 +20,21 @@ if (isset($_POST["submit"])) {
     $num = mysqli_num_rows($result);
 
     if ($num == 0) {
-        if ($password == $password2) {
-            $query2 = "INSERT INTO users (username, birthdate, email, password) VALUES ('$username','$birthdate','$email','$password');";
+        if (preg_match($password, "/^{8,}$/")) {
 
-            $result = mysqli_query($conn, $query2);
-            if ($result) {
-                header("Location: account.php");
+            if ($password == $password2) {
+                $query2 = "INSERT INTO users (username, birthdate, email, password) VALUES ('$username','$birthdate','$email','$password');";
+
+                $result = mysqli_query($conn, $query2);
+                if ($result) {
+                    header("Location: account.php");
+                }
+            } else {
+                $err = "Passwords are not the same";
+                header("Location: signup.php?err=$err");
             }
         } else {
-            $err = "Passwords are not the same";
+            $err = "Password has to have minimum 8 letters in length";
             header("Location: signup.php?err=$err");
         }
     } else if ($num > 0) {

@@ -30,7 +30,7 @@
         .container {
             display: flex;
             flex-direction: column;
-            height: 450px;
+            height: 470px;
             width: 350px;
             border-radius: 20px;
             background-color: rgba(250, 250, 250, 0.8);
