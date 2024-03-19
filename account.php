@@ -6,13 +6,13 @@ if (!isset($_SESSION['loggedin'])) {
 }
 include "connection.php";
 
-$stmt = $conn->prepare('SELECT password, email, birthdate, phone_number, account_image FROM users WHERE id = ?');
+$stmt = $conn->prepare('SELECT password, email, birthdate, account_image, created_at FROM users WHERE id = ?');
 
 $stmt->bind_param('i', $_SESSION['id']);
 
 $stmt->execute();
 
-$stmt->bind_result($password, $email, $birthdate, $phoneNumber, $accountImage);
+$stmt->bind_result($password, $email, $birthdate, $accountImage, $createdAt);
 
 $stmt->fetch();
 
@@ -51,26 +51,32 @@ $stmt->close();
             display: flex;
             flex-direction: column;
             width: 100%;
-            flex-basis: 95%;
+            flex-basis: 90%;
         }
 
         .logout-box {
             display: flex;
+            justify-content: space-around;
             width: 100%;
-            flex-basis: 5%;
+            flex-basis: 10%;
+            padding: 1rem;
         }
-
+        .logout-box button{
+            border: none;
+            font-size: 100%;
+            border-bottom: 2px solid rgba(50, 91, 195, 1);
+        }
         .user-details-box {
             order: 2;
             display: flex;
             flex-direction: column;
-            flex-basis: 45%;
+            flex-basis: 40%;
         }
         .username-box{
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-basis: 10%;
+            flex-basis: 20%;
         }
         .username-box h2{
             font-size: 200%;
@@ -79,8 +85,14 @@ $stmt->close();
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-basis: 45%;
+            flex-basis: 40%;
             order: 1;
+        }
+
+        .user-details-box{
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .image-box{
@@ -211,6 +223,7 @@ $stmt->close();
                     <ul>
                         <li><?= $email ?></li>
                         <li><?= $birthdate ?></li>
+                        <li><?= $createdAt ?></li>
                     </ul>
                     <button type="button" id="update-btn" class="update-btn">Change information</button>
                 </div>

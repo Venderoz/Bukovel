@@ -169,6 +169,11 @@
             font-weight: bold;
             cursor: pointer;
         }
+
+        input[type="password"]::-ms-reveal,
+        input[type="password"]::-ms-clear {
+            display: none;
+        }
     </style>
 </head>
 
