@@ -21,8 +21,7 @@ if (isset($_POST["submit"])) {
 
     if ($num == 0) {
         $regex = '/^.{8}$/';
-        // if (preg_match($password, $regex)) {
-            echo "<script>alert('Hi')</script>";
+        if (preg_match($password, $regex)) {
             if ($password == $password2) {
                 $query2 = "INSERT INTO users (username, birthdate, email, password) VALUES ('$username','$birthdate','$email','$password');";
 
@@ -34,10 +33,10 @@ if (isset($_POST["submit"])) {
                 $err = "Passwords are not the same";
                 header("Location: signup.php?err=$err");
             }
-        // } else {
-        //     $err = "Password has to have minimum 8 letters in length";
-        //     header("Location: signup.php?err=$err");
-        // }
+        } else {
+            $err = "Password has to have minimum 8 letters in length";
+            header("Location: signup.php?err=$err");
+        }
     } else if ($num > 0) {
         $err = "This data is already in use";
         header("Location: signup.php?err=$err");

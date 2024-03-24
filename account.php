@@ -6,13 +6,13 @@ if (!isset($_SESSION['loggedin'])) {
 }
 include "connection.php";
 
-$stmt = $conn->prepare('SELECT password, email, birthdate, account_image, created_at FROM users WHERE id = ?');
+$stmt = $conn->prepare('SELECT password, email, birthdate, account_image FROM users WHERE id = ?');
 
 $stmt->bind_param('i', $_SESSION['id']);
 
 $stmt->execute();
 
-$stmt->bind_result($password, $email, $birthdate, $accountImage, $createdAt);
+$stmt->bind_result($password, $email, $birthdate, $accountImage);
 
 $stmt->fetch();
 
@@ -52,6 +52,8 @@ $stmt->close();
             flex-direction: column;
             width: 100%;
             flex-basis: 90%;
+            margin-bottom: 30px;
+            gap: 20px;
         }
 
         .logout-box {
@@ -60,27 +62,108 @@ $stmt->close();
             width: 100%;
             flex-basis: 10%;
             padding: 1rem;
+            gap: 5%;
         }
-        .logout-box button{
+
+        .logout-box button {
             border: none;
             font-size: 100%;
-            border-bottom: 2px solid rgba(50, 91, 195, 1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-basis: 50%;
+            padding: .5rem;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            transition: all .5s;
+            border-bottom: 2px solid var(--accent);
         }
+
+        .logout-box button:hover {
+            box-shadow: 2px 2px 5px gray;
+        }
+
+        .logout-box button:hover:after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-color: var(--accent);
+            z-index: 0;
+            animation: animateButtonBg .5s;
+        }
+
+        .logout-box button>p {
+            z-index: 1;
+            background: none;
+        }
+
         .user-details-box {
             order: 2;
             display: flex;
             flex-direction: column;
             flex-basis: 40%;
+            gap: 1rem;
         }
-        .username-box{
+
+        .user-details-box>p {
+            font-size: 150%;
+        }
+
+        .user-details-box>ul {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            list-style-type: none;
+            background-color: var(--primary);
+            padding: 10px;
+            border-radius: 10px;
+            width: 60%;
+        }
+
+        .user-details-box>ul li:not(.list-button-box) {
+            display: flex;
+            word-break: break-all;
+            flex-direction: column;
+            background-color: var(--accent);
+            padding: 5px;
+            border-radius: 10px;
+        }
+
+        .user-details-box>ul li>small {
+            background: none;
+        }
+
+        .user-details-box>ul .list-button-box>button {
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            background-color: var(--secondary);
+            box-shadow: 2px 2px 0px 1px black;
+            color: white;
+            transition: 0.1s all;
+            width: 100%;
+        }
+
+        .user-details-box>ul .list-button-box>button>p {
+            background: none;
+        }
+
+        .username-box {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-basis: 20%;
         }
-        .username-box h2{
+
+        .username-box h2 {
             font-size: 200%;
         }
+
         .user-pfp-box {
             display: flex;
             justify-content: center;
@@ -89,21 +172,34 @@ $stmt->close();
             order: 1;
         }
 
-        .user-details-box{
+        .user-details-box {
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        .image-box{
+        .image-box {
             position: relative;
             height: 200px;
             width: 200px;
         }
-        .image-box img{
+
+        .image-box img {
             position: absolute;
             width: 100%;
             height: 100%;
+            background-color: white;
+            border-radius: 50%;
+        }
+
+        @keyframes animateButtonBg {
+            from {
+                top: 100%;
+            }
+
+            to {
+                top: 0;
+            }
         }
     </style>
 </head>
@@ -221,25 +317,32 @@ $stmt->close();
                 <div class="user-details-box">
                     <p>Details: </p>
                     <ul>
-                        <li><?= $email ?></li>
-                        <li><?= $birthdate ?></li>
-                        <li><?= $createdAt ?></li>
+                        <li><small>Email:</small><?= $email ?></li>
+                        <li><small>Birthdate:</small><?= $birthdate ?></li>
+                        <li class="list-button-box">
+                            <button type="button" id="update-btn" class="update-btn">
+                                <p>Change information</p>
+                            </button>
+                        </li>
                     </ul>
-                    <button type="button" id="update-btn" class="update-btn">Change information</button>
                 </div>
                 <div class="user-pfp-box">
                     <div class="image-box">
                         <?php if ($accountImage != "") : ?>
                             <img src="data:image;base64,<?php echo base64_encode($accountImage); ?>" alt="">
                         <?php else : ?>
-                            <p>no photo</p>
+                            <img src="https://www.pngmart.com/files/21/Account-User-PNG-Isolated-HD.png" alt="loggedout-img">
                         <?php endif; ?>
                     </div>
                 </div>
             </div>
             <div class="logout-box">
-                <button type="button" id="logout-btn" class="logout-btn">Logout</button>
-                <button type="button" id="delete-btn" class="delete-btn">Delete account</button>
+                <button type="button" id="logout-btn" class="logout-btn">
+                    <p>Logout</p>
+                </button>
+                <button type="button" id="delete-btn" class="delete-btn">
+                    <p>Delete account</p>
+                </button>
             </div>
         </div>
     </main>
@@ -274,10 +377,10 @@ $stmt->close();
         const deleteBtn = document.getElementById("delete-btn");
         const logoutBtn = document.getElementById("logout-btn");
 
-        logoutBtn.addEventListener("click", ()=>{
+        logoutBtn.addEventListener("click", () => {
             window.location.replace("logout.php");
         })
-        deleteBtn.addEventListener("click", ()=>{
+        deleteBtn.addEventListener("click", () => {
             window.location.replace("delete.php");
         })
     </script>
