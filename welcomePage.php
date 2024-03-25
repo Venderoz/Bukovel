@@ -43,8 +43,8 @@ $stmt->close();
     }
 
     .swiper {
-      width: 100%;
-      height: 400px;
+      width: 100dvw;
+      height: 100dvh;
       border: none;
       z-index: 3;
     }
@@ -160,10 +160,10 @@ $stmt->close();
 
     /* Media Query for Tablets Ipads portrait mode */
     @media (min-width: 768px) and (max-width: 1024px) {
-      .swiper {
+      /* .swiper {
         width: 100%;
         height: 600px;
-      }
+      } */
 
       .swiper-slide>figure>.first-slide-text {
         left: 40px;
@@ -189,10 +189,10 @@ $stmt->close();
 
     /* Media Query for Laptops and Desktops */
     @media (min-width: 1025px) and (max-width: 1280px) {
-      .swiper {
+      /* .swiper {
         width: 100%;
         height: 700px;
-      }
+      } */
 
       .swiper-slide>figure>.first-slide-text {
         left: 40px;
@@ -226,10 +226,10 @@ $stmt->close();
 
     /* Media Query for Large screens */
     @media (min-width: 1281px) {
-      .swiper {
+      /* .swiper {
         width: 100%;
         height: 750px;
-      }
+      } */
 
       .swiper-slide>figure>.first-slide-text {
         left: 40px;

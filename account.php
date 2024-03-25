@@ -147,6 +147,12 @@ $stmt->close();
             color: white;
             transition: 0.1s all;
             width: 100%;
+            padding: .5rem;
+        }
+
+        .user-details-box>ul .list-button-box>button:active {
+            box-shadow: none;
+            transform: translateY(2px);
         }
 
         .user-details-box>ul .list-button-box>button>p {
@@ -192,6 +198,36 @@ $stmt->close();
             border-radius: 50%;
         }
 
+        dialog {
+            position: absolute;
+            margin-inline: auto;
+            margin-block: auto;
+            background-color: var(--primary);
+            width: 400px;
+            height: 500px;
+        }
+        .close-dialog-btn{
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            background: none;
+            width: 50px;
+            height: 50px;
+            right: 10px;
+            top: 10px;
+        }
+        .close-dialog-btn > span{
+            background: none; 
+            font-size: 150%;
+        }
+
+        dialog::backdrop {
+            background-color: black;
+            opacity: 0.75;
+        }
+
         @keyframes animateButtonBg {
             from {
                 top: 100%;
@@ -205,6 +241,10 @@ $stmt->close();
 </head>
 
 <body>
+    <dialog>
+        <button autofocus class="close-dialog-btn"><span>&xotime;</span></button>
+    </dialog>
+    <!-- ----------------------------------------------------------------------- -->
     <div class="sidebar-menu-container" id="sidebar-menu-container">
         <div class="content">
             <div class="close-button-box">
@@ -374,9 +414,19 @@ $stmt->close();
     <script src="./public/scripts/sidebar_manipulation.js"></script>
     <script>
         const updateBtn = document.getElementById("update-btn");
+        const dialog = document.querySelector("dialog");
+        const closeDialogBtn = document.querySelector(".close-dialog-btn");
         const deleteBtn = document.getElementById("delete-btn");
         const logoutBtn = document.getElementById("logout-btn");
 
+        updateBtn.addEventListener("click", () => {
+            dialog.showModal();
+        });
+
+        // "Close" button closes the dialog
+        closeDialogBtn.addEventListener("click", () => {
+            dialog.close();
+        });
         logoutBtn.addEventListener("click", () => {
             window.location.replace("logout.php");
         })

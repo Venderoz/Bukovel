@@ -35,19 +35,19 @@ footer div p span{
 .footer-contact-box p:first-child{
     border-bottom: 1px solid var(--text);
 }
-.footer-copyrights-box{
+.footer-copyrights-box > p{
     text-align: center;
-    font-size: x-large;
+    font-size: 100%;
 }
-.footer-creator-box p{
+.footer-creator-box > p{
     text-align: right;
-    font-size: x-large;
+    font-size: 100%;
 }
 @media (max-width: 635px) {
-    .footer-creator-box p{
+    .footer-creator-box > p{
         text-align: center;
     }
-    .footer-copyrights-box p{
+    .footer-copyrights-box > p{
         text-align: right
     };
 }
