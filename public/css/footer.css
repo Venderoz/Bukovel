@@ -37,17 +37,19 @@ footer div p span{
 }
 .footer-copyrights-box > p{
     text-align: center;
-    font-size: 100%;
+    font-size: 150%;
 }
 .footer-creator-box > p{
     text-align: right;
-    font-size: 100%;
+    font-size: 150%;
 }
 @media (max-width: 635px) {
     .footer-creator-box > p{
         text-align: center;
+        font-size: 100%;
     }
     .footer-copyrights-box > p{
-        text-align: right
+        text-align: right;
+        font-size: 130%;
     };
 }

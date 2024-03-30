@@ -29,7 +29,7 @@ $stmt->close();
     <title>Profile Page</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <link rel="stylesheet" href="./public/css/theme-colors.css" />
     <link rel="stylesheet" href="./public/css/resetting.css" />
     <link rel="stylesheet" href="./public/css/nav-bar.css" />
@@ -44,7 +44,7 @@ $stmt->close();
             display: flex;
             flex-direction: column;
             width: 100%;
-            height: 600px;
+            height: 650px;
         }
 
         .main-info-box {
@@ -75,9 +75,8 @@ $stmt->close();
             padding: .5rem;
             position: relative;
             overflow: hidden;
-            border-radius: 10px;
-            transition: all .5s;
             border-bottom: 2px solid var(--accent);
+            border-radius: 10px 10px 0 0;
         }
 
         .logout-box button:hover {
@@ -117,18 +116,20 @@ $stmt->close();
             flex-direction: column;
             gap: 10px;
             list-style-type: none;
-            background-color: var(--primary);
+            background-color: var(--secondary);
             padding: 10px;
             border-radius: 10px;
             width: 60%;
         }
-
+        .user-details-box>ul .list-button-box{
+            background-color: var(--secondary);
+        }
         .user-details-box>ul li:not(.list-button-box) {
             display: flex;
             word-break: break-all;
             flex-direction: column;
             background-color: var(--accent);
-            padding: 5px;
+            padding: .5rem;
             border-radius: 10px;
         }
 
@@ -142,12 +143,13 @@ $stmt->close();
             justify-content: center;
             align-items: center;
             border: none;
-            background-color: var(--secondary);
+            background-color: var(--primary);
             box-shadow: 2px 2px 0px 1px black;
             color: white;
             transition: 0.1s all;
             width: 100%;
             padding: .5rem;
+            border-radius: 10px;
         }
 
         .user-details-box>ul .list-button-box>button:active {
@@ -156,6 +158,7 @@ $stmt->close();
         }
 
         .user-details-box>ul .list-button-box>button>p {
+            font-size: 120%;
             background: none;
         }
 
@@ -218,7 +221,7 @@ $stmt->close();
             right: 10px;
             top: 10px;
         }
-        .close-dialog-btn > span{
+        .close-dialog-btn > i{
             background: none; 
             font-size: 150%;
         }
@@ -242,13 +245,13 @@ $stmt->close();
 
 <body>
     <dialog>
-        <button autofocus class="close-dialog-btn"><span>&xotime;</span></button>
+        <button autofocus class="close-dialog-btn"><i class="fa fa-times-circle"></i></button>
     </dialog>
     <!-- ----------------------------------------------------------------------- -->
     <div class="sidebar-menu-container" id="sidebar-menu-container">
         <div class="content">
             <div class="close-button-box">
-                <button type="button" id="close-btn"><span>&xotime;</span></button>
+                <button type="button" id="close-btn"><i class="fa fa-times-circle"></i></button>
             </div>
             <div class="sidebar-list-box">
                 <ul>
@@ -361,7 +364,7 @@ $stmt->close();
                         <li><small>Birthdate:</small><?= $birthdate ?></li>
                         <li class="list-button-box">
                             <button type="button" id="update-btn" class="update-btn">
-                                <p>Change information</p>
+                                <p>Change</p>
                             </button>
                         </li>
                     </ul>
@@ -378,10 +381,10 @@ $stmt->close();
             </div>
             <div class="logout-box">
                 <button type="button" id="logout-btn" class="logout-btn">
-                    <p>Logout</p>
+                    <p>Logout <i class="fa fa-sign-out"></i></p>
                 </button>
                 <button type="button" id="delete-btn" class="delete-btn">
-                    <p>Delete account</p>
+                    <p>Delete account <i class="fa fa-trash"></i></p>
                 </button>
             </div>
         </div>
