@@ -169,9 +169,11 @@
     <main>
         <div class="container">
             <nav>
-                <h1> <a href="welcomePage.php">
+                <h1> 
+                    <a href="welcomePage.php">
                         <img src="./public/assets/icons/dark_backward_arrow.svg" alt="arrow to go back">
-                    </a>Login
+                    </a>
+                    Login
                 </h1>
             </nav>
             <form action="login_script.php" method="post" autocomplete="off">

@@ -7,15 +7,10 @@ if (!isset($_SESSION['loggedin'])) {
 include "connection.php";
 
 $stmt = $conn->prepare('SELECT password, email, birthdate, account_image FROM users WHERE id = ?');
-
 $stmt->bind_param('i', $_SESSION['id']);
-
 $stmt->execute();
-
 $stmt->bind_result($password, $email, $birthdate, $accountImage);
-
 $stmt->fetch();
-
 $stmt->close();
 ?>
 
@@ -29,6 +24,7 @@ $stmt->close();
     <title>Profile Page</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <link rel="stylesheet" href="./public/css/theme-colors.css" />
     <link rel="stylesheet" href="./public/css/resetting.css" />
@@ -162,14 +158,14 @@ $stmt->close();
             background: none;
         }
 
-        .username-box {
+        .main-username-box {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-basis: 20%;
         }
 
-        .username-box h2 {
+        .main-username-box h2 {
             font-size: 200%;
         }
 
@@ -202,28 +198,115 @@ $stmt->close();
         }
 
         dialog {
-            position: absolute;
+            flex-direction: column;
             margin-inline: auto;
             margin-block: auto;
             background-color: var(--primary);
             width: 400px;
             height: 500px;
+            border-radius: 1rem;
+            border: none;
+        }
+        .close-dialog-btn-container{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-basis: 10%;
+            padding-inline: 20px;
+            background-color: var(--primary);
+        }
+        .close-dialog-btn-container > h2{
+            background: none;
         }
         .close-dialog-btn{
-            position: absolute;
             display: flex;
             justify-content: center;
             align-items: center;
             border: none;
             background: none;
-            width: 50px;
-            height: 50px;
-            right: 10px;
-            top: 10px;
         }
         .close-dialog-btn > i{
             background: none; 
             font-size: 150%;
+        }
+
+        dialog > form{
+            display: flex;
+            flex-direction: column;
+            flex-basis: 90%;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;      
+        }
+
+        dialog> form div {
+            display: flex;
+            width: 80%;
+            position: relative;
+        }
+        
+        dialog > form div:not(.submit-box) label {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            font-size: 16px;
+            color: black;
+            pointer-events: none;
+            transition: all 0.3s;
+        }
+
+        dialog > form div input {
+            border: 0;
+            border-bottom: 1px solid rgb(0, 0, 0);
+            background: transparent;
+            width: 100%;
+            padding: 8px 0 5px 0;
+            font-size: 16px;
+            color: black;
+        }
+
+        dialog > form div input[name="submit"] {
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            background-color: rgba(50, 91, 195, 1);
+            box-shadow: 2px 2px 0px 1px black;
+            color: white;
+            transition: 0.1s all;
+            height: 45px;
+            border-radius: 5px;
+        }
+
+        dialog > form div input[name="submit"]:active {
+            box-shadow: none;
+            transform: translateY(2px);
+        }
+
+        dialog > form div input:focus {
+            border: none;
+            outline: none;
+            border-bottom: 1px solid rgba(50, 91, 195, 1);
+        }
+
+        dialog > form div input:focus~label,
+        dialog > form div input:valid~label {
+            top: -12px;
+            font-size: 12px;
+        }
+        .bi {
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-size: 120%;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        input[type="password"]::-ms-reveal,
+        input[type="password"]::-ms-clear {
+            display: none;
         }
 
         dialog::backdrop {
@@ -245,7 +328,52 @@ $stmt->close();
 
 <body>
     <dialog>
-        <button autofocus class="close-dialog-btn"><i class="fa fa-times-circle"></i></button>
+        <div class="close-dialog-btn-container">
+            <h2>Change</h2>
+            <button autofocus class="close-dialog-btn"><i class="fa fa-times-circle"></i></button>
+        </div>
+        <form action="update_script.php" method="post" enctype="multipart/form-data" autocomplete="off">
+                <div class="username-box">
+                    <input type="text" name="username" id="username" value="<?= $_SESSION["name"]; ?>" required>
+                    <label for="username">
+                        Username
+                    </label>
+                </div>
+                <div class="email-box">
+                    <input type="email" name="email" id="email" value="<?= $email; ?>" required>
+                    <label for="email">
+                        Email
+                    </label>
+                </div>
+                <div class="password-box">
+                    <input type="password" name="password" id="password" value="<?= $password; ?>" required>
+                    <i class="bi bi-eye-slash" id="togglePassword"></i>
+                    <label for="password">
+                        Password
+                    </label>
+                </div>
+                <div class="birthdate-box">
+                    <input type="date" name="birthdate" id="birthdate" value="<?= $birthdate; ?>" required>
+                    <label for="birthdate">
+                        Birthdate
+                    </label>
+                </div>
+                <div class="userImage-box">
+                    <input type="file" name="userImage" accept="image" id="">
+                    <label for="userImage">
+                        User's image
+                    </label>
+                </div>
+                <div class="submit-box">
+                    <input type="submit" value="Change" name="submit">
+                </div>
+                <?php if (isset($_GET['res'])) : ?>
+                    <small class="change-error">
+                        <?= $_GET['res'] ?>
+                    </small>
+                <?php endif; ?>
+                
+        </form>
     </dialog>
     <!-- ----------------------------------------------------------------------- -->
     <div class="sidebar-menu-container" id="sidebar-menu-container">
@@ -354,7 +482,7 @@ $stmt->close();
     <main>
         <div class="main-container">
             <div class="main-info-box">
-                <div class="username-box">
+                <div class="main-username-box">
                     <h2 class="username"><?= $_SESSION['name'] ?></h2>
                 </div>
                 <div class="user-details-box">
@@ -421,14 +549,18 @@ $stmt->close();
         const closeDialogBtn = document.querySelector(".close-dialog-btn");
         const deleteBtn = document.getElementById("delete-btn");
         const logoutBtn = document.getElementById("logout-btn");
+        const togglePassword = document.querySelector("#togglePassword");
+        const password = document.querySelector("#password");
 
         updateBtn.addEventListener("click", () => {
             dialog.showModal();
+            dialog.style.display = "flex";
         });
 
         // "Close" button closes the dialog
         closeDialogBtn.addEventListener("click", () => {
             dialog.close();
+            dialog.style.display = "none";
         });
         logoutBtn.addEventListener("click", () => {
             window.location.replace("logout.php");
@@ -436,5 +568,14 @@ $stmt->close();
         deleteBtn.addEventListener("click", () => {
             window.location.replace("delete.php");
         })
+
+        togglePassword.addEventListener("click", function() {
+            // toggle the type attribute
+            const type = password.getAttribute("type") === "password" ? "text" : "password";
+            password.setAttribute("type", type);
+
+            // toggle the icon
+            this.classList.toggle("bi-eye");
+        });
     </script>
 </body>

@@ -1,15 +1,14 @@
 <?php
 session_start();
 
-if (isset($_POST["submit"])) {
 
     include "connection.php";
 
-    $username = htmlspecialchars($_POST["username"]);
-    $password = $_POST["password-1"];
-    $password2 = $_POST["password-2"];
-    $email = $_POST["email"];
-    $birthdate = $_POST["birthdate"];
+    $username = htmlspecialchars(trim($_POST["username"]));
+    $password = trim($_POST["password-1"]);
+    $password2 = trim($_POST["password-2"]);
+    $email = trim($_POST["email"]);
+    $birthdate = trim($_POST["birthdate"]);
 
     $err = "";
 
@@ -41,5 +40,5 @@ if (isset($_POST["submit"])) {
         $err = "This data is already in use";
         header("Location: signup.php?err=$err");
     }
-}
+
 session_destroy();
