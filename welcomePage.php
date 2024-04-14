@@ -23,7 +23,7 @@ $stmt->close();
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
   <link rel="shortcut icon" href="./public/assets/icons/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="./public/css/theme-colors.css" />
-  <link rel="stylesheet" href="./public/css/resetting.css" />
+  <link rel="stylesheet" href="./public/css/reset.css" />
   <link rel="stylesheet" href="./public/css/nav-bar.css" />
   <link rel="stylesheet" href="./public/css/footer.css" />
   <title>Bukovel. Welcome to the Heart of Carpathians</title>

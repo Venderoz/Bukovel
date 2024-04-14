@@ -5,7 +5,6 @@ footer {
   background-color: var(--secondary);
   color: var(--text);
   padding: 1rem;
-  flex-wrap: wrap;
   border-top: 1px solid var(--text);
 }
 footer * {
@@ -32,24 +31,28 @@ footer div p span{
 .footer-contact-box p{
     text-align: left;
 }
+.footer-copyrights-box > p{
+    text-align: center;
+    font-size: 120%;
+}
+.footer-creator-box > p{
+    text-align: center;
+    font-size: 120%;
+}
 .footer-contact-box p:first-child{
     border-bottom: 1px solid var(--text);
 }
-.footer-copyrights-box > p{
-    text-align: center;
-    font-size: 150%;
-}
-.footer-creator-box > p{
-    text-align: right;
-    font-size: 150%;
-}
+
 @media (max-width: 635px) {
-    .footer-creator-box > p{
-        text-align: center;
-        font-size: 100%;
+    footer{
+        flex-direction: column;
     }
     .footer-copyrights-box > p{
-        text-align: right;
-        font-size: 130%;
-    };
+        text-align: left;
+        font-size: 100%;
+    }
+    .footer-creator-box > p{
+        text-align: left;
+        font-size: 100%;
+    }
 }

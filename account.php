@@ -27,7 +27,7 @@ $stmt->close();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <link rel="stylesheet" href="./public/css/theme-colors.css" />
-    <link rel="stylesheet" href="./public/css/resetting.css" />
+    <link rel="stylesheet" href="./public/css/reset.css" />
     <link rel="stylesheet" href="./public/css/nav-bar.css" />
     <link rel="stylesheet" href="./public/css/footer.css" />
     <style>
@@ -40,7 +40,7 @@ $stmt->close();
             display: flex;
             flex-direction: column;
             width: 100%;
-            height: 650px;
+            height: 100%;
         }
 
         .main-info-box {
@@ -313,6 +313,28 @@ $stmt->close();
             background-color: black;
             opacity: 0.75;
         }
+
+            /* Media Query for Mobile Devices*/
+    @media screen and (max-width: 480px) {}
+
+    /* Media Query for low resolution  Tablets, Ipads */
+    @media screen and (min-width: 481px) {}
+
+    /* Media Query for Tablets Ipads portrait mode */
+    @media screen and (min-width: 768px) {
+
+    }
+
+    /* Media Query for Laptops and Desktops */
+    @media screen and (min-width: 1025px) {
+        .main-container{
+            height: 800px;
+        }
+    }
+
+    /* Media Query for Large screens */
+    @media screen and (min-width: 1281px) {
+    }
 
         @keyframes animateButtonBg {
             from {
