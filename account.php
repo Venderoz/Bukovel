@@ -6,6 +6,7 @@ if (!isset($_SESSION['loggedin'])) {
 }
 include "connection.php";
 
+
 $stmt = $conn->prepare('SELECT password, email, birthdate, account_image FROM users WHERE id = ?');
 $stmt->bind_param('i', $_SESSION['id']);
 $stmt->execute();
@@ -433,7 +434,7 @@ $stmt->close();
                                 account_circle
                             </span>
                             <?php if ($accountImage != "") : ?>
-                                <img class="user-image" src="data:image;base64,<?php echo base64_encode($accountImage); ?>" alt="">
+                                <img class="user-image" src="./public/assets/<?php echo $accountImage; ?>" alt="user image">
                             <?php endif ?>
                         </a>
                     </li>
@@ -487,7 +488,7 @@ $stmt->close();
                                 account_circle
                             </span>
                             <?php if ($accountImage != "") : ?>
-                                <img class="user-image" src="data:image;base64,<?php echo base64_encode($accountImage); ?>" alt="">
+                                <img class="user-image" src="./public/assets/<?php echo $accountImage; ?>" alt="user image">
                             <?php endif ?>
                         </a>
                     </li>
@@ -522,9 +523,9 @@ $stmt->close();
                 <div class="user-pfp-box">
                     <div class="image-box">
                         <?php if ($accountImage != "") : ?>
-                            <img src="data:image;base64,<?php echo base64_encode($accountImage); ?>" alt="">
+                            <img src="./public/assets/<?php echo $accountImage; ?>" alt="user image">
                         <?php else : ?>
-                            <img src="https://www.pngmart.com/files/21/Account-User-PNG-Isolated-HD.png" alt="loggedout-img">
+                            <img src="https://www.pngmart.com/files/21/Account-User-PNG-Isolated-HD.png" alt="logged out image">
                         <?php endif; ?>
                     </div>
                 </div>

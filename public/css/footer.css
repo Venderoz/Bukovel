@@ -1,5 +1,6 @@
 footer {
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: fit-content;
   background-color: var(--secondary);
@@ -32,27 +33,27 @@ footer div p span{
     text-align: left;
 }
 .footer-copyrights-box > p{
-    text-align: center;
+    text-align: left;
     font-size: 120%;
 }
 .footer-creator-box > p{
-    text-align: center;
+    text-align: left;
     font-size: 120%;
 }
 .footer-contact-box p:first-child{
     border-bottom: 1px solid var(--text);
 }
 
-@media (max-width: 635px) {
+@media (min-width: 635px) {
     footer{
-        flex-direction: column;
+        flex-direction: row;
     }
     .footer-copyrights-box > p{
-        text-align: left;
-        font-size: 100%;
+        text-align: center;
+        font-size: 150%;
     }
     .footer-creator-box > p{
-        text-align: left;
-        font-size: 100%;
+        text-align: right;
+        font-size: 150%;
     }
 }

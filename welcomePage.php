@@ -239,7 +239,7 @@ $stmt->close();
                 account_circle
               </span>
               <?php if ($accountImage != "") : ?>
-                <img class="user-image" src="data:image;base64,<?php echo base64_encode($accountImage); ?>" alt="">
+                <img class="user-image" src="./public/assets/<?php echo $accountImage; ?>" alt="user image">
               <?php endif ?>
             </a>
           </li>
@@ -293,7 +293,7 @@ $stmt->close();
                 account_circle
               </span>
               <?php if ($accountImage != "") : ?>
-                <img class="user-image" src="data:image;base64,<?php echo base64_encode($accountImage); ?>" alt="">
+                <img class="user-image" src="./public/assets/<?php echo $accountImage; ?>" alt="user image">
               <?php endif ?>
             </a>
           </li>

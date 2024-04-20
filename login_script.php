@@ -3,6 +3,12 @@ session_start();
 // Change this to your connection info.
 include "connection.php";
 
+$username = htmlspecialchars(trim($_POST["username"]));
+$password = trim($_POST["password-1"]);
+$password2 = trim($_POST["password-2"]);
+$email = trim($_POST["email"]);
+$birthdate = trim($_POST["birthdate"]);
+
 $err = "";
 
 
