@@ -10,7 +10,7 @@ session_start();
     $email = trim($_POST["email"]);
     $birthdate = trim($_POST["birthdate"]);
 
-    $err = "";
+    $msg = "";
 
     $query1 = "SELECT * FROM users WHERE username='$username' OR email='$email'";
 
@@ -19,7 +19,7 @@ session_start();
     $num = mysqli_num_rows($result);
 
     if ($num == 0) {
-        $regex = '/^.{8}/';
+        $regex = '/^(?=.*[A-Z])(?=.*\d).{8,}$/';
         if (preg_match($regex, $password)) {
             if ($password == $password2) {
                 $query2 = "INSERT INTO users (username, birthdate, email, password) VALUES ('$username','$birthdate','$email','$password');";
@@ -29,16 +29,16 @@ session_start();
                     header("Location: account.php");
                 }
             } else {
-                $err = "Passwords are not the same";
-                header("Location: signup.php?err=$err");
+                $msg = "Passwords are not the same";
+                header("Location: signup.php?msg=$msg");
             }
         } else {
-            $err = "Password has to have minimum 8 letters in length";
-            header("Location: signup.php?err=$err");
+            $msg = "Password has to be minimum 8 letters long, contain at least one number and one big letter";
+            header("Location: signup.php?msg=$msg");
         }
     } else if ($num > 0) {
-        $err = "This data is already in use";
-        header("Location: signup.php?err=$err");
+        $msg = "This data is already in use";
+        header("Location: signup.php?msg=$msg");
     }
 
 session_destroy();

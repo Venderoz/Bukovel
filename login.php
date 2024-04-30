@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="./public/css/reset.css">
+    <link rel="shortcut icon" href="./public/assets/icons/favicon.ico" type="image/x-icon" />
     <title>Login</title>
 
     <style>
@@ -193,10 +194,8 @@
                 <div class="submit-box">
                     <input type="submit" value="Login" name="submit">
                 </div>
-                <?php if (isset($_GET['res'])) : ?>
-                    <small class="login-error">
-                        <?= $_GET['res'] ?>
-                    </small>
+                <?php if (isset($_GET['msg'])) : ?>
+                    <script>alert("<?= $_GET['msg'] ?>");</script>
                 <?php endif; ?>
             </form>
             <a href="signup.php"><small>Don't have an account? Make one!</small></a>

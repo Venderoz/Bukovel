@@ -9,7 +9,7 @@ $password2 = trim($_POST["password-2"]);
 $email = trim($_POST["email"]);
 $birthdate = trim($_POST["birthdate"]);
 
-$err = "";
+$msg = "";
 
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
@@ -35,13 +35,13 @@ if ($stmt = $conn->prepare('SELECT ID, password FROM users WHERE username = ?'))
             header("Location: account.php");
         } else {
             // Incorrect password
-            $err = 'Incorrect username and/or password!';
-            header("Location: login.php?res=$err");
+            $msg = 'Incorrect username and/or password!';
+            header("Location: login.php?msg=$msg");
         }
     } else {
         // Incorrect username
-        $err = 'Incorrect username and/or password!';
-        header("Location: login.php?res=$err");
+        $msg = 'Incorrect username and/or password!';
+        header("Location: login.php?msg=$msg");
     }
 
     $stmt->close();

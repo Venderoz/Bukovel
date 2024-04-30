@@ -1,4 +1,5 @@
 [data-theme="light"] {
+  color-scheme: light;
   --text: #080d21;
   --background: #e1e4eb;
   --primary: #484ec1;
@@ -6,6 +7,7 @@
   --accent: #72a1f6;
 }
 [data-theme="dark"] {
+  color-scheme: dark;
   --text: #dee3f7;
   --background: #0b0c0f;
   --primary: #323d7c;

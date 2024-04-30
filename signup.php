@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <link rel="shortcut icon" href="./public/assets/icons/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="./public/css/reset.css">
     <title>Sign-up</title>
 
@@ -221,10 +222,8 @@
                 <div class="submit-box">
                     <input type="submit" value="Create" name="submit">
                 </div>
-                <?php if (isset($_GET['err'])) : ?>
-                    <small class="create-error">
-                        <?= $_GET['err'] ?>
-                    </small>
+                <?php if (isset($_GET['msg'])) : ?>
+                    <script>alert("<?= $_GET['msg'] ?>");</script>
                 <?php endif; ?>
             </form>
             <a href="login.php"><small>Already have an account? Login then!</small></a>

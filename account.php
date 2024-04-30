@@ -27,6 +27,7 @@ $stmt->close();
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <link rel="shortcut icon" href="./public/assets/icons/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="./public/css/theme-colors.css" />
     <link rel="stylesheet" href="./public/css/reset.css" />
     <link rel="stylesheet" href="./public/css/nav-bar.css" />
@@ -251,19 +252,19 @@ $stmt->close();
             top: 0px;
             left: 0px;
             font-size: 16px;
-            color: black;
+            color: var(--text);
             pointer-events: none;
             transition: all 0.3s;
         }
 
         dialog > form div input {
             border: 0;
-            border-bottom: 1px solid rgb(0, 0, 0);
+            border-bottom: 1px solid var(--text);
             background: transparent;
             width: 100%;
             padding: 8px 0 5px 0;
             font-size: 16px;
-            color: black;
+            color: var(--text);
         }
 
         dialog > form div input[name="submit"] {
@@ -274,7 +275,7 @@ $stmt->close();
             border: none;
             background-color: rgba(50, 91, 195, 1);
             box-shadow: 2px 2px 0px 1px black;
-            color: white;
+            color: var(--text);
             transition: 0.1s all;
             height: 45px;
             border-radius: 5px;
@@ -301,9 +302,12 @@ $stmt->close();
             right: 0;
             top: 0;
             font-size: 120%;
-            color: black;
+            color: var(--text);
             font-weight: bold;
             cursor: pointer;
+        }
+        .fa, .bi{
+            color: var(--text);
         }
         input[type="password"]::-ms-reveal,
         input[type="password"]::-ms-clear {
@@ -328,8 +332,18 @@ $stmt->close();
 
     /* Media Query for Laptops and Desktops */
     @media screen and (min-width: 1025px) {
-        .main-container{
-            height: 800px;
+        .main-username-box{
+            margin: 0;
+        } 
+        .main-username-box h2 {
+            font-size: 300%;
+        }
+        .image-box{
+            width: 300px;
+            height: 300px;
+        }
+        .user-details-box > ul li{
+            font-size: 120%;
         }
     }
 
@@ -390,10 +404,8 @@ $stmt->close();
                 <div class="submit-box">
                     <input type="submit" value="Change" name="submit">
                 </div>
-                <?php if (isset($_GET['res'])) : ?>
-                    <small class="change-error">
-                        <?= $_GET['res'] ?>
-                    </small>
+                <?php if (isset($_GET['msg'])) : ?>
+                    <script>alert("<?= $_GET['msg'] ?>");</script>
                 <?php endif; ?>
                 
         </form>
@@ -433,7 +445,7 @@ $stmt->close();
                             <span class="material-symbols-outlined">
                                 account_circle
                             </span>
-                            <?php if ($accountImage != "") : ?>
+                            <?php if (file_exists("./public/assets/$accountImage")) : ?>
                                 <img class="user-image" src="./public/assets/<?php echo $accountImage; ?>" alt="user image">
                             <?php endif ?>
                         </a>
@@ -487,7 +499,7 @@ $stmt->close();
                             <span class="material-symbols-outlined">
                                 account_circle
                             </span>
-                            <?php if ($accountImage != "") : ?>
+                            <?php if (file_exists("./public/assets/$accountImage")) : ?>
                                 <img class="user-image" src="./public/assets/<?php echo $accountImage; ?>" alt="user image">
                             <?php endif ?>
                         </a>
@@ -508,6 +520,15 @@ $stmt->close();
                 <div class="main-username-box">
                     <h2 class="username"><?= $_SESSION['name'] ?></h2>
                 </div>
+                <div class="user-pfp-box">
+                    <div class="image-box">
+                        <?php if (file_exists("./public/assets/$accountImage")) : ?>
+                            <img src="./public/assets/<?php echo $accountImage; ?>" alt="user image">
+                        <?php else : ?>
+                            <img src="https://www.pngmart.com/files/21/Account-User-PNG-Isolated-HD.png" alt="logged out image">
+                        <?php endif; ?>
+                    </div>
+                </div>
                 <div class="user-details-box">
                     <p>Details: </p>
                     <ul>
@@ -519,15 +540,6 @@ $stmt->close();
                             </button>
                         </li>
                     </ul>
-                </div>
-                <div class="user-pfp-box">
-                    <div class="image-box">
-                        <?php if ($accountImage != "") : ?>
-                            <img src="./public/assets/<?php echo $accountImage; ?>" alt="user image">
-                        <?php else : ?>
-                            <img src="https://www.pngmart.com/files/21/Account-User-PNG-Isolated-HD.png" alt="logged out image">
-                        <?php endif; ?>
-                    </div>
                 </div>
             </div>
             <div class="logout-box">

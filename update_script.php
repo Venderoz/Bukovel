@@ -12,7 +12,7 @@ $filename = $_FILES["userImage"]["name"];
 $tempname = $_FILES["userImage"]["tmp_name"];
 $folder = "./public/assets/" . $filename;
  
-$res = "";
+$msg = "";
 
 $query1 = "SELECT * FROM users WHERE ID = " . $_SESSION['id'] . ";";
 $result1 = $conn->query($query1);
@@ -26,14 +26,14 @@ if ($result1) {
         $olddata["birthdate"] == $birthdate &&
         $filename == ""
     ) {
-        $res = 'Nothing to change here!';
-        header("Location: account.php?res=$res");
+        $msg = 'Nothing to change here!';
+        header("Location: account.php?msg=$msg");
     } else {
         $query2 = "UPDATE users SET username = '$username', birthdate = '$birthdate', email = '$email', password = '$password', account_image = '$filename' WHERE id = " . $_SESSION['id'] . ";";
         $conn->query($query2);
         move_uploaded_file($tempname, $folder);
         
-        $res = "Data changed successfully";
-        header("Location: account.php?res=$res");
+        $msg = "Data changed successfully";
+        header("Location: account.php?msg=$msg");
     }
 }

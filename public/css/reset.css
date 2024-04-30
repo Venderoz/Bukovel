@@ -21,6 +21,6 @@ button{
     cursor: pointer;
 }
 i[class*=fa]::before{
-    background: none;
+    background: transparent;
 }
 
