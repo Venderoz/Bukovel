@@ -2,6 +2,7 @@
 session_start();
 
 include "connection.php";
+
 // We don't have the password or email info stored in sessions, so instead, we can get the results from the database.
 $stmt = $conn->prepare('SELECT account_image FROM users WHERE id = ?');
 // In this case we can use the account ID to get the account info.
@@ -28,6 +29,21 @@ $stmt->close();
   <title>Trails map</title>
 
   <style>
+    main {
+      display: flex;
+      width: 100%;
+    }
+
+    .iframe-container {
+      display: flex;
+      width: 100%;
+      height: 80dvh;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+    }
 
     /* Media Query for Mobile Devices*/
     @media screen and (max-width: 480px) {}
@@ -46,10 +62,14 @@ $stmt->close();
         top: 50%;
         transform: rotateZ(-90deg);
       }
-      .slide-text-container > p{
+
+      .slide-text-container>p {
         font-size: 200%;
       }
 
+      .iframe-container {
+      height: 88dvh;
+    }
     }
 
     /* Media Query for Laptops and Desktops */
@@ -58,9 +78,11 @@ $stmt->close();
       .slide-text-container {
         left: -43%;
       }
-      .slide-text-container > p{
+
+      .slide-text-container>p {
         font-size: 200%;
       }
+
       .main-text-content div p {
         width: 45%;
       }
@@ -76,7 +98,8 @@ $stmt->close();
       .slide-text-container {
         left: -45%;
       }
-      .slide-text-container > p{
+
+      .slide-text-container>p {
         font-size: 200%;
       }
     }
@@ -119,7 +142,7 @@ $stmt->close();
               <span class="material-symbols-outlined">
                 account_circle
               </span>
-              <?php if (file_exists("./public/assets/$accountImage")) : ?>
+              <?php if (file_exists("./public/assets/$accountImage") && !is_null($accountImage)): ?>
                 <img class="user-image" src="./public/assets/<?php echo $accountImage; ?>" alt="user image">
               <?php endif ?>
             </a>
@@ -173,7 +196,7 @@ $stmt->close();
               <span class="material-symbols-outlined">
                 account_circle
               </span>
-              <?php if (file_exists("./public/assets/$accountImage")) : ?>
+              <?php if (file_exists("./public/assets/$accountImage") && !is_null($accountImage)): ?>
                 <img class="user-image" src="./public/assets/<?php echo $accountImage; ?>" alt="user image">
               <?php endif ?>
             </a>
@@ -189,7 +212,9 @@ $stmt->close();
   </header>
   <!-- ----------------------------------------------------------------------- -->
   <main>
-    <iframe src="https://bukovel.com/map-new/?lang=en&from-site=true" frameborder="0"></iframe>
+    <div class="iframe-container">
+      <iframe src="https://bukovel.com/map-new/?lang=en&from-site=true" frameborder="0"></iframe>
+    </div>
   </main>
   <!-- ----------------------------------------------------------------------- -->
   <footer>
@@ -208,13 +233,12 @@ $stmt->close();
     </div>
     <div class="footer-creator-box">
       <p>
-        <a href="https://github.com/Venderoz/Bukovel/">
+        <a href="https://github.com/Venderoz/Bukovel/" target="_blank">
           This site was made by Venderoz.
         </a>
       </p>
     </div>
   </footer>
-
   <!-- ----------------------------------------------------------------------- -->
   <script src="./public/scripts/change_theme.js"></script>
   <script src="./public/scripts/sidebar_manipulation.js"></script>

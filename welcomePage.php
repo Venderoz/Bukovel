@@ -238,7 +238,7 @@ $stmt->close();
               <span class="material-symbols-outlined">
                 account_circle
               </span>
-              <?php if (file_exists("./public/assets/$accountImage")) : ?>
+              <?php if (file_exists("./public/assets/$accountImage") && !is_null($accountImage)): ?>
                 <img class="user-image" src="./public/assets/<?php echo $accountImage; ?>" alt="user image">
               <?php endif ?>
             </a>
@@ -292,7 +292,7 @@ $stmt->close();
               <span class="material-symbols-outlined">
                 account_circle
               </span>
-              <?php if (file_exists("./public/assets/$accountImage")) : ?>
+              <?php if (file_exists("./public/assets/$accountImage") && !is_null($accountImage)): ?>
                 <img class="user-image" src="./public/assets/<?php echo $accountImage; ?>" alt="user image">
               <?php endif ?>
             </a>
@@ -411,7 +411,7 @@ $stmt->close();
     </div>
     <div class="footer-creator-box">
       <p>
-        <a href="https://github.com/Venderoz/Bukovel/">
+        <a href="https://github.com/Venderoz/Bukovel/" target="_blank">
           This site was made by Venderoz.
         </a>
       </p>
