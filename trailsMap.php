@@ -20,7 +20,7 @@ $stmt->close();
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
   <link rel="shortcut icon" href="./public/assets/icons/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="./public/css/theme-colors.css" />
   <link rel="stylesheet" href="./public/css/reset.css" />
@@ -45,62 +45,9 @@ $stmt->close();
       height: 100%;
     }
 
-    /* Media Query for Mobile Devices*/
-    @media screen and (max-width: 480px) {}
-
-    /* Media Query for low resolution  Tablets, Ipads */
-    @media screen and (min-width: 481px) {}
-
-    /* Media Query for Tablets Ipads portrait mode */
     @media screen and (min-width: 768px) {
-      .swiper-slide {
-        box-shadow: inset 250px 0px 150px black;
-      }
-
-      .slide-text-container {
-        left: -40%;
-        top: 50%;
-        transform: rotateZ(-90deg);
-      }
-
-      .slide-text-container>p {
-        font-size: 200%;
-      }
-
       .iframe-container {
-      height: 88dvh;
-    }
-    }
-
-    /* Media Query for Laptops and Desktops */
-    @media screen and (min-width: 1025px) {
-
-      .slide-text-container {
-        left: -43%;
-      }
-
-      .slide-text-container>p {
-        font-size: 200%;
-      }
-
-      .main-text-content div p {
-        width: 45%;
-      }
-
-      .main-text-content div {
-        font-size: 130%;
-      }
-    }
-
-    /* Media Query for Large screens */
-    @media screen and (min-width: 1281px) {
-
-      .slide-text-container {
-        left: -45%;
-      }
-
-      .slide-text-container>p {
-        font-size: 200%;
+        height: 88dvh;
       }
     }
   </style>
@@ -142,7 +89,7 @@ $stmt->close();
               <span class="material-symbols-outlined">
                 account_circle
               </span>
-              <?php if (file_exists("./public/assets/$accountImage") && !is_null($accountImage)): ?>
+              <?php if (file_exists("./public/assets/$accountImage") && !is_null($accountImage)) : ?>
                 <img class="user-image" src="./public/assets/<?php echo $accountImage; ?>" alt="user image">
               <?php endif ?>
             </a>
@@ -196,7 +143,7 @@ $stmt->close();
               <span class="material-symbols-outlined">
                 account_circle
               </span>
-              <?php if (file_exists("./public/assets/$accountImage") && !is_null($accountImage)): ?>
+              <?php if (file_exists("./public/assets/$accountImage") && !is_null($accountImage)) : ?>
                 <img class="user-image" src="./public/assets/<?php echo $accountImage; ?>" alt="user image">
               <?php endif ?>
             </a>

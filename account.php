@@ -26,7 +26,6 @@ $stmt->close();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <link rel="shortcut icon" href="./public/assets/icons/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="./public/css/theme-colors.css" />
     <link rel="stylesheet" href="./public/css/reset.css" />
@@ -43,6 +42,7 @@ $stmt->close();
             flex-direction: column;
             width: 100%;
             height: 100%;
+            padding-block: 2rem;
         }
 
         .main-info-box {
@@ -297,7 +297,7 @@ $stmt->close();
             top: -12px;
             font-size: 12px;
         }
-        .bi {
+        .password-box > .bi {
             position: absolute;
             right: 0;
             top: 0;
@@ -445,7 +445,7 @@ $stmt->close();
                             <span class="material-symbols-outlined">
                                 account_circle
                             </span>
-                            <?php if (file_exists("./public/assets/$accountImage") && !is_null($accountImage)): ?>
+                            <?php if (file_exists("./public/assets/$accountImage") && !is_null($accountImage) && $accountImage != ""): ?>
                                 <img class="user-image" src="./public/assets/<?php echo $accountImage; ?>" alt="user image">
                             <?php endif ?>
                         </a>
@@ -499,7 +499,7 @@ $stmt->close();
                             <span class="material-symbols-outlined">
                                 account_circle
                             </span>
-                            <?php if (file_exists("./public/assets/$accountImage") && !is_null($accountImage)): ?>
+                            <?php if (file_exists("./public/assets/$accountImage") && !is_null($accountImage) && $accountImage != ""): ?>
                                 <img class="user-image" src="./public/assets/<?php echo $accountImage; ?>" alt="user image">
                             <?php endif ?>
                         </a>
@@ -522,7 +522,7 @@ $stmt->close();
                 </div>
                 <div class="user-pfp-box">
                     <div class="image-box">
-                        <?php if (file_exists("./public/assets/$accountImage") && !is_null($accountImage)): ?>
+                        <?php if (file_exists("./public/assets/$accountImage") && !is_null($accountImage) && $accountImage != ""): ?>
                             <img src="./public/assets/<?php echo $accountImage; ?>" alt="user image">
                         <?php else : ?>
                             <img src="https://www.pngmart.com/files/21/Account-User-PNG-Isolated-HD.png" alt="logged out image">
@@ -544,10 +544,10 @@ $stmt->close();
             </div>
             <div class="logout-box">
                 <button type="button" id="logout-btn" class="logout-btn">
-                    <p>Logout <i class="fa fa-sign-out"></i></p>
+                    <p>Logout <i class="bi bi-box-arrow-right"></i></p>
                 </button>
                 <button type="button" id="delete-btn" class="delete-btn">
-                    <p>Delete account <i class="fa fa-trash"></i></p>
+                    <p>Delete account <i class="bi bi-trash"></i></p>
                 </button>
             </div>
         </div>
@@ -598,10 +598,10 @@ $stmt->close();
             dialog.style.display = "none";
         });
         logoutBtn.addEventListener("click", () => {
-            window.location.replace("logout.php");
+            confirm("Do you really want to logout?") ? window.location.replace("logout.php") : "" ;
         })
         deleteBtn.addEventListener("click", () => {
-            window.location.replace("delete.php");
+            confirm("Do you really want to delete you account forever?") ? window.location.replace("delete.php") : "" ;
         })
 
         togglePassword.addEventListener("click", function() {

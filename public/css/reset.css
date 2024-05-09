@@ -20,7 +20,7 @@ body{
 button{
     cursor: pointer;
 }
-i[class*=fa]::before{
-    background: transparent;
+.bi{
+    background-color: transparent !important;
 }
 

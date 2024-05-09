@@ -20,7 +20,7 @@ $stmt->close();
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
   <link rel="shortcut icon" href="./public/assets/icons/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="./public/css/theme-colors.css" />
   <link rel="stylesheet" href="./public/css/reset.css" />
@@ -66,7 +66,7 @@ $stmt->close();
       width: 100%;
       height: 100px;
       top: 82px;
-      left: 0;
+      left: -45%;
       background: none;
       padding: .5rem;
     }
@@ -76,6 +76,7 @@ $stmt->close();
       background: none;
       font-size: 180%;
       color: white;
+
     }
 
     .first-slide {
@@ -88,6 +89,10 @@ $stmt->close();
 
     .third-slide {
       background-image: url("./public/assets/Bukovel3.png");
+    }
+
+    .fourth-slide {
+      background-image: url("./public/assets/Bukovel4.png");
     }
 
     .swiper-slide>img {
@@ -161,7 +166,6 @@ $stmt->close();
       }
 
       .slide-text-container {
-        left: -40%;
         top: 50%;
         transform: rotateZ(-90deg);
       }
@@ -172,14 +176,7 @@ $stmt->close();
     }
 
     /* Media Query for Laptops and Desktops */
-    @media screen and (min-width: 1025px) {
-
-      .slide-text-container {
-        left: -43%;
-      }
-      .slide-text-container > p{
-        font-size: 200%;
-      }
+    @media screen and (min-width: 1024px) {
       .main-text-content div p {
         width: 45%;
       }
@@ -191,13 +188,6 @@ $stmt->close();
 
     /* Media Query for Large screens */
     @media screen and (min-width: 1281px) {
-
-      .slide-text-container {
-        left: -45%;
-      }
-      .slide-text-container > p{
-        font-size: 200%;
-      }
     }
   </style>
 </head>
@@ -238,7 +228,7 @@ $stmt->close();
               <span class="material-symbols-outlined">
                 account_circle
               </span>
-              <?php if (file_exists("./public/assets/$accountImage") && !is_null($accountImage)): ?>
+              <?php if (file_exists("./public/assets/$accountImage") && !is_null($accountImage) && $accountImage != ""): ?>
                 <img class="user-image" src="./public/assets/<?php echo $accountImage; ?>" alt="user image">
               <?php endif ?>
             </a>
@@ -292,7 +282,7 @@ $stmt->close();
               <span class="material-symbols-outlined">
                 account_circle
               </span>
-              <?php if (file_exists("./public/assets/$accountImage") && !is_null($accountImage)): ?>
+              <?php if (file_exists("./public/assets/$accountImage") && !is_null($accountImage) && $accountImage != ""): ?>
                 <img class="user-image" src="./public/assets/<?php echo $accountImage; ?>" alt="user image">
               <?php endif ?>
             </a>
@@ -325,6 +315,11 @@ $stmt->close();
         <div class="swiper-slide third-slide">
           <div class="slide-text-container third-slide-text">
             <p>Embrace Winter Wonder</p>
+          </div>
+        </div>
+        <div class="swiper-slide fourth-slide">
+          <div class="slide-text-container fourth-slide-text">
+            <p>Adventure Awaits Here</p>
           </div>
         </div>
       </div>

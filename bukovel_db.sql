@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 23, 2024 at 04:33 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Хост: 127.0.0.1
+-- Время создания: Май 09 2024 г., 22:49
+-- Версия сервера: 10.4.27-MariaDB
+-- Версия PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `bukovel_db`
+-- База данных: `bukovel_db`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `equipment`
+-- Структура таблицы `equipment`
 --
 
 CREATE TABLE `equipment` (
@@ -36,7 +36,7 @@ CREATE TABLE `equipment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `equipment`
+-- Дамп данных таблицы `equipment`
 --
 
 INSERT INTO `equipment` (`ID`, `equipment_name`, `days_num`, `price`, `category`) VALUES
@@ -104,7 +104,7 @@ INSERT INTO `equipment` (`ID`, `equipment_name`, `days_num`, `price`, `category`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `orders`
+-- Структура таблицы `orders`
 --
 
 CREATE TABLE `orders` (
@@ -112,14 +112,14 @@ CREATE TABLE `orders` (
   `user_id` int(11) NOT NULL,
   `skipass_id` int(11) NOT NULL,
   `equipment_id` int(11) NOT NULL,
-  `order_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `order_time` date NOT NULL,
   `payment` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `skipasses`
+-- Структура таблицы `skipasses`
 --
 
 CREATE TABLE `skipasses` (
@@ -133,67 +133,43 @@ CREATE TABLE `skipasses` (
   `validity` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
---
--- Dumping data for table `skipasses`
---
-
-INSERT INTO `skipasses` (`ID`, `season`, `skiing_period`, `days_number`, `status`, `price`, `description`, `validity`) VALUES
-(1, 'Evening skiing', '15:00 - 19:30', 0, 'Standard', 16, 'From now on, you may replenish your cards online with items being previously exclusive to ticket offices.\n\nUnused ski-pass value is not by any means transferrable to other season periods.\n\nThe value of used or partially used ski-pass is not refundable.\n\nValid 2023-2024 winter season; On the day of actual purchase. \n\nBukovel Card may be replenished according to different skiing rates simultaneously. If multiple options are added during the same booking session, skiing days are stacked in the exactly same order in which they are added to the cart.\n\nThe tourniquet pass-through system then activates the card and starts charging it according to the queue.', 'On the day of purchase.'),
-(2, 'Evening skiing', '15:00 - 19:30', 0, 'VIP', 32, 'From now on, you may replenish your cards online with items being previously exclusive to ticket offices.\r\n\r\nUnused ski-pass value is not by any means transferrable to other season periods.\r\n\r\nThe value of used or partially used ski-pass is not refundable.\r\n\r\nValid 2023-2024 winter season; On the day of actual purchase. \r\n\r\nBukovel Card may be replenished according to different skiing rates simultaneously. If multiple options are added during the same booking session, skiing days are stacked in the exactly same order in which they are added to the cart.\r\n\r\nThe tourniquet pass-through system then activates the card and starts charging it according to the queue.', 'On the day of purchase.'),
-(3, 'High season', '19.12 - 01.01; 07.01 - 16.03', 2, 'Standard', 84, 'This promotional ski-pass is usable during the entire winter season, except for the \"Holiday season\" period (02.01 - 06.01).\r\n\r\nPlease note! The ski-pass is purchasable on a consecutive day basis, activated on the first tourniquet passthrough and loses its validity on the expiration date (or after the skiing season end, whichever comes first), regardless of actual skiing day use.\r\n\r\nIn order to prevent turnstile scanner collisions, we strictly restrain having more than 1 ski-pass when passing through turnstile gates, as well as handing ski-passes to another person through the turnstile.\r\n\r\nThe ski-pass is valid for 2 winter seasons.', '2 winter seasons'),
-(4, 'High season', '19.12 - 01.01; 07.01 - 16.03', 2, 'VIP', 167, 'This promotional ski-pass is usable during the entire winter season, except for the \"Holiday season\" period (02.01 - 06.01).\r\n\r\nPlease note! The ski-pass is purchasable on a consecutive day basis, activated on the first tourniquet passthrough and loses its validity on the expiration date (or after the skiing season end, whichever comes first), regardless of actual skiing day use.\r\n\r\nIn order to prevent turnstile scanner collisions, we strictly restrain having more than 1 ski-pass when passing through turnstile gates, as well as handing ski-passes to another person through the turnstile.\r\n\r\nThe ski-pass is valid for 2 winter seasons.', '2 winter seasons'),
-(5, 'High season', '19.12 - 01.01; 07.01 - 16.03', 3, 'Standard', 119, 'This promotional ski-pass is usable during the entire winter season, except for the \"Holiday season\" period (02.01 - 06.01).\r\n\r\nPlease note! The ski-pass is purchasable on a consecutive day basis, activated on the first tourniquet passthrough and loses its validity on the expiration date (or after the skiing season end, whichever comes first), regardless of actual skiing day use.\r\n\r\nIn order to prevent turnstile scanner collisions, we strictly restrain having more than 1 ski-pass when passing through turnstile gates, as well as handing ski-passes to another person through the turnstile.\r\n\r\nThe ski-pass is valid for 2 winter seasons.', '2 winter seasons'),
-(6, 'High season', '19.12 - 01.01; 07.01 - 16.03', 3, 'VIP', 239, 'This promotional ski-pass is usable during the entire winter season, except for the \"Holiday season\" period (02.01 - 06.01).\r\n\r\nPlease note! The ski-pass is purchasable on a consecutive day basis, activated on the first tourniquet passthrough and loses its validity on the expiration date (or after the skiing season end, whichever comes first), regardless of actual skiing day use.\r\n\r\nIn order to prevent turnstile scanner collisions, we strictly restrain having more than 1 ski-pass when passing through turnstile gates, as well as handing ski-passes to another person through the turnstile.\r\n\r\nThe ski-pass is valid for 2 winter seasons.', '2 winter seasons'),
-(7, 'High season', '19.12 - 01.01; 07.01 - 16.03', 4, 'Standard', 155, 'This promotional ski-pass is usable during the entire winter season, except for the \"Holiday season\" period (02.01 - 06.01).\r\n\r\nPlease note! The ski-pass is purchasable on a consecutive day basis, activated on the first tourniquet passthrough and loses its validity on the expiration date (or after the skiing season end, whichever comes first), regardless of actual skiing day use.\r\n\r\nIn order to prevent turnstile scanner collisions, we strictly restrain having more than 1 ski-pass when passing through turnstile gates, as well as handing ski-passes to another person through the turnstile.\r\n\r\nThe ski-pass is valid for 2 winter seasons.', '2 winter seasons'),
-(8, 'High season', '19.12 - 01.01; 07.01 - 16.03', 4, 'VIP', 311, 'This promotional ski-pass is usable during the entire winter season, except for the \"Holiday season\" period (02.01 - 06.01).\r\n\r\nPlease note! The ski-pass is purchasable on a consecutive day basis, activated on the first tourniquet passthrough and loses its validity on the expiration date (or after the skiing season end, whichever comes first), regardless of actual skiing day use.\r\n\r\nIn order to prevent turnstile scanner collisions, we strictly restrain having more than 1 ski-pass when passing through turnstile gates, as well as handing ski-passes to another person through the turnstile.\r\n\r\nThe ski-pass is valid for 2 winter seasons.', '2 winter seasons'),
-(9, 'High season', '19.12 - 01.01; 07.01 - 16.03', 5, 'Standard', 188, 'This promotional ski-pass is usable during the entire winter season, except for the \"Holiday season\" period (02.01 - 06.01).\r\n\r\nPlease note! The ski-pass is purchasable on a consecutive day basis, activated on the first tourniquet passthrough and loses its validity on the expiration date (or after the skiing season end, whichever comes first), regardless of actual skiing day use.\r\n\r\nIn order to prevent turnstile scanner collisions, we strictly restrain having more than 1 ski-pass when passing through turnstile gates, as well as handing ski-passes to another person through the turnstile.\r\n\r\nThe ski-pass is valid for 2 winter seasons.', '2 winter seasons'),
-(10, 'High season', '19.12 - 01.01; 07.01 - 16.03', 5, 'VIP', 376, 'This promotional ski-pass is usable during the entire winter season, except for the \"Holiday season\" period (02.01 - 06.01).\r\n\r\nPlease note! The ski-pass is purchasable on a consecutive day basis, activated on the first tourniquet passthrough and loses its validity on the expiration date (or after the skiing season end, whichever comes first), regardless of actual skiing day use.\r\n\r\nIn order to prevent turnstile scanner collisions, we strictly restrain having more than 1 ski-pass when passing through turnstile gates, as well as handing ski-passes to another person through the turnstile.\r\n\r\nThe ski-pass is valid for 2 winter seasons.', '2 winter seasons'),
-(11, 'High season', '19.12 - 01.01; 07.01 - 16.03', 6, 'Standard', 211, 'This promotional ski-pass is usable during the entire winter season, except for the \"Holiday season\" period (02.01 - 06.01).\r\n\r\nPlease note! The ski-pass is purchasable on a consecutive day basis, activated on the first tourniquet passthrough and loses its validity on the expiration date (or after the skiing season end, whichever comes first), regardless of actual skiing day use.\r\n\r\nIn order to prevent turnstile scanner collisions, we strictly restrain having more than 1 ski-pass when passing through turnstile gates, as well as handing ski-passes to another person through the turnstile.\r\n\r\nThe ski-pass is valid for 2 winter seasons.', '2 winter seasons'),
-(12, 'High season', '19.12 - 01.01; 07.01 - 16.03', 6, 'VIP', 422, 'This promotional ski-pass is usable during the entire winter season, except for the \"Holiday season\" period (02.01 - 06.01).\r\n\r\nPlease note! The ski-pass is purchasable on a consecutive day basis, activated on the first tourniquet passthrough and loses its validity on the expiration date (or after the skiing season end, whichever comes first), regardless of actual skiing day use.\r\n\r\nIn order to prevent turnstile scanner collisions, we strictly restrain having more than 1 ski-pass when passing through turnstile gates, as well as handing ski-passes to another person through the turnstile.\r\n\r\nThe ski-pass is valid for 2 winter seasons.', '2 winter seasons'),
-(13, 'High season', '19.12 - 01.01; 07.01 - 16.03', 7, 'Standard', 237, 'This promotional ski-pass is usable during the entire winter season, except for the \"Holiday season\" period (02.01 - 06.01).\r\n\r\nPlease note! The ski-pass is purchasable on a consecutive day basis, activated on the first tourniquet passthrough and loses its validity on the expiration date (or after the skiing season end, whichever comes first), regardless of actual skiing day use.\r\n\r\nIn order to prevent turnstile scanner collisions, we strictly restrain having more than 1 ski-pass when passing through turnstile gates, as well as handing ski-passes to another person through the turnstile.\r\n\r\nThe ski-pass is valid for 2 winter seasons.', '2 winter seasons'),
-(14, 'High season', '19.12 - 01.01; 07.01 - 16.03', 7, 'VIP', 473, 'This promotional ski-pass is usable during the entire winter season, except for the \"Holiday season\" period (02.01 - 06.01).\r\n\r\nPlease note! The ski-pass is purchasable on a consecutive day basis, activated on the first tourniquet passthrough and loses its validity on the expiration date (or after the skiing season end, whichever comes first), regardless of actual skiing day use.\r\n\r\nIn order to prevent turnstile scanner collisions, we strictly restrain having more than 1 ski-pass when passing through turnstile gates, as well as handing ski-passes to another person through the turnstile.\r\n\r\nThe ski-pass is valid for 2 winter seasons.', '2 winter seasons'),
-(15, 'Holiday season', 'All season long', 2, 'Standard', 109, 'Unused days can’t be rescheduled. This promotional ski-pass is usable during the entire winter season.\r\n\r\nPlease note! The ski-pass is purchasable on a consecutive day basis, activated on the first tourniquet passthrough and loses its validity on the expiration date (or after the skiing season end, whichever comes first), regardless of actual skiing day use.\r\n\r\nIn order to prevent turnstile scanner collisions, we strictly restrain having more than 1 ski-pass when passing through turnstile gates, as well as handing ski-passes to another person through the turnstile.\r\n\r\nThe ski-pass is valid for 2 winter seasons.', '2 winter seasons'),
-(16, 'Holiday season', 'All season long', 2, 'VIP', 218, 'Unused days can’t be rescheduled. This promotional ski-pass is usable during the entire winter season.\r\n\r\nPlease note! The ski-pass is purchasable on a consecutive day basis, activated on the first tourniquet passthrough and loses its validity on the expiration date (or after the skiing season end, whichever comes first), regardless of actual skiing day use.\r\n\r\nIn order to prevent turnstile scanner collisions, we strictly restrain having more than 1 ski-pass when passing through turnstile gates, as well as handing ski-passes to another person through the turnstile.\r\n\r\nThe ski-pass is valid for 2 winter seasons.', '2 winter seasons'),
-(17, 'Holiday season', 'All season long', 3, 'Standard', 155, 'Unused days can’t be rescheduled. This promotional ski-pass is usable during the entire winter season.\r\n\r\nPlease note! The ski-pass is purchasable on a consecutive day basis, activated on the first tourniquet passthrough and loses its validity on the expiration date (or after the skiing season end, whichever comes first), regardless of actual skiing day use.\r\n\r\nIn order to prevent turnstile scanner collisions, we strictly restrain having more than 1 ski-pass when passing through turnstile gates, as well as handing ski-passes to another person through the turnstile.\r\n\r\nThe ski-pass is valid for 2 winter seasons.', '2 winter seasons'),
-(18, 'Holiday season', 'All season long', 3, 'VIP', 311, 'Unused days can’t be rescheduled. This promotional ski-pass is usable during the entire winter season.\r\n\r\nPlease note! The ski-pass is purchasable on a consecutive day basis, activated on the first tourniquet passthrough and loses its validity on the expiration date (or after the skiing season end, whichever comes first), regardless of actual skiing day use.\r\n\r\nIn order to prevent turnstile scanner collisions, we strictly restrain having more than 1 ski-pass when passing through turnstile gates, as well as handing ski-passes to another person through the turnstile.\r\n\r\nThe ski-pass is valid for 2 winter seasons.', '2 winter seasons'),
-(19, 'Holiday season', 'All season long', 4, 'Standard', 202, 'Unused days can’t be rescheduled. This promotional ski-pass is usable during the entire winter season.\r\n\r\nPlease note! The ski-pass is purchasable on a consecutive day basis, activated on the first tourniquet passthrough and loses its validity on the expiration date (or after the skiing season end, whichever comes first), regardless of actual skiing day use.\r\n\r\nIn order to prevent turnstile scanner collisions, we strictly restrain having more than 1 ski-pass when passing through turnstile gates, as well as handing ski-passes to another person through the turnstile.\r\n\r\nThe ski-pass is valid for 2 winter seasons.', '2 winter seasons'),
-(20, 'Holiday season', 'All season long', 4, 'VIP', 404, 'Unused days can’t be rescheduled. This promotional ski-pass is usable during the entire winter season.\r\n\r\nPlease note! The ski-pass is purchasable on a consecutive day basis, activated on the first tourniquet passthrough and loses its validity on the expiration date (or after the skiing season end, whichever comes first), regardless of actual skiing day use.\r\n\r\nIn order to prevent turnstile scanner collisions, we strictly restrain having more than 1 ski-pass when passing through turnstile gates, as well as handing ski-passes to another person through the turnstile.\r\n\r\nThe ski-pass is valid for 2 winter seasons.', '2 winter seasons'),
-(21, 'Holiday season', 'All season long', 5, 'Standard', 245, 'Unused days can’t be rescheduled. This promotional ski-pass is usable during the entire winter season.\r\n\r\nPlease note! The ski-pass is purchasable on a consecutive day basis, activated on the first tourniquet passthrough and loses its validity on the expiration date (or after the skiing season end, whichever comes first), regardless of actual skiing day use.\r\n\r\nIn order to prevent turnstile scanner collisions, we strictly restrain having more than 1 ski-pass when passing through turnstile gates, as well as handing ski-passes to another person through the turnstile.\r\n\r\nThe ski-pass is valid for 2 winter seasons.', '2 winter seasons'),
-(22, 'Holiday season', 'All season long', 5, 'VIP', 489, 'Unused days can’t be rescheduled. This promotional ski-pass is usable during the entire winter season.\r\n\r\nPlease note! The ski-pass is purchasable on a consecutive day basis, activated on the first tourniquet passthrough and loses its validity on the expiration date (or after the skiing season end, whichever comes first), regardless of actual skiing day use.\r\n\r\nIn order to prevent turnstile scanner collisions, we strictly restrain having more than 1 ski-pass when passing through turnstile gates, as well as handing ski-passes to another person through the turnstile.\r\n\r\nThe ski-pass is valid for 2 winter seasons.', '2 winter seasons'),
-(23, 'Low season', 'Season start - 18.12; 17.03 - Season end', 2, 'Standard', 50, 'Unused days can’t be rescheduled. This promotional ski-pass is usable within the following calendar periods: winter season start - 18.12; 17.03. – winter season end.\r\n\r\nPlease note! The ski-pass is purchasable on a consecutive day basis, activated on the first tourniquet passthrough and loses its validity on the expiration date (or after the skiing season end, whichever comes first), regardless of actual skiing day use.\r\n\r\nIn order to prevent turnstile scanner collisions, we strictly restrain having more than 1 ski-pass when passing through turnstile gates, as well as handing ski-passes to another person through the turnstile.\r\n\r\nThe ski-pass is valid for 2 winter seasons.', '2 winter seasons'),
-(24, 'Low season', 'Season start - 18.12; 17.03 - Season end', 2, 'VIP', 101, 'Unused days can’t be rescheduled. This promotional ski-pass is usable within the following calendar periods: winter season start - 18.12; 17.03. – winter season end.\r\n\r\nPlease note! The ski-pass is purchasable on a consecutive day basis, activated on the first tourniquet passthrough and loses its validity on the expiration date (or after the skiing season end, whichever comes first), regardless of actual skiing day use.\r\n\r\nIn order to prevent turnstile scanner collisions, we strictly restrain having more than 1 ski-pass when passing through turnstile gates, as well as handing ski-passes to another person through the turnstile.\r\n\r\nThe ski-pass is valid for 2 winter seasons.', '2 winter seasons'),
-(25, 'Low season', 'Season start - 18.12; 17.03 - Season end', 3, 'Standard', 72, 'Unused days can’t be rescheduled. This promotional ski-pass is usable within the following calendar periods: winter season start - 18.12; 17.03. – winter season end.\r\n\r\nPlease note! The ski-pass is purchasable on a consecutive day basis, activated on the first tourniquet passthrough and loses its validity on the expiration date (or after the skiing season end, whichever comes first), regardless of actual skiing day use.\r\n\r\nIn order to prevent turnstile scanner collisions, we strictly restrain having more than 1 ski-pass when passing through turnstile gates, as well as handing ski-passes to another person through the turnstile.\r\n\r\nThe ski-pass is valid for 2 winter seasons.', '2 winter seasons'),
-(26, 'Low season', 'Season start - 18.12; 17.03 - Season end', 3, 'VIP', 143, 'Unused days can’t be rescheduled. This promotional ski-pass is usable within the following calendar periods: winter season start - 18.12; 17.03. – winter season end.\r\n\r\nPlease note! The ski-pass is purchasable on a consecutive day basis, activated on the first tourniquet passthrough and loses its validity on the expiration date (or after the skiing season end, whichever comes first), regardless of actual skiing day use.\r\n\r\nIn order to prevent turnstile scanner collisions, we strictly restrain having more than 1 ski-pass when passing through turnstile gates, as well as handing ski-passes to another person through the turnstile.\r\n\r\nThe ski-pass is valid for 2 winter seasons.', '2 winter seasons');
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Структура таблицы `users`
 --
 
 CREATE TABLE `users` (
   `ID` int(11) NOT NULL,
-  `first_name` varchar(50) NOT NULL,
-  `last_name` varchar(50) NOT NULL,
+  `username` varchar(100) NOT NULL,
   `birthdate` date NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `gender` varchar(20) NOT NULL,
-  `phone_number` varchar(50) NOT NULL
+  `account_image` blob NOT NULL,
+  `created_at` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Indexes for dumped tables
+-- Дамп данных таблицы `users`
+--
+
+INSERT INTO `users` (`ID`, `username`, `birthdate`, `email`, `password`, `account_image`, `created_at`) VALUES
+(11, 'nataniel', '2024-03-30', 'qwertyu@dsfsg', '12345', 0x494d475f32303234303432305f3139303331332e6a7067, '2024-03-20'),
+(12, 'Burber', '2024-04-03', 'burger@mailed.com', '12345678', '', '2024-04-07'),
+(14, 'admin', '4651-05-05', 'admin@gmail.com', 'Vender0z', 0x796167616d696c696768742e6a7067, '2024-05-09');
+
+--
+-- Индексы сохранённых таблиц
 --
 
 --
--- Indexes for table `equipment`
+-- Индексы таблицы `equipment`
 --
 ALTER TABLE `equipment`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `orders`
+-- Индексы таблицы `orders`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`ID`),
@@ -202,56 +178,56 @@ ALTER TABLE `orders`
   ADD KEY `user_relation` (`user_id`);
 
 --
--- Indexes for table `skipasses`
+-- Индексы таблицы `skipasses`
 --
 ALTER TABLE `skipasses`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `users`
+-- Индексы таблицы `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`ID`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT для сохранённых таблиц
 --
 
 --
--- AUTO_INCREMENT for table `equipment`
+-- AUTO_INCREMENT для таблицы `equipment`
 --
 ALTER TABLE `equipment`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
--- AUTO_INCREMENT for table `orders`
+-- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `skipasses`
---
-ALTER TABLE `skipasses`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for dumped tables
+-- AUTO_INCREMENT для таблицы `skipasses`
+--
+ALTER TABLE `skipasses`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `users`
+--
+ALTER TABLE `users`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- Ограничения внешнего ключа сохраненных таблиц
 --
 
 --
--- Constraints for table `orders`
+-- Ограничения внешнего ключа таблицы `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `equipment_relation` FOREIGN KEY (`equipment_id`) REFERENCES `equipment` (`ID`),
-  ADD CONSTRAINT `skipass_relation` FOREIGN KEY (`skipass_id`) REFERENCES `skipasses` (`ID`),
-  ADD CONSTRAINT `user_relation` FOREIGN KEY (`user_id`) REFERENCES `users` (`ID`);
+  ADD CONSTRAINT `equipment_relation` FOREIGN KEY (`equipment_id`) REFERENCES `equipment` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `skipass_relation` FOREIGN KEY (`skipass_id`) REFERENCES `skipasses` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_relation` FOREIGN KEY (`user_id`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
