@@ -29,10 +29,13 @@ if ($result1) {
         $msg = 'Nothing to change here!';
         header("Location: account.php?msg=$msg");
     } else {
-        $query2 = "UPDATE users SET username = '$username', birthdate = '$birthdate', email = '$email', password = '$password', account_image = '$filename' WHERE id = " . $_SESSION['id'] . ";";
+        if($filename != ""){
+            move_uploaded_file($tempname, $folder);
+            $query2 = "UPDATE users SET username = '$username', birthdate = '$birthdate', email = '$email', password = '$password', account_image = '$filename' WHERE id = " . $_SESSION['id'] . ";";
+        } else {
+            $query2 = "UPDATE users SET username = '$username', birthdate = '$birthdate', email = '$email', password = '$password' WHERE id = " . $_SESSION['id'] . ";";
+        }
         $conn->query($query2);
-        move_uploaded_file($tempname, $folder);
-        
         $msg = "Data changed successfully";
         header("Location: account.php?msg=$msg");
     }

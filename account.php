@@ -43,6 +43,7 @@ $stmt->close();
             width: 100%;
             height: 100%;
             padding-block: 2rem;
+            z-index: 3;
         }
 
         .main-info-box {
@@ -93,8 +94,13 @@ $stmt->close();
         }
 
         .logout-box button>p {
+            display: flex;
             z-index: 1;
             background: none;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
         }
 
         .user-details-box {
@@ -119,9 +125,11 @@ $stmt->close();
             border-radius: 10px;
             width: 60%;
         }
-        .user-details-box>ul .list-button-box{
+
+        .user-details-box>ul .list-button-box {
             background-color: var(--secondary);
         }
+
         .user-details-box>ul li:not(.list-button-box) {
             display: flex;
             word-break: break-all;
@@ -209,7 +217,8 @@ $stmt->close();
             border-radius: 1rem;
             border: none;
         }
-        .close-dialog-btn-container{
+
+        .close-dialog-btn-container {
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -217,37 +226,40 @@ $stmt->close();
             padding-inline: 20px;
             background-color: var(--primary);
         }
-        .close-dialog-btn-container > h2{
+
+        .close-dialog-btn-container>h2 {
             background: none;
         }
-        .close-dialog-btn{
+
+        .close-dialog-btn {
             display: flex;
             justify-content: center;
             align-items: center;
             border: none;
             background: none;
         }
-        .close-dialog-btn > i{
-            background: none; 
+
+        .close-dialog-btn>i {
+            background: none;
             font-size: 150%;
         }
 
-        dialog > form{
+        dialog>form {
             display: flex;
             flex-direction: column;
             flex-basis: 90%;
             justify-content: center;
             align-items: center;
-            gap: 30px;      
+            gap: 30px;
         }
 
-        dialog> form div {
+        dialog>form div {
             display: flex;
             width: 80%;
             position: relative;
         }
-        
-        dialog > form div:not(.submit-box) label {
+
+        dialog>form div:not(.submit-box) label {
             position: absolute;
             top: 0px;
             left: 0px;
@@ -257,7 +269,7 @@ $stmt->close();
             transition: all 0.3s;
         }
 
-        dialog > form div input {
+        dialog>form div input {
             border: 0;
             border-bottom: 1px solid var(--text);
             background: transparent;
@@ -267,7 +279,7 @@ $stmt->close();
             color: var(--text);
         }
 
-        dialog > form div input[name="submit"] {
+        dialog>form div input[name="submit"] {
             cursor: pointer;
             display: flex;
             justify-content: center;
@@ -281,23 +293,24 @@ $stmt->close();
             border-radius: 5px;
         }
 
-        dialog > form div input[name="submit"]:active {
+        dialog>form div input[name="submit"]:active {
             box-shadow: none;
             transform: translateY(2px);
         }
 
-        dialog > form div input:focus {
+        dialog>form div input:focus {
             border: none;
             outline: none;
             border-bottom: 1px solid rgba(50, 91, 195, 1);
         }
 
-        dialog > form div input:focus~label,
-        dialog > form div input:valid~label {
+        dialog>form div input:focus~label,
+        dialog>form div input:valid~label {
             top: -12px;
             font-size: 12px;
         }
-        .password-box > .bi {
+
+        .password-box>.bi {
             position: absolute;
             right: 0;
             top: 0;
@@ -306,9 +319,12 @@ $stmt->close();
             font-weight: bold;
             cursor: pointer;
         }
-        .fa, .bi{
+
+        .fa,
+        .bi {
             color: var(--text);
         }
+
         input[type="password"]::-ms-reveal,
         input[type="password"]::-ms-clear {
             display: none;
@@ -319,37 +335,37 @@ $stmt->close();
             opacity: 0.75;
         }
 
-            /* Media Query for Mobile Devices*/
-    @media screen and (max-width: 480px) {}
+        /* Media Query for Mobile Devices*/
+        @media screen and (max-width: 480px) {}
 
-    /* Media Query for low resolution  Tablets, Ipads */
-    @media screen and (min-width: 481px) {}
+        /* Media Query for low resolution  Tablets, Ipads */
+        @media screen and (min-width: 481px) {}
 
-    /* Media Query for Tablets Ipads portrait mode */
-    @media screen and (min-width: 768px) {
+        /* Media Query for Tablets Ipads portrait mode */
+        @media screen and (min-width: 768px) {}
 
-    }
+        /* Media Query for Laptops and Desktops */
+        @media screen and (min-width: 1025px) {
+            .main-username-box {
+                margin: 0;
+            }
 
-    /* Media Query for Laptops and Desktops */
-    @media screen and (min-width: 1025px) {
-        .main-username-box{
-            margin: 0;
-        } 
-        .main-username-box h2 {
-            font-size: 300%;
+            .main-username-box h2 {
+                font-size: 300%;
+            }
+
+            .image-box {
+                width: 300px;
+                height: 300px;
+            }
+
+            .user-details-box>ul li {
+                font-size: 120%;
+            }
         }
-        .image-box{
-            width: 300px;
-            height: 300px;
-        }
-        .user-details-box > ul li{
-            font-size: 120%;
-        }
-    }
 
-    /* Media Query for Large screens */
-    @media screen and (min-width: 1281px) {
-    }
+        /* Media Query for Large screens */
+        @media screen and (min-width: 1281px) {}
 
         @keyframes animateButtonBg {
             from {
@@ -367,54 +383,56 @@ $stmt->close();
     <dialog>
         <div class="close-dialog-btn-container">
             <h2>Change</h2>
-            <button autofocus class="close-dialog-btn"><i class="fa fa-times-circle"></i></button>
+            <button autofocus class="close-dialog-btn"><i class="bi bi-x-circle"></i></button>
         </div>
         <form action="update_script.php" method="post" enctype="multipart/form-data" autocomplete="off">
-                <div class="username-box">
-                    <input type="text" name="username" id="username" value="<?= $_SESSION["name"]; ?>" required>
-                    <label for="username">
-                        Username
-                    </label>
-                </div>
-                <div class="email-box">
-                    <input type="email" name="email" id="email" value="<?= $email; ?>" required>
-                    <label for="email">
-                        Email
-                    </label>
-                </div>
-                <div class="password-box">
-                    <input type="password" name="password" id="password" value="<?= $password; ?>" required>
-                    <i class="bi bi-eye-slash" id="togglePassword"></i>
-                    <label for="password">
-                        Password
-                    </label>
-                </div>
-                <div class="birthdate-box">
-                    <input type="date" name="birthdate" id="birthdate" value="<?= $birthdate; ?>" required>
-                    <label for="birthdate">
-                        Birthdate
-                    </label>
-                </div>
-                <div class="userImage-box">
-                    <input type="file" name="userImage" accept="image" id="">
-                    <label for="userImage">
-                        User's image
-                    </label>
-                </div>
-                <div class="submit-box">
-                    <input type="submit" value="Change" name="submit">
-                </div>
-                <?php if (isset($_GET['msg'])) : ?>
-                    <script>alert("<?= $_GET['msg'] ?>");</script>
-                <?php endif; ?>
-                
+            <div class="username-box">
+                <input type="text" name="username" id="username" value="<?= $_SESSION["name"]; ?>" required>
+                <label for="username">
+                    Username
+                </label>
+            </div>
+            <div class="email-box">
+                <input type="email" name="email" id="email" value="<?= $email; ?>" required>
+                <label for="email">
+                    Email
+                </label>
+            </div>
+            <div class="password-box">
+                <input type="password" name="password" id="password" value="<?= $password; ?>" required>
+                <i class="bi bi-eye-slash" id="togglePassword"></i>
+                <label for="password">
+                    Password
+                </label>
+            </div>
+            <div class="birthdate-box">
+                <input type="date" name="birthdate" id="birthdate" value="<?= $birthdate; ?>" required>
+                <label for="birthdate">
+                    Birthdate
+                </label>
+            </div>
+            <div class="userImage-box">
+                <input type="file" name="userImage" accept="image" id="">
+                <label for="userImage">
+                    User's image
+                </label>
+            </div>
+            <div class="submit-box">
+                <input type="submit" value="Change" name="submit">
+            </div>
+            <?php if (isset($_GET['msg'])) : ?>
+                <script>
+                    alert("<?= $_GET['msg'] ?>");
+                </script>
+            <?php endif; ?>
+
         </form>
     </dialog>
     <!-- ----------------------------------------------------------------------- -->
     <div class="sidebar-menu-container" id="sidebar-menu-container">
         <div class="content">
             <div class="close-button-box">
-                <button type="button" id="close-btn"><i class="fa fa-times-circle"></i></button>
+                <button type="button" id="close-btn"><i class="bi bi-x-circle"></i></button>
             </div>
             <div class="sidebar-list-box">
                 <ul>
@@ -430,7 +448,7 @@ $stmt->close();
                     </li>
                     <li>
                         <a href="contact.php">
-                            <p>Contact and access</p>
+                            <p>Contact and place</p>
                         </a>
                     </li>
                     <li>
@@ -445,7 +463,7 @@ $stmt->close();
                             <span class="material-symbols-outlined">
                                 account_circle
                             </span>
-                            <?php if (file_exists("./public/assets/$accountImage") && !is_null($accountImage) && $accountImage != ""): ?>
+                            <?php if (file_exists("./public/assets/$accountImage") && !is_null($accountImage) && $accountImage != "") : ?>
                                 <img class="user-image" src="./public/assets/<?php echo $accountImage; ?>" alt="user image">
                             <?php endif ?>
                         </a>
@@ -484,7 +502,7 @@ $stmt->close();
                     </li>
                     <li>
                         <a href="contact.php">
-                            <p>Contact and access</p>
+                            <p>Contact and place</p>
                         </a>
                     </li>
                     <li>
@@ -499,7 +517,7 @@ $stmt->close();
                             <span class="material-symbols-outlined">
                                 account_circle
                             </span>
-                            <?php if (file_exists("./public/assets/$accountImage") && !is_null($accountImage) && $accountImage != ""): ?>
+                            <?php if (file_exists("./public/assets/$accountImage") && !is_null($accountImage) && $accountImage != "") : ?>
                                 <img class="user-image" src="./public/assets/<?php echo $accountImage; ?>" alt="user image">
                             <?php endif ?>
                         </a>
@@ -522,7 +540,7 @@ $stmt->close();
                 </div>
                 <div class="user-pfp-box">
                     <div class="image-box">
-                        <?php if (file_exists("./public/assets/$accountImage") && !is_null($accountImage) && $accountImage != ""): ?>
+                        <?php if (file_exists("./public/assets/$accountImage") && !is_null($accountImage) && $accountImage != "") : ?>
                             <img src="./public/assets/<?php echo $accountImage; ?>" alt="user image">
                         <?php else : ?>
                             <img src="https://www.pngmart.com/files/21/Account-User-PNG-Isolated-HD.png" alt="logged out image">
@@ -532,8 +550,8 @@ $stmt->close();
                 <div class="user-details-box">
                     <p>Details: </p>
                     <ul>
-                        <li><small>Email:</small><?= $email ?></li>
-                        <li><small>Birthdate:</small><?= $birthdate ?></li>
+                        <li><small>Email:</small><?= $email; ?></li>
+                        <li><small>Birthdate:</small><?= $birthdate; ?></li>
                         <li class="list-button-box">
                             <button type="button" id="update-btn" class="update-btn">
                                 <p>Change</p>
@@ -552,6 +570,7 @@ $stmt->close();
             </div>
         </div>
     </main>
+    
     <!-- ----------------------------------------------------------------------- -->
     <footer>
         <div class="footer-contact-box">
@@ -570,7 +589,7 @@ $stmt->close();
         <div class="footer-creator-box">
             <p>
                 <a href="https://github.com/Venderoz/Bukovel/" target="_blank">
-                    This site was made by Venderoz.
+                    This website was made by Venderoz.
                 </a>
             </p>
         </div>
@@ -598,10 +617,10 @@ $stmt->close();
             dialog.style.display = "none";
         });
         logoutBtn.addEventListener("click", () => {
-            confirm("Do you really want to logout?") ? window.location.replace("logout.php") : "" ;
+            confirm("Do you really want to logout?") ? window.location.replace("logout.php") : "";
         })
         deleteBtn.addEventListener("click", () => {
-            confirm("Do you really want to delete you account forever?") ? window.location.replace("delete.php") : "" ;
+            confirm("Do you really want to delete you account forever?") ? window.location.replace("delete.php") : "";
         })
 
         togglePassword.addEventListener("click", function() {

@@ -26,26 +26,132 @@ $stmt->close();
     <link rel="stylesheet" href="./public/css/reset.css" />
     <link rel="stylesheet" href="./public/css/nav-bar.css" />
     <link rel="stylesheet" href="./public/css/footer.css" />
-    <title>Trails map</title>
+    <title>Contacts and Placement</title>
 
     <style>
+        main {
+            display: flex;
+            width: 100%;
+        }
+
+        .content {
+            display: flex;
+            width: 100%;
+            height: fit-content;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1rem;
+            font-size: 120%;
+        }
+
+        .about-article {
+            text-align: center;
+        }
+
+        .about-article>p:last-child {
+            font-weight: bold;
+        }
+
+        .article {
+            display: flex;
+            flex-direction: column;
+            height: fit-content;
+            gap: 2rem;
+        }
+
+        .contacts,
+        .map {
+            display: flex;
+            flex-basis: 50%;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contacts,
+        .about-article {
+            padding: .5rem;
+            border-bottom: 1px solid var(--text);
+        }
+
+        .social-media-list {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10%;
+            list-style-type: none;
+        }
+
+        .social-media-list li>a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: .5rem;
+            gap: 5px;
+            text-decoration: none;
+        }
+
+        .social-media-list li>a>i {
+            color: var(--highlight);
+            font-size: 180%;
+        }
+
+        .social-media-list li>a:hover>i {
+            color: var(--accent);
+        }
+
+        .phone-numbers-list {
+            display: flex;
+            list-style-type: none;
+            flex-direction: column;
+            gap: .5rem;
+        }
+
+        .phone-numbers-list li>p {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .phone-numbers-list span {
+            text-decoration: underline;
+            font-weight: bold;
+            color: var(--highlight);
+        }
+
         .mapouter {
             position: relative;
             text-align: right;
-            width: 600px;
+            width: 100%;
             height: 400px;
         }
 
         .gmap_canvas {
             overflow: hidden;
             background: none !important;
-            width: 600px;
+            width: 100%;
             height: 400px;
         }
 
         .gmap_iframe {
-            width: 600px !important;
+            width: 100% !important;
             height: 400px !important;
+        }
+
+        @media screen and (min-width: 1024px) {
+            .phone-numbers-list li>p {
+                flex-direction: row;
+            }
+            .phone-numbers-list li>p>span {
+                margin-left: 5px;
+            }
+
+            .article {
+                flex-direction: row;
+            }
+
+            .contacts {
+                border: none;
+            }
         }
     </style>
 </head>
@@ -55,7 +161,7 @@ $stmt->close();
     <div class="sidebar-menu-container" id="sidebar-menu-container">
         <div class="content">
             <div class="close-button-box">
-                <button type="button" id="close-btn"><i class="fa fa-times-circle"></i></button>
+                <button type="button" id="close-btn"><i class="bi bi-x-circle"></i></button>
             </div>
             <div class="sidebar-list-box">
                 <ul>
@@ -71,7 +177,7 @@ $stmt->close();
                     </li>
                     <li>
                         <a href="contact.php">
-                            <p>Contact and access</p>
+                            <p>Contact and place</p>
                         </a>
                     </li>
                     <li>
@@ -125,7 +231,7 @@ $stmt->close();
                     </li>
                     <li>
                         <a href="contact.php">
-                            <p>Contact and access</p>
+                            <p>Contact and place</p>
                         </a>
                     </li>
                     <li>
@@ -157,46 +263,45 @@ $stmt->close();
     <!-- ----------------------------------------------------------------------- -->
     <main>
         <div class="content">
+            <div class="about-article">
+                <p>Here you will find all the contacts that will be useful when planning your trip and the map where the great Bukovel ski resort takes its place.</p>
+                <p>You can also contact us to resolve any issues.</p>
+                <p>After all, the heart of the Carpathians is always open to you.</p>
+            </div>
             <div class="article">
-                <div class="about-article">
-                    <p>
-                        Here you will find all the contacts that will be useful when planning your trip or stay at the Bukovel resort. <br>
-                        You can also contact us to resolve any issues. <br>
-                        After all, the heart of the Carpathians is always open to you.
-                    </p>
-                    <h3>Contact us also:</h3>
-                    <ul class="social-media-list">
-                        <li><a href="https://www.facebook.com/bukovel" target="_blank"><i class="bi bi-facebook"></i></a></li>
-                        <li><a href="https://www.instagram.com/Bukovel/" target="_blank"><i class="bi bi-instagram"></i></a></li>
-                        <li><a href="https://t.me/bukovel_resort" target="_blank"><i class="bi bi-telegram"></i></a></li>
-                    </ul>
-                    <h3>For phone calls:</h3>
+                <div class="contacts">
+                <h3>For phone calls:</h3>
                     <ul class="phone-numbers-list">
                         <li>
-                            <small>Have any questions?</small> <br>
-                            Contact us 24/7: <span>0 800 500 818</span>
+                            <small>Have any questions?</small>
+                            <p>Contact us 24/7: <span>0 800 500 818</span></p>
                         </li>
                         <li>
-                            <small>Need help booking your accommodation?</small> <br>
-                            Booking department: <span>+38 (0342) 59 11 00</span>
+                            <small>Need help booking your accommodation?</small>
+                            <p>Booking department: <span>+38 (0342) 59 11 00</span></p>
                         </li>
                         <li>
-                            <small>Do you want to choose and book a tour?</small> <br>
-                            Tourist center: <span>+38 (067) 340 40 71</span>
+                            <small>Do you want to choose and book a tour?</small>
+                            <p>Tourist center: <span>+38 (067) 340 40 71</span></p>
                         </li>
                         <li>
-                            <small>Having trouble placing or paying for an order on our website?</small> <br>
-                            Contact technical support: <span>b24@bukovel.com</span>
+                            <small>Having trouble placing or paying for an order on our website?</small>
+                            <p>Contact technical support: <span>b24@bukovel.com</span></p>
                         </li>
                     </ul>
-
+                    <h3>Contact us also on:</h3>
+                    <ul class="social-media-list">
+                        <li><a href="https://www.facebook.com/bukovel" target="_blank"><i class="bi bi-facebook"></i>Facebook</a></li>
+                        <li><a href="https://www.instagram.com/Bukovel/" target="_blank"><i class="bi bi-instagram"></i>Instagram</a></li>
+                        <li><a href="https://t.me/bukovel_resort" target="_blank"><i class="bi bi-telegram"></i>Telegram</a></li>
+                    </ul>
                 </div>
-            </div>
-            <div class="map">
-                <div class="mapouter">
-                    <div class="gmap_canvas">
-                        <iframe class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=Bukovel&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
-                        <a href="https://embed-googlemap.com">google maps embed</a>
+                <div class="map">
+                    <div class="mapouter">
+                        <div class="gmap_canvas">
+                            <iframe class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=Bukovel&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+                            <a href="https://embed-googlemap.com">google maps embed</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -220,7 +325,7 @@ $stmt->close();
         <div class="footer-creator-box">
             <p>
                 <a href="https://github.com/Venderoz/Bukovel/" target="_blank">
-                    This site was made by Venderoz.
+                    This website was made by Venderoz.
                 </a>
             </p>
         </div>

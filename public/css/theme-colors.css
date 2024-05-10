@@ -5,6 +5,7 @@
   --primary: #484ec1;
   --secondary: #575fff;
   --accent: #72a1f6;
+  --highlight: #2157b9;
 }
 [data-theme="dark"] {
   color-scheme: dark;
@@ -13,6 +14,7 @@
   --primary: #323d7c;
   --secondary: #212689;
   --accent: #5371a9;
+  --highlight: #296be6;
 }
 * {
   background-color: var(--background);

@@ -58,7 +58,7 @@ $stmt->close();
   <div class="sidebar-menu-container" id="sidebar-menu-container">
     <div class="content">
       <div class="close-button-box">
-        <button type="button" id="close-btn"><i class="fa fa-times-circle"></i></button>
+        <button type="button" id="close-btn"><i class="bi bi-x-circle"></i></button>
       </div>
       <div class="sidebar-list-box">
         <ul>
@@ -74,7 +74,7 @@ $stmt->close();
           </li>
           <li>
             <a href="contact.php">
-              <p>Contact and access</p>
+              <p>Contact and place</p>
             </a>
           </li>
           <li>
@@ -128,7 +128,7 @@ $stmt->close();
           </li>
           <li>
             <a href="contact.php">
-              <p>Contact and access</p>
+              <p>Contact and place</p>
             </a>
           </li>
           <li>
@@ -181,7 +181,7 @@ $stmt->close();
     <div class="footer-creator-box">
       <p>
         <a href="https://github.com/Venderoz/Bukovel/" target="_blank">
-          This site was made by Venderoz.
+          This website was made by Venderoz.
         </a>
       </p>
     </div>
