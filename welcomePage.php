@@ -66,7 +66,7 @@ $stmt->close();
       width: 100%;
       height: 100px;
       top: 82px;
-      left: -45%;
+      left: 0;
       background: none;
       padding: .5rem;
     }
@@ -167,6 +167,7 @@ $stmt->close();
 
       .slide-text-container {
         top: 50%;
+        left: -45%;
         transform: rotateZ(-90deg);
       }
       .slide-text-container > p{

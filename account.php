@@ -224,7 +224,7 @@ $stmt->close();
             justify-content: space-between;
             flex-basis: 10%;
             padding-inline: 20px;
-            background-color: var(--primary);
+            background-color: var(--secondary);
         }
 
         .close-dialog-btn-container>h2 {
@@ -285,7 +285,7 @@ $stmt->close();
             justify-content: center;
             align-items: center;
             border: none;
-            background-color: rgba(50, 91, 195, 1);
+            background-color: var(--secondary);
             box-shadow: 2px 2px 0px 1px black;
             color: var(--text);
             transition: 0.1s all;
@@ -382,7 +382,7 @@ $stmt->close();
 <body>
     <dialog>
         <div class="close-dialog-btn-container">
-            <h2>Change</h2>
+            <h2>Update</h2>
             <button autofocus class="close-dialog-btn"><i class="bi bi-x-circle"></i></button>
         </div>
         <form action="update_script.php" method="post" enctype="multipart/form-data" autocomplete="off">
@@ -418,7 +418,7 @@ $stmt->close();
                 </label>
             </div>
             <div class="submit-box">
-                <input type="submit" value="Change" name="submit">
+                <input type="submit" value="Confirm" name="submit">
             </div>
             <?php if (isset($_GET['msg'])) : ?>
                 <script>
@@ -554,7 +554,7 @@ $stmt->close();
                         <li><small>Birthdate:</small><?= $birthdate; ?></li>
                         <li class="list-button-box">
                             <button type="button" id="update-btn" class="update-btn">
-                                <p>Change</p>
+                                <p>Update</p>
                             </button>
                         </li>
                     </ul>
