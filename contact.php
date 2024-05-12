@@ -34,7 +34,7 @@ $stmt->close();
             width: 100%;
         }
 
-        .content {
+        .container {
             display: flex;
             width: 100%;
             height: fit-content;
@@ -262,7 +262,7 @@ $stmt->close();
     </header>
     <!-- ----------------------------------------------------------------------- -->
     <main>
-        <div class="content">
+        <div class="container">
             <div class="about-article">
                 <p>Here you will find all the contacts that will be useful when planning your trip and the map where the great Bukovel ski resort takes its place.</p>
                 <p>You can also contact us to resolve any issues.</p>

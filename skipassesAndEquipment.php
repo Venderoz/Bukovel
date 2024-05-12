@@ -11,6 +11,13 @@ $stmt->execute();
 $stmt->bind_result($accountImage);
 $stmt->fetch();
 $stmt->close();
+
+$showSkippasesQuery = "SELECT * FROM skipasses;";
+$showEquipmentQuery = "SELECT * FROM equipment;";
+$result1 = $conn->query($showSkippasesQuery);
+$result2 = $conn->query($showEquipmentQuery);
+$skipasses = mysqli_fetch_all($result1, MYSQLI_ASSOC);
+$equipment = mysqli_fetch_all($result2, MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +36,20 @@ $stmt->close();
     <title>Offers</title>
 
     <style>
+        main {
+            display: flex;
+            width: 100%;
+        }
 
+        .container {
+            display: flex;
+            width: 100%;
+            height: fit-content;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1rem;
+            font-size: 120%;
+        }
     </style>
 </head>
 <!-- ----------------------------------------------------------------------- -->
@@ -139,7 +159,12 @@ $stmt->close();
     </header>
     <!-- ----------------------------------------------------------------------- -->
     <main>
-        
+        <div class="container">
+            <div class="skipasses-box">
+                <?php var_dump($skipasses); ?>
+            </div>
+            <div class="equipment-box"></div>
+        </div>
     </main>
     <!-- ----------------------------------------------------------------------- -->
     <footer>
