@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 include "connection.php";
 
 // We don't have the password or email info stored in sessions, so instead, we can get the results from the database.
@@ -55,6 +54,7 @@ $stmt->close();
         .article {
             display: flex;
             flex-direction: column;
+            width: 100%;
             height: fit-content;
             gap: 2rem;
         }
@@ -122,19 +122,19 @@ $stmt->close();
             position: relative;
             text-align: right;
             width: 100%;
-            height: 400px;
+            height: 100%;
         }
 
         .gmap_canvas {
             overflow: hidden;
             background: none !important;
             width: 100%;
-            height: 400px;
+            height: 100%;
         }
 
         .gmap_iframe {
             width: 100% !important;
-            height: 400px !important;
+            height: 100% !important;
         }
 
         @media screen and (min-width: 1024px) {
@@ -332,7 +332,7 @@ $stmt->close();
     </footer>
     <!-- ----------------------------------------------------------------------- -->
     <script src="./public/scripts/change_theme.js"></script>
-    <script src="./public/scripts/sidebar_manipulation.js"></script>
+    <script src="./public/scripts/sidebarManipulation.js"></script>
 
 </body>
 

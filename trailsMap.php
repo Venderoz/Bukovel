@@ -188,7 +188,7 @@ $stmt->close();
   </footer>
   <!-- ----------------------------------------------------------------------- -->
   <script src="./public/scripts/change_theme.js"></script>
-  <script src="./public/scripts/sidebar_manipulation.js"></script>
+  <script src="./public/scripts/sidebarManipulation.js"></script>
 </body>
 
 </html>

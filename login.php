@@ -171,7 +171,7 @@
         <div class="container">
             <nav>
                 <h1> 
-                    <a href="welcomePage.php">
+                    <a href="#" id="move-to-previous">
                         <img src="./public/assets/icons/dark_backward_arrow.svg" alt="arrow to go back">
                     </a>
                     Login
@@ -205,6 +205,7 @@
         <!-- image of mountains while user is on the main part -->
     </div>
 
+    <script src="./public/scripts/moveToPrevious.js"></script>
     <script>
         const togglePassword = document.querySelector("#togglePassword");
         const password = document.querySelector("#password");

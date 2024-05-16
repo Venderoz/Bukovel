@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+include "checkLogin.php";
 include "connection.php";
 
 // We don't have the password or email info stored in sessions, so instead, we can get the results from the database.
@@ -12,12 +12,17 @@ $stmt->bind_result($accountImage);
 $stmt->fetch();
 $stmt->close();
 
-$showSkippasesQuery = "SELECT * FROM skipasses;";
-$showEquipmentQuery = "SELECT * FROM equipment;";
+$showSkippasesQuery = "SELECT season, skiing_period, days_number, status, description, validity FROM skipasses GROUP BY season;";
+$showEquipmentQuery = "SELECT equipment_name, days_num, category FROM equipment GROUP BY equipment_name;";
+$showEquipmentCategories = "SELECT DISTINCT(category) FROM equipment;";
+
 $result1 = $conn->query($showSkippasesQuery);
 $result2 = $conn->query($showEquipmentQuery);
+$result3 = $conn->query($showEquipmentCategories);
+
 $skipasses = mysqli_fetch_all($result1, MYSQLI_ASSOC);
 $equipment = mysqli_fetch_all($result2, MYSQLI_ASSOC);
+$categories = mysqli_fetch_all($result3, MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -161,9 +166,56 @@ $equipment = mysqli_fetch_all($result2, MYSQLI_ASSOC);
     <main>
         <div class="container">
             <div class="skipasses-box">
-                <?php var_dump($skipasses); ?>
+                <?php foreach ($skipasses as $skipass) : ?>
+                    <div class="skipass-offer-box">
+                        <form action="basket.php" method="post">
+                        <?= $skipass['season']; ?>
+                        <input style="display: none;" type="text" name="season" value="<?= $skipass['season']; ?>">
+                            <ul class="skipass-info-list">
+                                <li><?= $skipass['skiing_period']; ?></li>
+                                <li>
+                                    <?php if ($skipass['days_number'] != 0) : ?>
+                                        <select name="days-number" id="">
+                                            <?php if ($skipass['season'] == "High season") : ?>
+                                                <?php for ($i = 2; $i < 8; $i++) : ?>
+                                                    <option value="<?= $i; ?>"><?= $i; ?></option>
+                                                <?php endfor; ?>
+                                            <?php elseif ($skipass['season'] == "Holiday season") : ?>
+                                                <?php for ($i = 2; $i < 6; $i++) : ?>
+                                                    <option value="<?= $i; ?>"><?= $i; ?></option>
+                                                <?php endfor; ?>
+                                            <?php elseif ($skipass['season'] == "Low season") : ?>
+                                                <?php for ($i = 2; $i < 4; $i++) : ?>
+                                                    <option value="<?= $i; ?>"><?= $i; ?></option>
+                                                <?php endfor; ?>
+                                            <?php endif; ?>
+                                        </select>
+                                    <?php else : ?>
+                                        <p>On the day of purchase</p>
+                                    <?php endif; ?>
+                                </li>
+                                <li>
+                                    <select name="equipment-name" id="">
+                                        <?php foreach ($equipment as $thing) : ?>
+                                            <option value="<?= $thing["equipment_name"]; ?>"><?= $thing["equipment_name"]; ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </li>
+                                <li>
+                                    <select name="equipment-category" id="">
+                                        <?php foreach ($categories as $category) : ?>
+                                            <option value="<?= $category["category"]; ?>"><?= $category["category"]; ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </li>
+                                <li>
+                                    <input type="submit" value="Choose" name="offer-btn">
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                <?php endforeach; ?>
             </div>
-            <div class="equipment-box"></div>
         </div>
     </main>
     <!-- ----------------------------------------------------------------------- -->
@@ -191,7 +243,7 @@ $equipment = mysqli_fetch_all($result2, MYSQLI_ASSOC);
     </footer>
     <!-- ----------------------------------------------------------------------- -->
     <script src="./public/scripts/change_theme.js"></script>
-    <script src="./public/scripts/sidebar_manipulation.js"></script>
+    <script src="./public/scripts/sidebarManipulation.js"></script>
 
 </body>
 

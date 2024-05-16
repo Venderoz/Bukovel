@@ -329,7 +329,7 @@ $stmt->close();
     <div class="main-text-content">
       <div id="slide-trigger">
         <p>
-          <span>Welcome to Bukovel</span><br />
+          <span>Welcome to Bukovel</span><br /><br />
           Bukovel is the largest ski resort in Eastern Europe, nestled in the
           breathtaking Carpathian Mountains of Ukraine. Its picturesque
           location and diverse range of activities make it a year-round
@@ -338,7 +338,7 @@ $stmt->close();
       </div>
       <div>
         <p>
-          <span>Winter Wonderland </span><br />
+          <span>Winter Wonderland </span><br /><br />
           When winter blankets the Carpathians in snow, Bukovel comes alive
           with the thrills of skiing and snowboarding. The resort offers over
           60 kilometers of meticulously groomed slopes catering to skiers of
@@ -351,7 +351,7 @@ $stmt->close();
       </div>
       <div>
         <p>
-          <span>Summer Escapade </span><br />
+          <span>Summer Escapade </span><br /><br />
           As the snow melts away, Bukovel reveals a vibrant summer playground.
           Lush green meadows and dense forests provide the backdrop for an
           array of outdoor activities, including hiking, mountain biking, and
@@ -364,7 +364,7 @@ $stmt->close();
       </div>
       <div>
         <p>
-          <span>A Place to Unwind</span><br />
+          <span>A Place to Unwind</span><br /><br />
           Bukovel ensures a comfortable and enjoyable stay with its variety of
           accommodation options, ranging from cozy chalets to upscale hotels.
           After a day of outdoor adventures, visitors can relax and rejuvenate
@@ -376,7 +376,7 @@ $stmt->close();
       </div>
       <div>
         <p>
-          <span>Experience Ukrainian Hospitality</span><br />
+          <span>Experience Ukrainian Hospitality</span><br /><br />
           Beyond its natural beauty and thrilling activities, Bukovel welcomes
           guests with warm Ukrainian hospitality. The resort's friendly
           atmosphere and genuine charm create a welcoming environment for

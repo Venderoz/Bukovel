@@ -1,9 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['loggedin'])) {
-    header('Location: login.php');
-    exit;
-}
+include "checkLogin.php";
 include "connection.php";
 
 
@@ -596,7 +593,7 @@ $stmt->close();
     </footer>
     <!-- ----------------------------------------------------------------------- -->
     <script src="./public/scripts/change_theme.js"></script>
-    <script src="./public/scripts/sidebar_manipulation.js"></script>
+    <script src="./public/scripts/sidebarManipulation.js"></script>
     <script>
         const updateBtn = document.getElementById("update-btn");
         const dialog = document.querySelector("dialog");

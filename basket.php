@@ -1,10 +1,7 @@
 <?php
 session_start();
 // If the user is not logged in redirect to the login page...
-if (!isset($_SESSION['loggedin'])) {
-    header('Location: login.php');
-    exit;
-}
+include "checkLogin.php";
 
 include "connection.php";
 
@@ -166,22 +163,27 @@ $orders = mysqli_fetch_all($result2, MYSQLI_ASSOC);
     </header>
     <!-- ----------------------------------------------------------------------- -->
     <main>
+        <!-- CHANGE METHOD TO POST TO BE ABLE TO CONTAIN THE ORDERS IN DB AND SHOW THEM ON THE PAGE -->
+        <!-- ADD LOOPS TO CREATE ORDER BOXES -->
+        <!-- ADD isrealised COLUMN TO DB -->
+        <!-- DON'T FORGET TO INSERT CURRENT TIME WHEN DOING ORDER -->
         <div class="container">
+        <?php var_dump($_POST); ?>
             <?php if (mysqli_num_rows($result1) == 0) : ?>
                 <div class="no-order-container">
                     <h2>Looks like you didn't make any order yet. Check the offerlist here:</h2>
                     <a href="skipassesAndequipment.php"><button class="go-to-offers-btn">Go to offers</button></a>
                 </div>
             <?php else : ?>
-                <div class="order-container">
-                    <ul class="selected-offers-list">
-                        <?php foreach($orders as $order): ?>
-                            <li><?php var_dump($order); ?></li>
-                        <?php endforeach; ?>
-                    </ul>
+                <?php foreach ($orders as $order) : ?>
+                    <div class="order-container">
+                        <ul class="selected-offers-list">
+                            <li><?php var_dump($_POST); ?></li>
+                        </ul>
+                    <?php endforeach; ?>
                     <div class="price-container"></div>
-                </div>
-            <?php endif; ?>
+                    </div>
+                <?php endif; ?>
         </div>
     </main>
     <!-- ----------------------------------------------------------------------- -->
@@ -209,7 +211,17 @@ $orders = mysqli_fetch_all($result2, MYSQLI_ASSOC);
     </footer>
     <!-- ----------------------------------------------------------------------- -->
     <script src="./public/scripts/change_theme.js"></script>
-    <script src="./public/scripts/sidebar_manipulation.js"></script>
+    <script src="./public/scripts/sidebarManipulation.js"></script>
+
+    <script>
+        const offerInfoList = document.getElementById("offer-info-list");
+        if (offerInfoList) {
+            window.addEventListener("beforeunload", (event) => {
+                event.preventDefault();
+                event.returnValue = "";
+            });
+        }
+    </script>
 
 </body>
 

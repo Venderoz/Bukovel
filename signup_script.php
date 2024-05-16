@@ -36,7 +36,7 @@ session_start();
             $msg = "Password has to be minimum 8 letters long, contain at least one number and one big letter";
             header("Location: signup.php?msg=$msg");
         }
-    } else if ($num > 0) {
+    } elseif ($num > 0) {
         $msg = "This data is already in use";
         header("Location: signup.php?msg=$msg");
     }
