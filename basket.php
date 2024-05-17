@@ -20,8 +20,6 @@ $result1 = $conn->query($checkOrdersQuery);
 $result2 = $conn->query($getSelectedOffers);
 
 $orders = mysqli_fetch_all($result2, MYSQLI_ASSOC);
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -163,13 +161,9 @@ $orders = mysqli_fetch_all($result2, MYSQLI_ASSOC);
     </header>
     <!-- ----------------------------------------------------------------------- -->
     <main>
-        <!-- CHANGE METHOD TO POST TO BE ABLE TO CONTAIN THE ORDERS IN DB AND SHOW THEM ON THE PAGE -->
-        <!-- ADD LOOPS TO CREATE ORDER BOXES -->
-        <!-- ADD isrealised COLUMN TO DB -->
         <!-- DON'T FORGET TO INSERT CURRENT TIME WHEN DOING ORDER -->
         <div class="container">
-        <?php var_dump($_POST); ?>
-            <?php if (mysqli_num_rows($result1) == 0) : ?>
+            <?php if (mysqli_num_rows($result1) == 0 && empty($_POST)) : ?>
                 <div class="no-order-container">
                     <h2>Looks like you didn't make any order yet. Check the offerlist here:</h2>
                     <a href="skipassesAndequipment.php"><button class="go-to-offers-btn">Go to offers</button></a>
@@ -177,13 +171,15 @@ $orders = mysqli_fetch_all($result2, MYSQLI_ASSOC);
             <?php else : ?>
                 <?php foreach ($orders as $order) : ?>
                     <div class="order-container">
-                        <ul class="selected-offers-list">
-                            <li><?php var_dump($_POST); ?></li>
+                        <ul class="offer-info-list">
+                            <li><?= $order['season']; ?></li>
                         </ul>
-                    <?php endforeach; ?>
-                    <div class="price-container"></div>
+                        <div class="price-container">
+                            <p><?= $order['payment']; ?>$</p>
+                        </div>
                     </div>
-                <?php endif; ?>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </main>
     <!-- ----------------------------------------------------------------------- -->

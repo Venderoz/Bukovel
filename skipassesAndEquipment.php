@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 include "checkLogin.php";
 include "connection.php";
 
@@ -14,15 +15,12 @@ $stmt->close();
 
 $showSkippasesQuery = "SELECT season, skiing_period, days_number, status, description, validity FROM skipasses GROUP BY season;";
 $showEquipmentQuery = "SELECT equipment_name, days_num, category FROM equipment GROUP BY equipment_name;";
-$showEquipmentCategories = "SELECT DISTINCT(category) FROM equipment;";
 
 $result1 = $conn->query($showSkippasesQuery);
 $result2 = $conn->query($showEquipmentQuery);
-$result3 = $conn->query($showEquipmentCategories);
 
 $skipasses = mysqli_fetch_all($result1, MYSQLI_ASSOC);
 $equipment = mysqli_fetch_all($result2, MYSQLI_ASSOC);
-$categories = mysqli_fetch_all($result3, MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -168,19 +166,16 @@ $categories = mysqli_fetch_all($result3, MYSQLI_ASSOC);
             <div class="skipasses-box">
                 <?php foreach ($skipasses as $skipass) : ?>
                     <div class="skipass-offer-box">
-                        <form action="basket.php" method="post">
-                        <?= $skipass['season']; ?>
-                        <input style="display: none;" type="text" name="season" value="<?= $skipass['season']; ?>">
+                        <form action="addOrder.php" method="post">
+                            <h2><?= $skipass['season']; ?></h2>
+                            <input style="display: none;" type="text" name="season" value="<?= $skipass['season']; ?>">
                             <ul class="skipass-info-list">
                                 <li><?= $skipass['skiing_period']; ?></li>
                                 <li>
-                                    <?php if ($skipass['days_number'] != 0) : ?>
+                                    <h4>Skiing period: </h4>
+                                    <?php if ($skipass['days_number'] != 1) : ?>
                                         <select name="days-number" id="">
-                                            <?php if ($skipass['season'] == "High season") : ?>
-                                                <?php for ($i = 2; $i < 8; $i++) : ?>
-                                                    <option value="<?= $i; ?>"><?= $i; ?></option>
-                                                <?php endfor; ?>
-                                            <?php elseif ($skipass['season'] == "Holiday season") : ?>
+                                            <?php if ($skipass['season'] != "Low season") : ?>
                                                 <?php for ($i = 2; $i < 6; $i++) : ?>
                                                     <option value="<?= $i; ?>"><?= $i; ?></option>
                                                 <?php endfor; ?>
@@ -190,11 +185,20 @@ $categories = mysqli_fetch_all($result3, MYSQLI_ASSOC);
                                                 <?php endfor; ?>
                                             <?php endif; ?>
                                         </select>
+                                        <p>days</p>
                                     <?php else : ?>
-                                        <p>On the day of purchase</p>
+                                        <p>The day it was bought</p>
                                     <?php endif; ?>
                                 </li>
                                 <li>
+                                    <h4>Status: </h4>
+                                    <select name="status-name" id="">
+                                        <option value="Standard" selected>Standard</option>
+                                        <option value="VIP">VIP</option>
+                                    </select>
+                                </li>
+                                <li>
+                                    <h3>Equipment: </h3>
                                     <select name="equipment-name" id="">
                                         <?php foreach ($equipment as $thing) : ?>
                                             <option value="<?= $thing["equipment_name"]; ?>"><?= $thing["equipment_name"]; ?></option>
@@ -203,10 +207,24 @@ $categories = mysqli_fetch_all($result3, MYSQLI_ASSOC);
                                 </li>
                                 <li>
                                     <select name="equipment-category" id="">
-                                        <?php foreach ($categories as $category) : ?>
-                                            <option value="<?= $category["category"]; ?>"><?= $category["category"]; ?></option>
-                                        <?php endforeach; ?>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                        <option value="D1">D1</option>
+                                        <option value="D2">D2</option>
                                     </select>
+                                </li>
+                                <li>
+                                    <h4>Description: </h4>
+                                    <p class="description">
+                                        <?= $skipass["description"]; ?>
+                                    </p>
+                                </li>
+                                <li>
+                                    <h4>Validity: </h4>
+                                    <p class="validity">
+                                        <?= $skipass["validity"]; ?>
+                                    </p>
                                 </li>
                                 <li>
                                     <input type="submit" value="Choose" name="offer-btn">
