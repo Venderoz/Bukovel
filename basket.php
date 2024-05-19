@@ -14,12 +14,23 @@ $stmt->bind_result($accountImage);
 $stmt->fetch();
 $stmt->close();
 
-$checkOrdersQuery = "SELECT * FROM orders WHERE user_id LIKE  " . $_SESSION['id'] . ";";
-$getSelectedOffers = "SELECT o.*, s.*, e.* FROM orders AS o INNER JOIN skipasses AS s ON o.skipass_id = s.id INNER JOIN equipment AS e ON o.equipment_id = e.id WHERE user_id LIKE  " . $_SESSION['id'] . ";";
+$checkOrdersQuery = "SELECT is_realised FROM orders WHERE user_id LIKE  " . $_SESSION['id'] . ";";
+$getSelectedOffers = "SELECT o.*, s.season, s.skiing_period, s.days_number, s.status, e.equipment_name, e.category FROM orders AS o INNER JOIN skipasses AS s ON o.skipass_id = s.id INNER JOIN equipment AS e ON o.equipment_id = e.id WHERE user_id LIKE  " . $_SESSION['id'] . ";";
 $result1 = $conn->query($checkOrdersQuery);
 $result2 = $conn->query($getSelectedOffers);
 
+$orderStatus = mysqli_fetch_all($result1, MYSQLI_ASSOC);
 $orders = mysqli_fetch_all($result2, MYSQLI_ASSOC);
+
+$doneFlag = false;
+
+foreach ($orderStatus as $el) {
+    if (in_array("0", $el)) {
+        $doneFlag = true;
+        break;
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,6 +62,10 @@ $orders = mysqli_fetch_all($result2, MYSQLI_ASSOC);
             gap: 1rem;
             padding: 1rem;
             font-size: 120%;
+        }
+
+        .remove-order-box>p {
+            width: min-content;
         }
     </style>
 </head>
@@ -163,23 +178,49 @@ $orders = mysqli_fetch_all($result2, MYSQLI_ASSOC);
     <main>
         <!-- DON'T FORGET TO INSERT CURRENT TIME WHEN DOING ORDER -->
         <div class="container">
-            <?php if (mysqli_num_rows($result1) == 0 && empty($_POST)) : ?>
+            <?php if (mysqli_num_rows($result1) == 0 || !$doneFlag) : ?>
                 <div class="no-order-container">
                     <h2>Looks like you didn't make any order yet. Check the offerlist here:</h2>
                     <a href="skipassesAndequipment.php"><button class="go-to-offers-btn">Go to offers</button></a>
                 </div>
             <?php else : ?>
-                <?php foreach ($orders as $order) : ?>
-                    <div class="order-container">
-                        <ul class="offer-info-list">
-                            <li><?= $order['season']; ?></li>
-                        </ul>
-                        <div class="price-container">
-                            <p><?= $order['payment']; ?>$</p>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
+                <div class="pending-orders">
+                    <h3>Pending orders: </h3>
+                    <?php foreach ($orders as $order) : ?>
+                        <?php if (!$order['is_realised']) : ?>
+                            <div class="order-container">
+                                <ul class="offer-info-list">
+                                    <li><?= $order['season']; ?></li>
+                                </ul>
+                                <div class="price-container">
+                                    <p><?= $order['payment']; ?>$</p>
+                                </div>
+                                <div class="make-purchase-box">
+                                    <p><a href="update_order_status.php?id=<?= $order["ID"]; ?>">Purchase</a></p>
+                                </div>
+                                <div class="delete-order-box">
+                                    <p><a href="delete_order.php?id=<?= $order["ID"]; ?>" id="remove-order-btn"><i class="bi bi-trash-fill"></i></a></p>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </div>
             <?php endif; ?>
+            <div class="done-orders-box" id="done-orders-box">
+                <h3>Done orders:</h3>
+                <?php foreach ($orders as $order) : ?>
+                    <?php if ($order['is_realised']) : ?>
+                        <div class="order-container">
+                            <ul class="offer-info-list">
+                                <li><?= $order['season']; ?></li>
+                            </ul>
+                            <div class="price-container">
+                                <p><?= $order['payment']; ?>$</p>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </div>
         </div>
     </main>
     <!-- ----------------------------------------------------------------------- -->
@@ -206,17 +247,26 @@ $orders = mysqli_fetch_all($result2, MYSQLI_ASSOC);
         </div>
     </footer>
     <!-- ----------------------------------------------------------------------- -->
-    <script src="./public/scripts/change_theme.js"></script>
+    <script src="./public/scripts/changeTheme.js"></script>
     <script src="./public/scripts/sidebarManipulation.js"></script>
 
     <script>
-        const offerInfoList = document.getElementById("offer-info-list");
-        if (offerInfoList) {
-            window.addEventListener("beforeunload", (event) => {
-                event.preventDefault();
-                event.returnValue = "";
-            });
+        const removeOrderBtn = document.querySelectorAll("#remove-order-btn");
+        const doneOrdersBox = document.getElementById("done-orders-box");
+
+        function checkDoneOrdersContent() {
+            console.log(doneOrdersBox.querySelector(".order-container") !== null);
+            doneOrdersBox.style.display = doneOrdersBox.innerHTML === " " ? "none" : "flex";
         }
+        removeOrderBtn.forEach(button => {
+            if (button) {
+                button.addEventListener("click", () => {
+                    confirm("Are you sure you want to remove that order? You can make another one.") ? window.location.replace("delete_order.php") : "";
+                });
+            }
+        });
+
+        checkDoneOrdersContent();
     </script>
 
 </body>

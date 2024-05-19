@@ -1,6 +1,6 @@
 <?php
 session_start();
-    
+    include "checkLogin.php";
     include "connection.php";
 
     $id = $_SESSION['id'];

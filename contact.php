@@ -331,7 +331,7 @@ $stmt->close();
         </div>
     </footer>
     <!-- ----------------------------------------------------------------------- -->
-    <script src="./public/scripts/change_theme.js"></script>
+    <script src="./public/scripts/changeTheme.js"></script>
     <script src="./public/scripts/sidebarManipulation.js"></script>
 
 </body>

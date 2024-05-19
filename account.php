@@ -382,7 +382,7 @@ $stmt->close();
             <h2>Update</h2>
             <button autofocus class="close-dialog-btn"><i class="bi bi-x-circle"></i></button>
         </div>
-        <form action="update_script.php" method="post" enctype="multipart/form-data" autocomplete="off">
+        <form action="update_user_info.php" method="post" enctype="multipart/form-data" autocomplete="off">
             <div class="username-box">
                 <input type="text" name="username" id="username" value="<?= $_SESSION["name"]; ?>" required>
                 <label for="username">
@@ -592,7 +592,7 @@ $stmt->close();
         </div>
     </footer>
     <!-- ----------------------------------------------------------------------- -->
-    <script src="./public/scripts/change_theme.js"></script>
+    <script src="./public/scripts/changeTheme.js"></script>
     <script src="./public/scripts/sidebarManipulation.js"></script>
     <script>
         const updateBtn = document.getElementById("update-btn");
@@ -617,7 +617,7 @@ $stmt->close();
             confirm("Do you really want to logout?") ? window.location.replace("logout.php") : "";
         })
         deleteBtn.addEventListener("click", () => {
-            confirm("Do you really want to delete you account forever?") ? window.location.replace("delete.php") : "";
+            confirm("Do you really want to delete you account forever?") ? window.location.replace("delete_user.php") : "";
         })
 
         togglePassword.addEventListener("click", function() {

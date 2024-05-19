@@ -415,7 +415,7 @@ $stmt->close();
   </footer>
 
   <!-- ----------------------------------------------------------------------- -->
-  <script src="./public/scripts/change_theme.js"></script>
+  <script src="./public/scripts/changeTheme.js"></script>
   <script src="./public/scripts/sidebar_manipulation.js"></script>
 
   <!-- Swiper.js -->

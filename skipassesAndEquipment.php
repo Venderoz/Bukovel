@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-include "checkLogin.php";
 include "connection.php";
 
 // We don't have the password or email info stored in sessions, so instead, we can get the results from the database.
@@ -36,6 +35,7 @@ $equipment = mysqli_fetch_all($result2, MYSQLI_ASSOC);
     <link rel="stylesheet" href="./public/css/reset.css" />
     <link rel="stylesheet" href="./public/css/nav-bar.css" />
     <link rel="stylesheet" href="./public/css/footer.css" />
+
     <title>Offers</title>
 
     <style>
@@ -48,11 +48,166 @@ $equipment = mysqli_fetch_all($result2, MYSQLI_ASSOC);
             display: flex;
             width: 100%;
             height: fit-content;
+        }
+
+        .skipasses-box {
+            display: flex;
+            width: 100%;
+            height: fit-content;
             flex-direction: column;
             gap: 1rem;
             padding: 1rem;
             font-size: 120%;
         }
+
+        .skipasses-box {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .skipass-offer-box {
+            border-radius: 10px;
+            box-shadow: 3px 3px 7px black;
+            background-color: var(--accent);
+        }
+
+        .skipass-offer-box * {
+            background-color: var(--accent);
+        }
+
+        .offer-title {
+            padding: .5rem;
+            border-radius: 10px 10px 0 0;
+            border-bottom: 1px solid var(--text);
+            background-color: var(--secondary);
+        }
+
+        .offer-title>h2 {
+            text-align: center;
+            background: none;
+        }
+
+        .offer-info-box {
+            border-radius: 0 0 10px 10px;
+        }
+
+        .skipass-info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            list-style-type: none;
+            padding-inline: .5rem;
+            padding-top: 1rem;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .skipass-info-list li {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .skipass-info-list li>div {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .days-number-box,
+        .equipment-offer-box {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            display: flex;
+            gap: 2px;
+        }
+
+        .skipass-info-list>li:last-child {
+            border-top: 1px solid var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            margin-top: .5rem;
+        }
+
+        .skipass-info-list select {
+            cursor: pointer;
+            background: none;
+            border: none;
+            outline: none;
+            width: min-content;
+            font-size: 70%;
+            padding: .5rem;
+            background-color: var(--secondary);
+            border-radius: 5px;
+        }
+
+        .skipass-info-list p {
+            padding: .5rem;
+        }
+
+        .skipass-info-list select>option {
+            background-color: var(--background);
+            color: var(--text);
+        }
+
+        .order-btn {
+            width: 80%;
+            height: 100%;
+            padding: .5rem;
+            font-size: 110%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--secondary);
+            border: none;
+            box-shadow: 2px 2px 0px 1px var(--text);
+            color: var(--text);
+            transition: 0.1s all;
+            border-radius: 5px;
+        }
+
+        .order-btn:active {
+            box-shadow: none;
+            transform: translateY(2px);
+        }
+
+        .offer-info-box {
+            transition: .5s all;
+            display: none;
+        }
+
+        .expanding-enabled {
+            display: flex;
+        }
+
+        .expanding {
+            height: fit-content;
+        }
+
+        .shrinking {
+            height: 0;
+        }
+
+        /* Media Query for Mobile Devices*/
+        @media screen and (max-width: 480px) {}
+
+        /* Media Query for low resolution  Tablets, Ipads */
+        @media screen and (min-width: 481px) {}
+
+        /* Media Query for Tablets Ipads portrait mode */
+        @media screen and (min-width: 768px) {
+            .skipass-info-list select {
+                font-size: 90%;
+            }
+        }
+
+        /* Media Query for Laptops and Desktops */
+        @media screen and (min-width: 1025px) {}
+
+        /* Media Query for Large screens */
+        @media screen and (min-width: 1281px) {}
     </style>
 </head>
 <!-- ----------------------------------------------------------------------- -->
@@ -165,72 +320,81 @@ $equipment = mysqli_fetch_all($result2, MYSQLI_ASSOC);
         <div class="container">
             <div class="skipasses-box">
                 <?php foreach ($skipasses as $skipass) : ?>
-                    <div class="skipass-offer-box">
-                        <form action="addOrder.php" method="post">
+                    <div class="skipass-offer-box" id="skipass-offer-box">
+                        <div class="offer-title" id="offer-title">
                             <h2><?= $skipass['season']; ?></h2>
-                            <input style="display: none;" type="text" name="season" value="<?= $skipass['season']; ?>">
-                            <ul class="skipass-info-list">
-                                <li><?= $skipass['skiing_period']; ?></li>
-                                <li>
-                                    <h4>Skiing period: </h4>
-                                    <?php if ($skipass['days_number'] != 1) : ?>
-                                        <select name="days-number" id="">
-                                            <?php if ($skipass['season'] != "Low season") : ?>
-                                                <?php for ($i = 2; $i < 6; $i++) : ?>
-                                                    <option value="<?= $i; ?>"><?= $i; ?></option>
-                                                <?php endfor; ?>
-                                            <?php elseif ($skipass['season'] == "Low season") : ?>
-                                                <?php for ($i = 2; $i < 4; $i++) : ?>
-                                                    <option value="<?= $i; ?>"><?= $i; ?></option>
-                                                <?php endfor; ?>
-                                            <?php endif; ?>
+                        </div>
+                        <div class="offer-info-box" id="offer-info-box">
+                            <form action="addOrder.php" method="post">
+                                <input style="display: none;" type="text" name="season" value="<?= $skipass['season']; ?>">
+                                <ul class="skipass-info-list">
+                                    <li>
+                                        <h3>Equipment: </h3>
+                                        <div class="equipment-offer-box">
+                                            <select name="equipment-name" id="">
+                                                <?php foreach ($equipment as $thing) : ?>
+                                                    <option value="<?= $thing["equipment_name"]; ?>"><?= $thing["equipment_name"]; ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                            <select name="equipment-category" id="">
+                                                <option value="A">A</option>
+                                                <option value="B">B</option>
+                                                <option value="C">C</option>
+                                                <option value="D1">D1</option>
+                                                <option value="D2">D2</option>
+                                            </select>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <h4>Skiing period: </h4>
+                                        <?= $skipass['skiing_period']; ?>
+                                    </li>
+                                    <li>
+                                        <h4>Number of days: </h4>
+                                        <?php if ($skipass['days_number'] != 1) : ?>
+                                            <div class="days-number-box">
+                                                <select name="days-number" id="">
+                                                    <?php if ($skipass['season'] != "Low season") : ?>
+                                                        <?php for ($i = 2; $i < 6; $i++) : ?>
+                                                            <option value="<?= $i; ?>"><?= $i; ?></option>
+                                                        <?php endfor; ?>
+                                                    <?php elseif ($skipass['season'] == "Low season") : ?>
+                                                        <?php for ($i = 2; $i < 4; $i++) : ?>
+                                                            <option value="<?= $i; ?>"><?= $i; ?></option>
+                                                        <?php endfor; ?>
+                                                    <?php endif; ?>
+                                                </select>
+                                                <p>days</p>
+                                            </div>
+                                        <?php else : ?>
+                                            <p>The day it was bought</p>
+                                        <?php endif; ?>
+                                    </li>
+                                    <li>
+                                        <h4>Status: </h4>
+                                        <select name="status-name" id="">
+                                            <option value="Standard" selected>Standard</option>
+                                            <option value="VIP">VIP</option>
                                         </select>
-                                        <p>days</p>
-                                    <?php else : ?>
-                                        <p>The day it was bought</p>
-                                    <?php endif; ?>
-                                </li>
-                                <li>
-                                    <h4>Status: </h4>
-                                    <select name="status-name" id="">
-                                        <option value="Standard" selected>Standard</option>
-                                        <option value="VIP">VIP</option>
-                                    </select>
-                                </li>
-                                <li>
-                                    <h3>Equipment: </h3>
-                                    <select name="equipment-name" id="">
-                                        <?php foreach ($equipment as $thing) : ?>
-                                            <option value="<?= $thing["equipment_name"]; ?>"><?= $thing["equipment_name"]; ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </li>
-                                <li>
-                                    <select name="equipment-category" id="">
-                                        <option value="A">A</option>
-                                        <option value="B">B</option>
-                                        <option value="C">C</option>
-                                        <option value="D1">D1</option>
-                                        <option value="D2">D2</option>
-                                    </select>
-                                </li>
-                                <li>
-                                    <h4>Description: </h4>
-                                    <p class="description">
-                                        <?= $skipass["description"]; ?>
-                                    </p>
-                                </li>
-                                <li>
-                                    <h4>Validity: </h4>
-                                    <p class="validity">
-                                        <?= $skipass["validity"]; ?>
-                                    </p>
-                                </li>
-                                <li>
-                                    <input type="submit" value="Choose" name="offer-btn">
-                                </li>
-                            </ul>
-                        </form>
+                                    </li>
+                                    <li>
+                                        <h4>Description: </h4>
+                                        <p class="description">
+                                            <?= $skipass["description"]; ?>
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <h4>Validity: </h4>
+                                        <p class="validity">
+                                            <?= $skipass["validity"]; ?>
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <input type="submit" value="Add to the wishlist" name="order-btn" class="order-btn">
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
                     </div>
                 <?php endforeach; ?>
             </div>
@@ -260,8 +424,9 @@ $equipment = mysqli_fetch_all($result2, MYSQLI_ASSOC);
         </div>
     </footer>
     <!-- ----------------------------------------------------------------------- -->
-    <script src="./public/scripts/change_theme.js"></script>
+    <script src="./public/scripts/changeTheme.js"></script>
     <script src="./public/scripts/sidebarManipulation.js"></script>
+    <script src="orderBoxSizeManipulation.js"></script>
 
 </body>
 
