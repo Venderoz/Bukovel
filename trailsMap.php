@@ -69,7 +69,7 @@ $stmt->close();
           </li>
           <li>
             <a href="skipassesAndEquipment.php">
-              <p>Skipasses and equipment</p>
+              <p>Our offers</p>
             </a>
           </li>
           <li>
@@ -123,7 +123,7 @@ $stmt->close();
           </li>
           <li>
             <a href="skipassesAndEquipment.php">
-              <p>Skipasses and equipment</p>
+              <p>Our offers</p>
             </a>
           </li>
           <li>

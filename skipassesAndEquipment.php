@@ -47,7 +47,7 @@ $equipment = mysqli_fetch_all($result2, MYSQLI_ASSOC);
         .container {
             display: flex;
             width: 100%;
-            height: fit-content;
+            height: 100%;
         }
 
         .skipasses-box {
@@ -55,20 +55,16 @@ $equipment = mysqli_fetch_all($result2, MYSQLI_ASSOC);
             width: 100%;
             height: fit-content;
             flex-direction: column;
-            gap: 1rem;
+            gap: 2rem;
             padding: 1rem;
             font-size: 120%;
-        }
-
-        .skipasses-box {
-            display: flex;
-            flex-direction: column;
         }
 
         .skipass-offer-box {
             border-radius: 10px;
             box-shadow: 3px 3px 7px black;
             background-color: var(--accent);
+            transition: .5s all;
         }
 
         .skipass-offer-box * {
@@ -76,6 +72,7 @@ $equipment = mysqli_fetch_all($result2, MYSQLI_ASSOC);
         }
 
         .offer-title {
+            cursor: pointer;
             padding: .5rem;
             border-radius: 10px 10px 0 0;
             border-bottom: 1px solid var(--text);
@@ -89,9 +86,14 @@ $equipment = mysqli_fetch_all($result2, MYSQLI_ASSOC);
 
         .offer-info-box {
             border-radius: 0 0 10px 10px;
+            transition: .1s all;
+            /* specify the properties you want to transition */
+            display: flex;
+            /* or block, depending on your layout */
         }
 
         .skipass-info-list {
+
             display: flex;
             flex-direction: column;
             gap: 1rem;
@@ -173,21 +175,15 @@ $equipment = mysqli_fetch_all($result2, MYSQLI_ASSOC);
             transform: translateY(2px);
         }
 
-        .offer-info-box {
-            transition: .5s all;
-            display: none;
-        }
-
-        .expanding-enabled {
+        .expanded {
             display: flex;
-        }
-
-        .expanding {
             height: fit-content;
+            transform: scaleY(1);
         }
 
-        .shrinking {
+        .shrinked {
             height: 0;
+            transform: scaleY(0);
         }
 
         /* Media Query for Mobile Devices*/
@@ -227,7 +223,7 @@ $equipment = mysqli_fetch_all($result2, MYSQLI_ASSOC);
                     </li>
                     <li>
                         <a href="skipassesAndEquipment.php">
-                            <p>Skipasses and equipment</p>
+                            <p>Our offers</p>
                         </a>
                     </li>
                     <li>
@@ -281,7 +277,7 @@ $equipment = mysqli_fetch_all($result2, MYSQLI_ASSOC);
                     </li>
                     <li>
                         <a href="skipassesAndEquipment.php">
-                            <p>Skipasses and equipment</p>
+                            <p>Our offers</p>
                         </a>
                     </li>
                     <li>
@@ -324,7 +320,7 @@ $equipment = mysqli_fetch_all($result2, MYSQLI_ASSOC);
                         <div class="offer-title" id="offer-title">
                             <h2><?= $skipass['season']; ?></h2>
                         </div>
-                        <div class="offer-info-box" id="offer-info-box">
+                        <div class="offer-info-box shrinked" id="offer-info-box">
                             <form action="addOrder.php" method="post">
                                 <input style="display: none;" type="text" name="season" value="<?= $skipass['season']; ?>">
                                 <ul class="skipass-info-list">
@@ -426,7 +422,7 @@ $equipment = mysqli_fetch_all($result2, MYSQLI_ASSOC);
     <!-- ----------------------------------------------------------------------- -->
     <script src="./public/scripts/changeTheme.js"></script>
     <script src="./public/scripts/sidebarManipulation.js"></script>
-    <script src="orderBoxSizeManipulation.js"></script>
+    <script src="./public/scripts/orderBoxSizeManipulation.js"></script>
 
 </body>
 

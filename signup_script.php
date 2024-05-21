@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-
     include "connection.php";
 
     $username = htmlspecialchars(trim($_POST["username"]));
