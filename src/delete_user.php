@@ -7,4 +7,4 @@ session_start();
     mysqli_close($conn);
 session_destroy();
 // Redirect to the login page:
-header('Location: login.php');
+header('Location: ./../login.php');

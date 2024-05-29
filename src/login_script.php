@@ -32,16 +32,16 @@ if ($stmt = $conn->prepare('SELECT ID, password FROM users WHERE username = ?'))
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['name'] = htmlspecialchars($_POST['username']);
             $_SESSION['id'] = $id;
-            header("Location: account.php");
+            header("Location: ./../account.php");
         } else {
             // Incorrect password
             $msg = 'Incorrect username and/or password!';
-            header("Location: login.php?msg=$msg");
+            header("Location: ./../login.php?msg=$msg");
         }
     } else {
         // Incorrect username
         $msg = 'Incorrect username and/or password!';
-        header("Location: login.php?msg=$msg");
+        header("Location: ./../login.php?msg=$msg");
     }
 
     $stmt->close();

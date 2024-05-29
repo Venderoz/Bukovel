@@ -7,4 +7,4 @@ session_start();
     $query = "UPDATE orders SET is_realised = 1, order_time = '$date' WHERE user_id = $id AND ID = $orderId;";
     mysqli_query($conn, $query);
     mysqli_close($conn);
-header('Location: basket.php?res=success');
+header('Location: ./../basket.php?res=success');

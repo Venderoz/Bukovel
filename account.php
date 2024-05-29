@@ -1,7 +1,7 @@
 <?php
 session_start();
-include "checkLogin.php";
-include "connection.php";
+include "./src/checkLogin.php";
+include "./src/connection.php";
 
 
 $stmt = $conn->prepare('SELECT password, email, birthdate, account_image FROM users WHERE id = ?');
@@ -26,354 +26,9 @@ $stmt->close();
     <link rel="shortcut icon" href="./public/assets/icons/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="./public/css/theme-colors.css" />
     <link rel="stylesheet" href="./public/css/reset.css" />
-    <link rel="stylesheet" href="./public/css/nav-bar.css" />
+    <link rel="stylesheet" href="./public/css/navbar.css" />
     <link rel="stylesheet" href="./public/css/footer.css" />
-    <style>
-        main {
-            display: flex;
-            width: 100%;
-        }
-
-        .main-container {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            height: 100%;
-            padding-block: 2rem;
-            z-index: 3;
-        }
-
-        .main-info-box {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            flex-basis: 90%;
-            margin-bottom: 30px;
-            gap: 20px;
-        }
-
-        .logout-box {
-            display: flex;
-            justify-content: space-around;
-            width: 100%;
-            flex-basis: 10%;
-            padding: 1rem;
-            gap: 5%;
-        }
-
-        .logout-box button {
-            border: none;
-            font-size: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-basis: 50%;
-            padding: .5rem;
-            position: relative;
-            overflow: hidden;
-            border-bottom: 2px solid var(--accent);
-            border-radius: 10px 10px 0 0;
-        }
-
-        .logout-box button:hover {
-            box-shadow: 2px 2px 5px gray;
-        }
-
-        .logout-box button:hover:after {
-            content: "";
-            display: block;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            background-color: var(--accent);
-            z-index: 0;
-            animation: animateButtonBg .5s;
-        }
-
-        .logout-box button>p {
-            display: flex;
-            z-index: 1;
-            background: none;
-            width: 100%;
-            justify-content: center;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .user-details-box {
-            order: 2;
-            display: flex;
-            flex-direction: column;
-            flex-basis: 40%;
-            gap: 1rem;
-        }
-
-        .user-details-box>p {
-            font-size: 150%;
-        }
-
-        .user-details-box>ul {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            list-style-type: none;
-            background-color: var(--secondary);
-            padding: 10px;
-            border-radius: 10px;
-            width: 60%;
-        }
-
-        .user-details-box>ul .list-button-box {
-            background-color: var(--secondary);
-        }
-
-        .user-details-box>ul li:not(.list-button-box) {
-            display: flex;
-            word-break: break-all;
-            flex-direction: column;
-            background-color: var(--accent);
-            padding: .5rem;
-            border-radius: 10px;
-        }
-
-        .user-details-box>ul li>small {
-            background: none;
-        }
-
-        .user-details-box>ul .list-button-box>button {
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: none;
-            background-color: var(--primary);
-            box-shadow: 2px 2px 0px 1px black;
-            color: white;
-            transition: 0.1s all;
-            width: 100%;
-            padding: .5rem;
-            border-radius: 10px;
-        }
-
-        .user-details-box>ul .list-button-box>button:active {
-            box-shadow: none;
-            transform: translateY(2px);
-        }
-
-        .user-details-box>ul .list-button-box>button>p {
-            font-size: 120%;
-            background: none;
-        }
-
-        .main-username-box {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-basis: 20%;
-        }
-
-        .main-username-box h2 {
-            font-size: 200%;
-        }
-
-        .user-pfp-box {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-basis: 40%;
-            order: 1;
-        }
-
-        .user-details-box {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .image-box {
-            position: relative;
-            height: 200px;
-            width: 200px;
-        }
-
-        .image-box img {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-color: white;
-            border-radius: 50%;
-        }
-
-        dialog {
-            flex-direction: column;
-            margin-inline: auto;
-            margin-block: auto;
-            background-color: var(--primary);
-            width: 400px;
-            height: 500px;
-            border-radius: 1rem;
-            border: none;
-        }
-
-        .close-dialog-btn-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-basis: 10%;
-            padding-inline: 20px;
-            background-color: var(--secondary);
-        }
-
-        .close-dialog-btn-container>h2 {
-            background: none;
-        }
-
-        .close-dialog-btn {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: none;
-            background: none;
-        }
-
-        .close-dialog-btn>i {
-            background: none;
-            font-size: 150%;
-        }
-
-        dialog>form {
-            display: flex;
-            flex-direction: column;
-            flex-basis: 90%;
-            justify-content: center;
-            align-items: center;
-            gap: 30px;
-        }
-
-        dialog>form div {
-            display: flex;
-            width: 80%;
-            position: relative;
-        }
-
-        dialog>form div:not(.submit-box) label {
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            font-size: 16px;
-            color: var(--text);
-            pointer-events: none;
-            transition: all 0.3s;
-        }
-
-        dialog>form div input {
-            border: 0;
-            border-bottom: 1px solid var(--text);
-            background: transparent;
-            width: 100%;
-            padding: 8px 0 5px 0;
-            font-size: 16px;
-            color: var(--text);
-        }
-
-        dialog>form div input[name="submit"] {
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: none;
-            background-color: var(--secondary);
-            box-shadow: 2px 2px 0px 1px black;
-            color: var(--text);
-            transition: 0.1s all;
-            height: 45px;
-            border-radius: 5px;
-        }
-
-        dialog>form div input[name="submit"]:active {
-            box-shadow: none;
-            transform: translateY(2px);
-        }
-
-        dialog>form div input:focus {
-            border: none;
-            outline: none;
-            border-bottom: 1px solid rgba(50, 91, 195, 1);
-        }
-
-        dialog>form div input:focus~label,
-        dialog>form div input:valid~label {
-            top: -12px;
-            font-size: 12px;
-        }
-
-        .password-box>.bi {
-            position: absolute;
-            right: 0;
-            top: 0;
-            font-size: 120%;
-            color: var(--text);
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .fa,
-        .bi {
-            color: var(--text);
-        }
-
-        input[type="password"]::-ms-reveal,
-        input[type="password"]::-ms-clear {
-            display: none;
-        }
-
-        dialog::backdrop {
-            background-color: black;
-            opacity: 0.75;
-        }
-
-        /* Media Query for Mobile Devices*/
-        @media screen and (max-width: 480px) {}
-
-        /* Media Query for low resolution  Tablets, Ipads */
-        @media screen and (min-width: 481px) {}
-
-        /* Media Query for Tablets Ipads portrait mode */
-        @media screen and (min-width: 768px) {}
-
-        /* Media Query for Laptops and Desktops */
-        @media screen and (min-width: 1025px) {
-            .main-username-box {
-                margin: 0;
-            }
-
-            .main-username-box h2 {
-                font-size: 300%;
-            }
-
-            .image-box {
-                width: 300px;
-                height: 300px;
-            }
-
-            .user-details-box>ul li {
-                font-size: 120%;
-            }
-        }
-
-        /* Media Query for Large screens */
-        @media screen and (min-width: 1281px) {}
-
-        @keyframes animateButtonBg {
-            from {
-                top: 100%;
-            }
-
-            to {
-                top: 0;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="./public/css/account_styles.css">
 </head>
 
 <body>
@@ -382,7 +37,7 @@ $stmt->close();
             <h2>Update</h2>
             <button autofocus class="close-dialog-btn"><i class="bi bi-x-circle"></i></button>
         </div>
-        <form action="update_user_info.php" method="post" enctype="multipart/form-data" autocomplete="off">
+        <form action="./src/update_user_info.php" method="post" enctype="multipart/form-data" autocomplete="off">
             <div class="username-box">
                 <input type="text" name="username" id="username" value="<?= $_SESSION["name"]; ?>" required>
                 <label for="username">
@@ -439,7 +94,7 @@ $stmt->close();
                         </a>
                     </li>
                     <li>
-                        <a href="skipassesAndEquipment.php">
+                        <a href="offers.php">
                             <p>Offers</p>
                         </a>
                     </li>
@@ -493,7 +148,7 @@ $stmt->close();
                         </a>
                     </li>
                     <li>
-                        <a href="skipassesAndEquipment.php">
+                        <a href="offers.php">
                             <p>Offers</p>
                         </a>
                     </li>
@@ -614,10 +269,10 @@ $stmt->close();
             dialog.style.display = "none";
         });
         logoutBtn.addEventListener("click", () => {
-            confirm("Do you really want to logout?") ? window.location.replace("logout.php") : "";
+            confirm("Do you really want to logout?") ? window.location.replace("./src/logout.php") : "";
         })
         deleteBtn.addEventListener("click", () => {
-            confirm("Do you really want to delete you account forever?") ? window.location.replace("delete_user.php") : "";
+            confirm("Do you really want to delete you account forever?") ? window.location.replace("./src/delete_user.php") : "";
         })
 
         togglePassword.addEventListener("click", function() {

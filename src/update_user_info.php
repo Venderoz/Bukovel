@@ -27,7 +27,7 @@ if ($result1) {
         $filename == ""
     ) {
         $msg = 'Nothing to change here!';
-        header("Location: account.php?msg=$msg");
+        header("Location: ./../account.php?msg=$msg");
     } else {
         if($filename != ""){
             move_uploaded_file($tempname, $folder);
@@ -37,6 +37,6 @@ if ($result1) {
         }
         $conn->query($query2);
         $msg = "Data changed successfully";
-        header("Location: account.php?msg=$msg");
+        header("Location: ./../account.php?msg=$msg");
     }
 }

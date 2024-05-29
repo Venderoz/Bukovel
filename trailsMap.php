@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include "connection.php";
+include "./src/connection.php";
 
 // We don't have the password or email info stored in sessions, so instead, we can get the results from the database.
 $stmt = $conn->prepare('SELECT account_image FROM users WHERE id = ?');
@@ -24,33 +24,11 @@ $stmt->close();
   <link rel="shortcut icon" href="./public/assets/icons/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="./public/css/theme-colors.css" />
   <link rel="stylesheet" href="./public/css/reset.css" />
-  <link rel="stylesheet" href="./public/css/nav-bar.css" />
+  <link rel="stylesheet" href="./public/css/navbar.css" />
   <link rel="stylesheet" href="./public/css/footer.css" />
+  <link rel="stylesheet" href="./public/css/trailmap_styles.css">
+
   <title>Trails map</title>
-
-  <style>
-    main {
-      display: flex;
-      width: 100%;
-    }
-
-    .iframe-container {
-      display: flex;
-      width: 100%;
-      height: 80dvh;
-    }
-
-    iframe {
-      width: 100%;
-      height: 100%;
-    }
-
-    @media screen and (min-width: 768px) {
-      .iframe-container {
-        height: 88dvh;
-      }
-    }
-  </style>
 </head>
 <!-- ----------------------------------------------------------------------- -->
 
@@ -68,7 +46,7 @@ $stmt->close();
             </a>
           </li>
           <li>
-            <a href="skipassesAndEquipment.php">
+            <a href="offers.php">
               <p>Our offers</p>
             </a>
           </li>
@@ -122,7 +100,7 @@ $stmt->close();
             </a>
           </li>
           <li>
-            <a href="skipassesAndEquipment.php">
+            <a href="offers.php">
               <p>Our offers</p>
             </a>
           </li>

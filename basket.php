@@ -1,9 +1,9 @@
 <?php
 session_start();
 // If the user is not logged in redirect to the login page...
-include "checkLogin.php";
+include "./src/checkLogin.php";
 
-include "connection.php";
+include "./src/connection.php";
 
 // We don't have the password or email info stored in sessions, so instead, we can get the results from the database.
 $stmt = $conn->prepare('SELECT account_image FROM users WHERE id = ?');
@@ -48,197 +48,11 @@ foreach ($orderStatus as $el) {
     <link rel="shortcut icon" href="./public/assets/icons/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="./public/css/theme-colors.css" />
     <link rel="stylesheet" href="./public/css/reset.css" />
-    <link rel="stylesheet" href="./public/css/nav-bar.css" />
+    <link rel="stylesheet" href="./public/css/navbar.css" />
     <link rel="stylesheet" href="./public/css/footer.css" />
+    <link rel="stylesheet" href="./public/css/basket_styles.css">
+
     <title>Contacts and Placement</title>
-
-    <style>
-        main {
-            display: flex;
-            width: 100%;
-        }
-
-        ul {
-            list-style-type: none;
-        }
-
-        .container {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            flex-direction: column;
-            gap: 1rem;
-            padding: 1rem;
-            font-size: 120%;
-        }
-
-        .no-order-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .no-order-container>h2 {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .no-order-container>button {
-            width: 60%;
-            height: 100%;
-            padding: .5rem;
-            font-size: 110%;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: var(--secondary);
-            border: none;
-            box-shadow: 2px 2px 0px 1px var(--text);
-            color: var(--text);
-            transition: 0.1s all;
-            border-radius: 5px;
-        }
-
-        .no-order-container>button:active {
-            box-shadow: none;
-            transform: translateY(2px);
-        }
-
-        .no-order-container>button>a {
-            background: none;
-            border: none;
-            text-decoration: none;
-            width: 100%;
-            height: 100%;
-        }
-
-        .pending-orders {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .pending-orders>h3 {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 120%;
-        }
-
-        .order-container {
-            display: flex;
-            flex-direction: column;
-            max-width: 530px;
-            background-color: var(--secondary);
-            border-radius: 10px;
-            padding: 1rem;
-            gap: 1rem;
-            box-shadow: 3px 3px 7px black;
-        }
-
-        .about-order-box {
-            display: flex;
-            flex-direction: row;
-            flex-basis: 80%;
-        }
-
-        .order-info-box {
-            flex-basis: 80%;
-        }
-
-        .order-info-list>li:first-child {
-            font-size: 150%;
-            margin-bottom: .5rem;
-        }
-
-        .price-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-basis: 20%;
-        }
-
-        .price-container>p {
-            font-size: 200%;
-        }
-
-        .do-order-box {
-            display: flex;
-            flex-direction: row;
-            flex-basis: 20%;
-            border-top: 1px solid var(--text);
-        }
-
-        .make-purchase-box {
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-basis: 70%;
-            border-right: 1px solid var(--text);
-            width: 100%;
-            height: 100%;
-            padding: .5rem;
-        }
-
-        .make-purchase-box>p,
-        .make-purchase-box>p>a {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-decoration: none;
-            width: 100%;
-            height: 100%;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        .delete-order-box {
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-basis: 30%;
-            width: 100%;
-            height: 100%;
-            padding: .5rem;
-        }
-
-        .delete-order-box>p {
-            display: flex;
-            gap: 2px;
-        }
-
-        .order-container * {
-            background: none;
-        }
-
-        .delete-order-box>p {
-            width: min-content;
-        }
-
-        .delete-order-box>p>i {
-            cursor: pointer;
-        }
-
-        .done-orders-box {
-            display: flex;
-            flex-direction: column;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .done-orders-box>h3 {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    </style>
 </head>
 <!-- ----------------------------------------------------------------------- -->
 
@@ -256,7 +70,7 @@ foreach ($orderStatus as $el) {
                         </a>
                     </li>
                     <li>
-                        <a href="skipassesAndEquipment.php">
+                        <a href="offers.php">
                             <p>Our offers</p>
                         </a>
                     </li>
@@ -310,7 +124,7 @@ foreach ($orderStatus as $el) {
                         </a>
                     </li>
                     <li>
-                        <a href="skipassesAndEquipment.php">
+                        <a href="offers.php">
                             <p>Our offers</p>
                         </a>
                     </li>
@@ -352,7 +166,7 @@ foreach ($orderStatus as $el) {
             <?php if (mysqli_num_rows($result2) == 0) : ?>
                 <div class="no-order-container">
                     <h2>Looks like you didn't make any order yet. Check the offerlist here:</h2>
-                    <button class="go-to-offers-btn"><a href="skipassesAndequipment.php">Go to offers</a></button>
+                    <button class="go-to-offers-btn"><a href="offers.php">Go to offers</a></button>
                 </div>
             <?php else : ?>
                 <div class="pending-orders">
@@ -373,7 +187,7 @@ foreach ($orderStatus as $el) {
                                 </div>
                                 <div class="do-order-box">
                                     <div class="make-purchase-box">
-                                        <p><a href="update_order_status.php?id=<?= $order["ID"]; ?>">Purchase</a></p>
+                                        <p><a href="./src/update_order_status.php?id=<?= $order["ID"]; ?>">Purchase</a></p>
                                     </div>
                                     <div class="delete-order-box <?= $order["ID"]; ?>" id="remove-order-btn">
                                         <p>Delete<i class="bi bi-trash-fill"></i></p>
@@ -453,7 +267,7 @@ foreach ($orderStatus as $el) {
             if (button) {
                 const trashId = button.classList[1];
                 button.addEventListener("click", () => {
-                    confirm("Are you sure you want to remove that order? You can make another one.") ? window.location.replace(`delete_order.php?id=${trashId}`) : "";
+                    confirm("Are you sure you want to remove that order? You can make another one.") ? window.location.replace(`./src/delete_order.php?id=${trashId}`) : "";
                 });
             }
         });

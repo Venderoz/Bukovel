@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "connection.php";
+include "./src/connection.php";
 
 // We don't have the password or email info stored in sessions, so instead, we can get the results from the database.
 $stmt = $conn->prepare('SELECT account_image FROM users WHERE id = ?');
@@ -23,137 +23,11 @@ $stmt->close();
     <link rel="shortcut icon" href="./public/assets/icons/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="./public/css/theme-colors.css" />
     <link rel="stylesheet" href="./public/css/reset.css" />
-    <link rel="stylesheet" href="./public/css/nav-bar.css" />
+    <link rel="stylesheet" href="./public/css/navbar.css" />
     <link rel="stylesheet" href="./public/css/footer.css" />
+    <link rel="stylesheet" href="./public/css/contact_styles.css">
+
     <title>Contacts and Placement</title>
-
-    <style>
-        main {
-            display: flex;
-            width: 100%;
-        }
-
-        .container {
-            display: flex;
-            width: 100%;
-            height: fit-content;
-            flex-direction: column;
-            gap: 1rem;
-            padding: 1rem;
-            font-size: 120%;
-        }
-
-        .about-article {
-            text-align: center;
-        }
-
-        .about-article>p:last-child {
-            font-weight: bold;
-        }
-
-        .article {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            height: fit-content;
-            gap: 2rem;
-        }
-
-        .contacts,
-        .map {
-            display: flex;
-            flex-basis: 50%;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .contacts,
-        .about-article {
-            padding: .5rem;
-            border-bottom: 1px solid var(--text);
-        }
-
-        .social-media-list {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10%;
-            list-style-type: none;
-        }
-
-        .social-media-list li>a {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            padding: .5rem;
-            gap: 5px;
-            text-decoration: none;
-        }
-
-        .social-media-list li>a>i {
-            color: var(--highlight);
-            font-size: 180%;
-        }
-
-        .social-media-list li>a:hover>i {
-            color: var(--accent);
-        }
-
-        .phone-numbers-list {
-            display: flex;
-            list-style-type: none;
-            flex-direction: column;
-            gap: .5rem;
-        }
-
-        .phone-numbers-list li>p {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .phone-numbers-list span {
-            text-decoration: underline;
-            font-weight: bold;
-            color: var(--highlight);
-        }
-
-        .mapouter {
-            position: relative;
-            text-align: right;
-            width: 100%;
-            height: 100%;
-        }
-
-        .gmap_canvas {
-            overflow: hidden;
-            background: none !important;
-            width: 100%;
-            height: 100%;
-        }
-
-        .gmap_iframe {
-            width: 100% !important;
-            height: 100% !important;
-        }
-
-        @media screen and (min-width: 1024px) {
-            .phone-numbers-list li>p {
-                flex-direction: row;
-            }
-            .phone-numbers-list li>p>span {
-                margin-left: 5px;
-            }
-
-            .article {
-                flex-direction: row;
-            }
-
-            .contacts {
-                border: none;
-            }
-        }
-    </style>
 </head>
 <!-- ----------------------------------------------------------------------- -->
 
@@ -171,7 +45,7 @@ $stmt->close();
                         </a>
                     </li>
                     <li>
-                        <a href="skipassesAndEquipment.php">
+                        <a href="offers.php">
                             <p>Our offers</p>
                         </a>
                     </li>
@@ -225,7 +99,7 @@ $stmt->close();
                         </a>
                     </li>
                     <li>
-                        <a href="skipassesAndEquipment.php">
+                        <a href="offers.php">
                             <p>Our offers</p>
                         </a>
                     </li>

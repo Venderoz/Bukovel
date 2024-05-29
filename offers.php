@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include "connection.php";
+include "./src/connection.php";
 
 // We don't have the password or email info stored in sessions, so instead, we can get the results from the database.
 $stmt = $conn->prepare('SELECT account_image FROM users WHERE id = ?');
@@ -33,178 +33,11 @@ $equipment = mysqli_fetch_all($result2, MYSQLI_ASSOC);
     <link rel="shortcut icon" href="./public/assets/icons/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="./public/css/theme-colors.css" />
     <link rel="stylesheet" href="./public/css/reset.css" />
-    <link rel="stylesheet" href="./public/css/nav-bar.css" />
+    <link rel="stylesheet" href="./public/css/navbar.css" />
     <link rel="stylesheet" href="./public/css/footer.css" />
+    <link rel="stylesheet" href="./public/css/offers_styles.css">
 
     <title>Offers</title>
-
-    <style>
-        main {
-            display: flex;
-            width: 100%;
-        }
-
-        .container {
-            display: flex;
-            width: 100%;
-            height: 100%;
-        }
-
-        .skipasses-box {
-            display: flex;
-            width: 100%;
-            height: fit-content;
-            flex-direction: column;
-            gap: 2rem;
-            padding: 1rem;
-            font-size: 120%;
-        }
-
-        .skipass-offer-box {
-            border-radius: 10px;
-            box-shadow: 3px 3px 7px black;
-            background-color: var(--accent);
-            transition: .5s all;
-        }
-
-        .skipass-offer-box * {
-            background-color: var(--accent);
-        }
-
-        .offer-title {
-            cursor: pointer;
-            padding: .5rem;
-            border-radius: 10px 10px 0 0;
-            border-bottom: 1px solid var(--text);
-            background-color: var(--secondary);
-        }
-
-        .offer-title>h2 {
-            text-align: center;
-            background: none;
-        }
-
-        .offer-info-box {
-            border-radius: 0 0 10px 10px;
-            transition: .1s all;
-            /* specify the properties you want to transition */
-            display: flex;
-            /* or block, depending on your layout */
-        }
-
-        .skipass-info-list {
-
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            list-style-type: none;
-            padding-inline: .5rem;
-            padding-top: 1rem;
-            border-radius: 0 0 10px 10px;
-        }
-
-        .skipass-info-list li {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .skipass-info-list li>div {
-            display: flex;
-            flex-direction: row;
-        }
-
-        .days-number-box,
-        .equipment-offer-box {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            display: flex;
-            gap: 2px;
-        }
-
-        .skipass-info-list>li:last-child {
-            border-top: 1px solid var(--text);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 1rem;
-            margin-top: .5rem;
-        }
-
-        .skipass-info-list select {
-            cursor: pointer;
-            background: none;
-            border: none;
-            outline: none;
-            width: min-content;
-            font-size: 70%;
-            padding: .5rem;
-            background-color: var(--secondary);
-            border-radius: 5px;
-        }
-
-        .skipass-info-list p {
-            padding: .5rem;
-        }
-
-        .skipass-info-list select>option {
-            background-color: var(--background);
-            color: var(--text);
-        }
-
-        .order-btn {
-            width: 80%;
-            height: 100%;
-            padding: .5rem;
-            font-size: 110%;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: var(--secondary);
-            border: none;
-            box-shadow: 2px 2px 0px 1px var(--text);
-            color: var(--text);
-            transition: 0.1s all;
-            border-radius: 5px;
-        }
-
-        .order-btn:active {
-            box-shadow: none;
-            transform: translateY(2px);
-        }
-
-        .expanded {
-            display: flex;
-            height: fit-content;
-            transform: scaleY(1);
-        }
-
-        .shrinked {
-            height: 0;
-            transform: scaleY(0);
-        }
-
-        /* Media Query for Mobile Devices*/
-        @media screen and (max-width: 480px) {}
-
-        /* Media Query for low resolution  Tablets, Ipads */
-        @media screen and (min-width: 481px) {}
-
-        /* Media Query for Tablets Ipads portrait mode */
-        @media screen and (min-width: 768px) {
-            .skipass-info-list select {
-                font-size: 90%;
-            }
-        }
-
-        /* Media Query for Laptops and Desktops */
-        @media screen and (min-width: 1025px) {}
-
-        /* Media Query for Large screens */
-        @media screen and (min-width: 1281px) {}
-    </style>
 </head>
 <!-- ----------------------------------------------------------------------- -->
 
@@ -222,7 +55,7 @@ $equipment = mysqli_fetch_all($result2, MYSQLI_ASSOC);
                         </a>
                     </li>
                     <li>
-                        <a href="skipassesAndEquipment.php">
+                        <a href="offers.php">
                             <p>Our offers</p>
                         </a>
                     </li>
@@ -276,7 +109,7 @@ $equipment = mysqli_fetch_all($result2, MYSQLI_ASSOC);
                         </a>
                     </li>
                     <li>
-                        <a href="skipassesAndEquipment.php">
+                        <a href="offers.php">
                             <p>Our offers</p>
                         </a>
                     </li>
@@ -321,7 +154,7 @@ $equipment = mysqli_fetch_all($result2, MYSQLI_ASSOC);
                             <h2><?= $skipass['season']; ?></h2>
                         </div>
                         <div class="offer-info-box shrinked" id="offer-info-box">
-                            <form action="addOrder.php" method="post">
+                            <form action="./src/addOrder.php" method="post">
                                 <input style="display: none;" type="text" name="season" value="<?= $skipass['season']; ?>">
                                 <ul class="skipass-info-list">
                                     <li>

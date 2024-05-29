@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include "connection.php";
+include "./src/connection.php";
 // We don't have the password or email info stored in sessions, so instead, we can get the results from the database.
 $stmt = $conn->prepare('SELECT account_image FROM users WHERE id = ?');
 // In this case we can use the account ID to get the account info.
@@ -24,173 +24,11 @@ $stmt->close();
   <link rel="shortcut icon" href="./public/assets/icons/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="./public/css/theme-colors.css" />
   <link rel="stylesheet" href="./public/css/reset.css" />
-  <link rel="stylesheet" href="./public/css/nav-bar.css" />
+  <link rel="stylesheet" href="./public/css/navbar.css" />
   <link rel="stylesheet" href="./public/css/footer.css" />
+  <link rel="stylesheet" href="./public/css/welcomepage_styles.css">
+
   <title>Bukovel. Welcome to the Heart of Carpathians</title>
-
-  <style>
-    header {
-      position: absolute;
-      top: 0;
-      z-index: 4;
-    }
-
-    main {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      height: fit-content;
-      position: relative;
-    }
-
-    .swiper {
-      width: 100dvw;
-      height: 100dvh;
-      border: none;
-      z-index: 3;
-    }
-
-    .swiper-slide {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      background-size: cover;
-      box-shadow: inset 0px 250px 150px black;
-    }
-
-    .slide-text-container {
-      position: absolute;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      height: 100px;
-      top: 82px;
-      left: 0;
-      background: none;
-      padding: .5rem;
-    }
-
-    .slide-text-container>p {
-      text-align: center;
-      background: none;
-      font-size: 180%;
-      color: white;
-
-    }
-
-    .first-slide {
-      background-image: url("./public/assets/Bukovel1.png");
-    }
-
-    .second-slide {
-      background-image: url("./public/assets/Bukovel2.png");
-    }
-
-    .third-slide {
-      background-image: url("./public/assets/Bukovel3.png");
-    }
-
-    .fourth-slide {
-      background-image: url("./public/assets/Bukovel4.png");
-    }
-
-    .swiper-slide>img {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      z-index: 2;
-    }
-
-    .swiper-pagination {
-      background: none;
-    }
-
-    .main-text-content {
-      width: 100%;
-      height: fit-content;
-      display: flex;
-      flex-direction: column;
-      gap: 50px;
-      padding: 1rem;
-      background: none;
-      z-index: 3;
-    }
-
-    .main-text-content div {
-      display: flex;
-      width: 100%;
-      background: none;
-      font-size: 100%;
-    }
-
-    .main-text-content div:nth-child(even) {
-      justify-content: flex-end;
-    }
-
-    .main-text-content div p {
-      padding: 1rem;
-      background-color: var(--primary);
-      width: 100%;
-      border-radius: 1rem;
-      line-height: 30px;
-      box-shadow: 3px 3px 7px var(--text);
-    }
-
-    .main-text-content div p span {
-      font-size: larger;
-      background-color: var(--primary);
-      font-weight: bold;
-    }
-
-    .mountains {
-      background-image: url("./public/assets/main-page-waves.svg");
-      background-size: cover;
-      background-position: center;
-      position: sticky;
-      bottom: 0;
-      height: 700px;
-      z-index: 2;
-    }
-
-    /* Media Query for Mobile Devices*/
-    @media screen and (max-width: 480px) {}
-
-    /* Media Query for low resolution  Tablets, Ipads */
-    @media screen and (min-width: 481px) {}
-
-    /* Media Query for Tablets Ipads portrait mode */
-    @media screen and (min-width: 768px) {
-      .swiper-slide {
-        box-shadow: inset 250px 0px 150px black;
-      }
-
-      .slide-text-container {
-        top: 50%;
-        left: -45%;
-        transform: rotateZ(-90deg);
-      }
-      .slide-text-container > p{
-        font-size: 200%;
-      }
-
-    }
-
-    /* Media Query for Laptops and Desktops */
-    @media screen and (min-width: 1024px) {
-      .main-text-content div p {
-        width: 45%;
-      }
-
-      .main-text-content div {
-        font-size: 130%;
-      }
-    }
-
-    /* Media Query for Large screens */
-    @media screen and (min-width: 1281px) {
-    }
-  </style>
 </head>
 <!-- ----------------------------------------------------------------------- -->
 
@@ -208,7 +46,7 @@ $stmt->close();
             </a>
           </li>
           <li>
-            <a href="skipassesAndEquipment.php">
+            <a href="offers.php">
               <p>Our offers</p>
             </a>
           </li>
@@ -262,7 +100,7 @@ $stmt->close();
             </a>
           </li>
           <li>
-            <a href="skipassesAndEquipment.php">
+            <a href="offers.php">
               <p>Our offers</p>
             </a>
           </li>
