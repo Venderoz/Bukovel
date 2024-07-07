@@ -36,10 +36,8 @@ $equipment = mysqli_fetch_all($result2, MYSQLI_ASSOC);
     <link rel="stylesheet" href="./public/css/navbar.css" />
     <link rel="stylesheet" href="./public/css/footer.css" />
     <link rel="stylesheet" href="./public/css/offers_styles.css">
-
     <title>Offers</title>
 </head>
-<!-- ----------------------------------------------------------------------- -->
 
 <body>
     <div class="sidebar-menu-container" id="sidebar-menu-container">
@@ -252,10 +250,10 @@ $equipment = mysqli_fetch_all($result2, MYSQLI_ASSOC);
             </p>
         </div>
     </footer>
-    <!-- ----------------------------------------------------------------------- -->
+
     <script src="./public/scripts/changeTheme.js"></script>
-    <script src="./public/scripts/sidebarManipulation.js"></script>
-    <script src="./public/scripts/orderBoxSizeManipulation.js"></script>
+    <script src="./public/scripts/sidebarHandler.js"></script>
+    <script src="./public/scripts/orderBoxSizeHandler.js"></script>
 
 </body>
 

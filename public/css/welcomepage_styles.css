@@ -122,13 +122,6 @@ header {
     z-index: 2;
   }
 
-  /* Media Query for Mobile Devices*/
-  @media screen and (max-width: 480px) {}
-
-  /* Media Query for low resolution  Tablets, Ipads */
-  @media screen and (min-width: 481px) {}
-
-  /* Media Query for Tablets Ipads portrait mode */
   @media screen and (min-width: 768px) {
     .swiper-slide {
       box-shadow: inset 250px 0px 150px black;
@@ -145,7 +138,6 @@ header {
 
   }
 
-  /* Media Query for Laptops and Desktops */
   @media screen and (min-width: 1024px) {
     .main-text-content div p {
       width: 45%;
@@ -154,8 +146,4 @@ header {
     .main-text-content div {
       font-size: 130%;
     }
-  }
-
-  /* Media Query for Large screens */
-  @media screen and (min-width: 1281px) {
   }

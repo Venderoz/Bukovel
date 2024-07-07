@@ -26,4 +26,4 @@ session_start();
     $insertionQuery = "INSERT INTO orders (user_id, skipass_id, equipment_id, payment) VALUES ('$id', '$skipassID', '$equipmentID', '$finalPrice');";
 
     mysqli_query($conn, $insertionQuery);
-    header("Location: ./../basket.php");
+    header("Location: ../basket.php");

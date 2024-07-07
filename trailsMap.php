@@ -1,11 +1,8 @@
 <?php
 session_start();
-
 include "./src/connection.php";
 
-// We don't have the password or email info stored in sessions, so instead, we can get the results from the database.
 $stmt = $conn->prepare('SELECT account_image FROM users WHERE id = ?');
-// In this case we can use the account ID to get the account info.
 $stmt->bind_param('i', $_SESSION['id']);
 $stmt->execute();
 $stmt->bind_result($accountImage);
@@ -27,10 +24,8 @@ $stmt->close();
   <link rel="stylesheet" href="./public/css/navbar.css" />
   <link rel="stylesheet" href="./public/css/footer.css" />
   <link rel="stylesheet" href="./public/css/trailmap_styles.css">
-
   <title>Trails map</title>
 </head>
-<!-- ----------------------------------------------------------------------- -->
 
 <body>
   <div class="sidebar-menu-container" id="sidebar-menu-container">
@@ -164,9 +159,9 @@ $stmt->close();
       </p>
     </div>
   </footer>
-  <!-- ----------------------------------------------------------------------- -->
+
   <script src="./public/scripts/changeTheme.js"></script>
-  <script src="./public/scripts/sidebarManipulation.js"></script>
+  <script src="./public/scripts/sidebarHandler.js"></script>
 </body>
 
 </html>

@@ -6,5 +6,5 @@ session_start();
     mysqli_query($conn, $query);
     mysqli_close($conn);
 session_destroy();
-// Redirect to the login page:
-header('Location: ./../login.php');
+
+header('Location: ../login.php');

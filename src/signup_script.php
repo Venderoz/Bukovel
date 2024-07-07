@@ -25,19 +25,19 @@ session_start();
 
                 $result = $conn->query($query2);
                 if ($result) {
-                    header("Location: ./../account.php");
+                    header("Location: ../account.php");
                 }
             } else {
                 $msg = "Passwords are not the same";
-                header("Location: ./../signup.php?msg=$msg");
+                header("Location: ../signup.php?msg=$msg");
             }
         } else {
             $msg = "Password has to be minimum 8 letters long, contain at least one number and one big letter";
-            header("Location: ./../signup.php?msg=$msg");
+            header("Location: ../signup.php?msg=$msg");
         }
     } elseif ($num > 0) {
         $msg = "This data is already in use";
-        header("Location: ./../signup.php?msg=$msg");
+        header("Location: ../signup.php?msg=$msg");
     }
 
 session_destroy();

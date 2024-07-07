@@ -246,42 +246,26 @@ $stmt->close();
             </p>
         </div>
     </footer>
-    <!-- ----------------------------------------------------------------------- -->
+ 
     <script src="./public/scripts/changeTheme.js"></script>
-    <script src="./public/scripts/sidebarManipulation.js"></script>
+    <script src="./public/scripts/sidebarHandler.js"></script>
+    <script src="./public/scripts/dialogHandler.js"></script>
+    <script src="./public/scripts/showPassword.js"></script>
     <script>
         const updateBtn = document.getElementById("update-btn");
-        const dialog = document.querySelector("dialog");
-        const closeDialogBtn = document.querySelector(".close-dialog-btn");
         const deleteBtn = document.getElementById("delete-btn");
         const logoutBtn = document.getElementById("logout-btn");
-        const togglePassword = document.querySelector("#togglePassword");
-        const password = document.querySelector("#password");
 
         updateBtn.addEventListener("click", () => {
             dialog.showModal();
             dialog.style.display = "flex";
         });
 
-        // "Close" button closes the dialog
-        closeDialogBtn.addEventListener("click", () => {
-            dialog.close();
-            dialog.style.display = "none";
-        });
         logoutBtn.addEventListener("click", () => {
             confirm("Do you really want to logout?") ? window.location.replace("./src/logout.php") : "";
         })
         deleteBtn.addEventListener("click", () => {
             confirm("Do you really want to delete you account forever?") ? window.location.replace("./src/delete_user.php") : "";
         })
-
-        togglePassword.addEventListener("click", function() {
-            // toggle the type attribute
-            const type = password.getAttribute("type") === "password" ? "text" : "password";
-            password.setAttribute("type", type);
-
-            // toggle the icon
-            this.classList.toggle("bi-eye");
-        });
     </script>
 </body>

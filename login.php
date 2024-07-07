@@ -16,7 +16,7 @@
     <main>
         <div class="container">
             <nav>
-                <h1> 
+                <h1>
                     <a href="#" id="move-to-previous">
                         <img src="./public/assets/icons/dark_backward_arrow.svg" alt="arrow to go back">
                     </a>
@@ -41,7 +41,9 @@
                     <input type="submit" value="Login" name="submit">
                 </div>
                 <?php if (isset($_GET['msg'])) : ?>
-                    <script>alert("<?= $_GET['msg'] ?>");</script>
+                    <script>
+                        alert("<?= $_GET['msg'] ?>");
+                    </script>
                 <?php endif; ?>
             </form>
             <a href="signup.php"><small>Don't have an account? Make one!</small></a>
@@ -52,18 +54,7 @@
     </div>
 
     <script src="./public/scripts/moveToPrevious.js"></script>
-    <script>
-        const togglePassword = document.querySelector("#togglePassword");
-        const password = document.querySelector("#password");
-        togglePassword.addEventListener("click", function() {
-            // toggle the type attribute
-            const type = password.getAttribute("type") === "password" ? "text" : "password";
-            password.setAttribute("type", type);
-
-            // toggle the icon
-            this.classList.toggle("bi-eye");
-        });
-    </script>
+    <script src="./public/scripts/showPassword.js"></script>
 </body>
 
 </html>

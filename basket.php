@@ -1,13 +1,9 @@
 <?php
 session_start();
-// If the user is not logged in redirect to the login page...
 include "./src/checkLogin.php";
-
 include "./src/connection.php";
 
-// We don't have the password or email info stored in sessions, so instead, we can get the results from the database.
 $stmt = $conn->prepare('SELECT account_image FROM users WHERE id = ?');
-// In this case we can use the account ID to get the account info.
 $stmt->bind_param('i', $_SESSION['id']);
 $stmt->execute();
 $stmt->bind_result($accountImage);
@@ -51,10 +47,8 @@ foreach ($orderStatus as $el) {
     <link rel="stylesheet" href="./public/css/navbar.css" />
     <link rel="stylesheet" href="./public/css/footer.css" />
     <link rel="stylesheet" href="./public/css/basket_styles.css">
-
     <title>Contacts and Placement</title>
 </head>
-<!-- ----------------------------------------------------------------------- -->
 
 <body>
     <div class="sidebar-menu-container" id="sidebar-menu-container">
@@ -161,7 +155,6 @@ foreach ($orderStatus as $el) {
     </header>
     <!-- ----------------------------------------------------------------------- -->
     <main>
-        <!-- DON'T FORGET TO INSERT CURRENT TIME WHEN DOING ORDER -->
         <div class="container">
             <?php if (mysqli_num_rows($result2) == 0) : ?>
                 <div class="no-order-container">
@@ -247,14 +240,12 @@ foreach ($orderStatus as $el) {
             </p>
         </div>
     </footer>
-    <!-- ----------------------------------------------------------------------- -->
-    <script src="./public/scripts/changeTheme.js"></script>
-    <script src="./public/scripts/sidebarManipulation.js"></script>
 
-    <?php if($_GET['res'] == "success"): ?>
+    <?php if(isset($_GET['res']) && $_GET['res'] == "success"): ?>
         <script>alert("Purchased successfully. Have a great time in Bukovel.")</script>
     <?php endif; ?>
-
+    <script src="./public/scripts/changeTheme.js"></script>
+    <script src="./public/scripts/sidebarHandler.js"></script>
     <script>
         const removeOrderBtn = document.querySelectorAll("#remove-order-btn");
         const doneOrdersBox = document.getElementById("done-orders-box");

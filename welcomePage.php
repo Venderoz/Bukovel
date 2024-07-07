@@ -1,10 +1,8 @@
 <?php
 session_start();
-
 include "./src/connection.php";
-// We don't have the password or email info stored in sessions, so instead, we can get the results from the database.
+
 $stmt = $conn->prepare('SELECT account_image FROM users WHERE id = ?');
-// In this case we can use the account ID to get the account info.
 $stmt->bind_param('i', $_SESSION['id']);
 $stmt->execute();
 $stmt->bind_result($accountImage);
@@ -27,10 +25,8 @@ $stmt->close();
   <link rel="stylesheet" href="./public/css/navbar.css" />
   <link rel="stylesheet" href="./public/css/footer.css" />
   <link rel="stylesheet" href="./public/css/welcomepage_styles.css">
-
   <title>Bukovel. Welcome to the Heart of Carpathians</title>
 </head>
-<!-- ----------------------------------------------------------------------- -->
 
 <body>
   <div class="sidebar-menu-container" id="sidebar-menu-container">
@@ -252,30 +248,9 @@ $stmt->close();
     </div>
   </footer>
 
-  <!-- ----------------------------------------------------------------------- -->
   <script src="./public/scripts/changeTheme.js"></script>
-  <script src="./public/scripts/sidebar_manipulation.js"></script>
-
-  <!-- Swiper.js -->
-  <script type="module">
-    import Swiper from "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs";
-
-    const swiper = new Swiper(".swiper", {
-      // Optional parameters
-      direction: "horizontal",
-      loop: true,
-      keyboard: {
-        enabled: true,
-        onlyInViewport: true,
-      },
-      autoplay: {
-        delay: 5000,
-      },
-      pagination: {
-        el: ".swiper-pagination",
-      },
-    });
-  </script>
+  <script src="./public/scripts/sidebarHandler.js"></script>
+  <script type="module" src="./public/scripts/swiper.js"></script>
 </body>
 
 </html>

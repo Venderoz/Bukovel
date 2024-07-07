@@ -46,9 +46,7 @@ main {
 .offer-info-box {
     border-radius: 0 0 10px 10px;
     transition: .1s all;
-    /* specify the properties you want to transition */
     display: flex;
-    /* or block, depending on your layout */
 }
 
 .skipass-info-list {
@@ -145,21 +143,8 @@ main {
     transform: scaleY(0);
 }
 
-/* Media Query for Mobile Devices*/
-@media screen and (max-width: 480px) {}
-
-/* Media Query for low resolution  Tablets, Ipads */
-@media screen and (min-width: 481px) {}
-
-/* Media Query for Tablets Ipads portrait mode */
 @media screen and (min-width: 768px) {
     .skipass-info-list select {
         font-size: 90%;
     }
 }
-
-/* Media Query for Laptops and Desktops */
-@media screen and (min-width: 1025px) {}
-
-/* Media Query for Large screens */
-@media screen and (min-width: 1281px) {}

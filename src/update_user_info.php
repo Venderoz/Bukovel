@@ -1,6 +1,5 @@
 <?php
 session_start();
-// Change this to your connection info.
 include "connection.php";
 
 $username = htmlspecialchars(trim($_POST["username"]));
@@ -10,7 +9,7 @@ $birthdate = trim($_POST["birthdate"]);
  
 $filename = $_FILES["userImage"]["name"];
 $tempname = $_FILES["userImage"]["tmp_name"];
-$folder = "./public/assets/" . $filename;
+$folder = "../public/assets/" . $filename;
  
 $msg = "";
 
@@ -27,7 +26,7 @@ if ($result1) {
         $filename == ""
     ) {
         $msg = 'Nothing to change here!';
-        header("Location: ./../account.php?msg=$msg");
+        header("Location: ../account.php?msg=$msg");
     } else {
         if($filename != ""){
             move_uploaded_file($tempname, $folder);
@@ -37,6 +36,6 @@ if ($result1) {
         }
         $conn->query($query2);
         $msg = "Data changed successfully";
-        header("Location: ./../account.php?msg=$msg");
+        header("Location: ../account.php?msg=$msg");
     }
 }
