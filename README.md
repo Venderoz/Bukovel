@@ -13,7 +13,7 @@ This is a web platform designed by me as a school project. It's purpose is provi
 - **PHP:** For server-side scripting.
 - **HTML/CSS:** For structuring and styling the web pages.
 - **JavaScript:** To enhance interactivity.
-- **MySQL:** For database management.
+- **MariaDB:** For database management.
 
 ## Getting Started
 **To get a local copy up and running, follow these simple steps:**
