@@ -24,7 +24,4 @@ This is a web platform designed by me as a school project. It's purpose is provi
 4. Configure the database connection settings in the PHP files.
 5. Start the server and navigate to the project’s public directory.
 
-## Contact
 Ivan Soboliev - van.sob4625@gmail.com
-
-Project Link: https://github.com/Venderoz/Bukovel
